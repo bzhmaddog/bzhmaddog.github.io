@@ -1,0 +1,80 @@
+@media print { 
+	 /* All your print styles go here */
+	 body {
+		 background-color: transparent;
+		 font-size: 11px;
+	 }
+	 
+	 h1 {
+		 font-size: 1.5rem;
+	 }
+	 
+	 #Defymedia,
+	 #TMO {
+		 page-break-before: always;
+	 }
+	 
+	 #OtherExp dd ,
+	 #Hobbies dd,
+	 #EDucation {
+		 padding: 0;
+	 }
+	  
+	 #Education dt ,
+	 #Hobbies dt {
+		 margin-bottom: 1px;
+	 }
+	 
+	 section {
+		 margin-bottom: 10px !important;
+	 }
+	 
+	 section > h2{
+		 margin: 20px 0 10px 0 !important;
+	 }
+	 
+	 
+	 #Links li {
+		 margin-top: 5px;
+	 }
+	 
+	 .Skill > h3,
+	 section > article > h3 {
+		font-size: 1.05rem;
+	}
+
+	.Phone:before,
+	.Email:before,
+	.Skype:before {
+		margin-top: -2px;
+	}
+
+	.Icon--github:before,
+	.Icon--break:before ,
+	.Icon--sj:before ,
+	.Icon--smosh:before ,
+	.Icon--smoshcraft:before ,
+	.Icon--thegloss:before ,
+	.Icon--mm:before ,
+	.Icon--mint:before ,
+	.Icon--ultra:before ,
+	.Icon--univision:before ,
+	.Icon--avandeo:before ,
+	.Icon--juzine:before ,
+	.Icon--linkedin:before {
+		margin-top: -3px;
+	}
+
+	.Container section:first-of-type {
+		margin-top: 30px;
+	}
+
+	.Resources .Columns-inner ul.nostyletype li {
+		padding: 5px;
+	}
+
+	.Resources .Columns-inner div {
+		background-color: #e5e5e5;
+	}
+ 
+}

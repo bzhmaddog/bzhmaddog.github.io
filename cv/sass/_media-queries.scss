@@ -1,0 +1,44 @@
+$MOBILE: 640px;
+$TABLET_PORTRAIT: 800px;
+$TABLET_LANDSCAPE: 1024px;
+$SMALL_SCREEN: 1130px;
+
+@mixin mobile {
+	@media screen and (max-width: #{$MOBILE}) {
+		@content;
+	}
+}
+
+@mixin tablet-portrait {
+	@media screen and (max-width: #{$TABLET_PORTRAIT}) {
+		@content;
+	}
+}
+
+@mixin tablet-landscape {
+	@media screen and (max-width: #{$TABLET_LANDSCAPE}) {
+		@content;
+	}
+}
+
+@mixin smaller-monitor {
+	@media screen and (max-width: #{$SMALL_SCREEN}) {
+		@content;
+	}
+}
+
+
+/*
+Usage:
+@include tablet-landscape {
+	font-size: 60px;
+}
+
+@include tablet-portrait {
+	font-size: 40px;
+}
+
+@include mobile {
+	font-size: 20px;
+}
+*/

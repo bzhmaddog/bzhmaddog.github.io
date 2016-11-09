@@ -1,0 +1,475 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}	
+
+body {
+	font-family: Helvetica;
+	font-size: 16px;
+	background-color: #f9f9f9;
+}
+
+.Container {
+	max-width: 1200px;
+	margin: 0 auto;
+	background-color: #fff;
+	padding: 20px 20px 0 20px;
+}
+
+.Address,
+.Phone,
+.Email,
+.Skype,
+.LinkedIn {
+	position: relative;
+	padding: 5px 20px;
+}
+
+.Address:before {
+	content: 'x';
+	color: transparent;
+	background: url(icon-address.jpg) no-repeat;
+	background-size: contain;
+	width: 16px;
+	height:16px;
+	margin-left: -20px;
+	position: absolute;
+}
+
+.Phone:before {
+	content: 'x';
+	color: transparent;
+	background: url(icon-phone.jpg) no-repeat;
+	background-size: contain;
+	width: 16px;
+	height:16px;
+	margin-left: -20px;
+	position: absolute;
+}
+
+.Skype:before {
+	content: 'x';
+	color: transparent;
+	background: url(icon-skype.jpg) no-repeat;
+	background-size: contain;
+	width: 16px;
+	height:16px;
+	margin-left: -20px;
+	position: absolute;
+}
+
+.Email:before {
+	content: 'x';
+	color: transparent;
+	background: url(icon-mail2.jpg) no-repeat;
+	background-size: contain;
+	width: 16px;
+	height:16px;
+	margin-left: -20px;
+	position: absolute;
+}
+
+
+
+h1 {
+	font-weight: bold;
+	font-size: 2rem;
+	margin: 15px 0;
+}
+
+section > h2 {
+	color: #1C4072;
+	border-bottom: 2px solid #1C4072;
+	margin: 20px 0;
+	padding-bottom: 5px;
+	font-size: 1.3rem;
+}
+
+.Columns .Columns-inner {
+	display: flex;
+}
+
+.Columns .Columns-inner em {
+	color: red;
+}
+
+.Skill {
+	width: 50%;
+	margin: 5px;
+}
+
+.Skill > h3,
+section > article > h3 {
+	background-color: #6E92C4;
+	color: #fff;
+	padding: 10px;
+	font-size: 1.2rem;
+	margin-bottom: 10px;
+}
+
+.Skill > ul,
+section > article > ul {
+	list-style-type: square;
+	margin-left: 20px;
+}
+
+.Skill > ul > li,
+section > article > ul > li {
+	padding: 5px;
+}
+
+.Freelance {
+	float: right;
+	font-size: 1rem;
+}
+
+section {
+	margin-bottom: 20px;
+}
+
+section > article {
+	margin-bottom: 20px;
+}
+
+.Resources {
+	margin-top: 15px;
+}
+
+.Resources .Columns-inner div {
+	width: 50%;
+	margin: 5px;
+	background-color: #f9f9f9;
+}
+
+.Resources .Columns-inner div > h4 {
+	background-color: #B8DCFA;
+	color: #1C4072;
+	padding: 10px;
+	font-size: 1.1rem;
+	font-weight: bold;
+}
+
+.Resources .Columns-inner div > ul {
+	margin: 10px 30px;
+	list-style-type: square;
+}
+
+.Resources .Columns-inner div > ul.nostyletype {
+	list-style-type: none;
+}
+
+
+.Resources .Columns-inner li {
+	padding: 3px;
+}
+
+
+#Hobbies .Resources .Columns-inner div {
+	width: 100%;
+}
+
+.Container dt {
+	margin: 10px;
+	font-weight: bold;
+}
+
+.Container dd {
+	margin-left: 25px;
+	position: relative;
+	padding: 5px;
+}
+
+.Container dd:before {
+	content: "-";
+	position: absolute;
+	margin-left: -10px;
+}
+
+strong {
+	font-weight: bold;
+}
+
+.Languages ul {
+	margin-left: 10px;
+}
+
+.Container a {
+	color: #000;
+	text-decoration: none;
+}
+
+.Container a:hover {
+	text-decoration: underline;
+}
+
+.Icon {
+	position: relative;
+}
+
+.Icon--github:before {
+	content: 'x';
+	color: transparent;
+	background: url(icon-github.jpg) no-repeat;
+	background-size: contain;
+	width: 16px;
+	height:16px;
+	margin-left: -20px;
+	position: absolute;
+}
+	
+.Icon--linkedin:before {
+	content: 'x';
+	color: transparent;
+	background: url(icon-linkedin.jpg) no-repeat;
+	background-size: contain;
+	width: 16px;
+	height:16px;
+	margin-left: -20px;
+	position: absolute;
+}
+
+.Icon--break:before {
+	content: 'x';
+	color: transparent;
+	background: url(icon-break.png) no-repeat;
+	background-size: contain;
+	width: 16px;
+	height:16px;
+	margin-left: -20px;
+	position: absolute;
+}
+
+.Icon--sj:before {
+	content: 'x';
+	color: transparent;
+	background: url(icon-sj.png) no-repeat;
+	background-size: contain;
+	width: 16px;
+	height:16px;
+	margin-left: -20px;
+	position: absolute;
+}
+
+.Icon--thegloss:before {
+	content: 'x';
+	color: transparent;
+	background: url(icon-thegloss.png) no-repeat;
+	background-size: contain;
+	width: 16px;
+	height:16px;
+	margin-left: -20px;
+	position: absolute;
+}
+
+.Icon--smoshcraft:before {
+	content: 'x';
+	color: transparent;
+	background: url(icon-smoshcraft.png) no-repeat;
+	background-size: contain;
+	width: 16px;
+	height:16px;
+	margin-left: -20px;
+	position: absolute;
+}
+
+.Icon--smosh:before {
+	content: 'x';
+	color: transparent;
+	background: url(icon-smosh.png) no-repeat;
+	background-size: contain;
+	width: 16px;
+	height:16px;
+	margin-left: -20px;
+	position: absolute;
+}
+
+.Icon--mm:before {
+	content: 'x';
+	color: transparent;
+	background: url(icon-mm.jpg) no-repeat;
+	background-size: contain;
+	width: 16px;
+	height:16px;
+	margin-left: -20px;
+	position: absolute;
+}
+
+.Icon--avandeo:before {
+	content: 'x';
+	color: transparent;
+	background: url(icon-avandeo.png) no-repeat;
+	background-size: contain;
+	width: 16px;
+	height:16px;
+	margin-left: -20px;
+	position: absolute;
+}
+
+.Icon--juzine:before {
+	content: 'x';
+	color: transparent;
+	background: url(icon-juzine.png) no-repeat;
+	background-size: contain;
+	width: 16px;
+	height:16px;
+	margin-left: -20px;
+	position: absolute;
+}
+
+.Icon--mint:before {
+	content: 'x';
+	color: transparent;
+	background: url(icon-mint2.png) no-repeat;
+	background-size: contain;
+	width: 16px;
+	height:16px;
+	margin-left: -20px;
+	position: absolute;
+}
+
+.Icon--ultra:before {
+	content: 'x';
+	color: transparent;
+	background: url(icon-ultra.png) no-repeat;
+	background-size: contain;
+	width: 16px;
+	height:16px;
+	margin-left: -20px;
+	position: absolute;
+}
+
+.Icon--univision:before {
+	content: 'x';
+	color: transparent;
+	background: url(icon-univision.png) no-repeat;
+	background-size: contain;
+	width: 16px;
+	height:16px;
+	margin-left: -20px;
+	position: absolute;
+}
+	
+@media print { 
+ /* All your print styles go here */
+ body {
+	 background-color: transparent;
+	 font-size: 11px;
+ }
+ 
+ h1 {
+	 font-size: 1.5rem;
+ }
+ 
+ #Defymedia,
+ #TMO {
+	 page-break-before: always;
+ }
+ 
+ #OtherExp dd ,
+ #Hobbies dd,
+ #EDucation {
+	 padding: 0;
+ }
+  
+ #Education dt ,
+ #Hobbies dt {
+	 margin-bottom: 1px;
+ }
+ 
+ section {
+	 margin-bottom: 10px !important;
+ }
+ 
+ section > h2{
+	 margin: 20px 0 10px 0 !important;
+ }
+ 
+ 
+ #Links li {
+	 margin-top: 5px;
+ }
+ 
+ .Skill > h3,
+ section > article > h3 {
+	font-size: 1.05rem;
+}
+
+.Phone:before,
+.Email:before,
+.Skype:before {
+	margin-top: -2px;
+}
+
+.Icon--github:before,
+.Icon--break:before ,
+.Icon--sj:before ,
+.Icon--smosh:before ,
+.Icon--smoshcraft:before ,
+.Icon--thegloss:before ,
+.Icon--mm:before ,
+.Icon--mint:before ,
+.Icon--ultra:before ,
+.Icon--univision:before ,
+.Icon--avandeo:before ,
+.Icon--juzine:before ,
+.Icon--linkedin:before {
+	margin-top: -3px;
+}
+
+.Container section:first-of-type {
+	margin-top: 30px;
+}
+
+.Resources .Columns-inner ul.nostyletype li {
+	padding: 5px;
+}
+
+.Resources .Columns-inner div {
+	background-color: #e5e5e5;
+}
+ 
+}
