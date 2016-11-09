@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Cédric MARTIN - Développeur Web</title>
 	<meta charset="UTF-8">
+	<title>Cédric Martin - Développeur Web</title>
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<link href="styles.css" media="all" rel="stylesheet">
+	<script src="svg4everybody.js"></script>
+	<script>
+		//svg4everybody(); // run it now or whenever you are ready
+	</script>
 </head>
 <body>
 	<div class="Container">
 
-		<header>
-			<h1>Cédric MARTIN - 41 ans - Développeur Web</h1>
+		<header class="Header">
+			<h1>Cédric Martin - 41 ans - Développeur Web</h1>
 			<p class="Address">
 				<span>23 Rue du Roy Arthur, Ile-Grande</span><br/>
 				<span>22560 Pleumeur-Bodou, France</span>
@@ -17,6 +22,12 @@
 			<p class="Phone">(+33) 0604404668</p>
 			<p class="Email">cedmart1@gmail.com</p>
 			<p class="Skype">cedmart1_fr</p>
+
+			<svg class="QR" viewBox="0 0 37 37">
+				<use xlink:href="./qr-fr.svg"></use>
+			</svg>			
+						
+			
 		</header>
 
 		<section class="Columns">

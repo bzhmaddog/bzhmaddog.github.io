@@ -345,6 +345,18 @@ strong {
 	position: absolute;
 }
 
+.Header {
+	position: relative;
+}
+
+.QR {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	width: 20%;
+	height: 20%;
+}
+
 @include smaller-monitor {
 
 	.Columns {
