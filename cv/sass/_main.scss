@@ -345,6 +345,39 @@ strong {
 	position: absolute;
 }
 
+.Icon--suez:before {
+	content: 'x';
+	color: transparent;
+	background: url(icon-suez.png) no-repeat;
+	background-size: contain;
+	width: 16px;
+	height:16px;
+	margin-left: -20px;
+	position: absolute;
+}
+
+.Icon--amc:before {
+	content: 'x';
+	color: transparent;
+	background: url(icon-amc.png) no-repeat;
+	background-size: contain;
+	width: 16px;
+	height:16px;
+	margin-left: -20px;
+	position: absolute;
+}
+
+.Icon--squarly:before {
+	content: 'x';
+	color: transparent;
+	background: url(icon-squarly.png) no-repeat;
+	background-size: contain;
+	width: 16px;
+	height:16px;
+	margin-left: -20px;
+	position: absolute;
+}
+
 .Header {
 	position: relative;
 }
