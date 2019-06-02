@@ -203,6 +203,17 @@ strong {
 	position: relative;
 }
 
+.Icon--urgo:before {
+	content: 'x';
+	color: transparent;
+	background: url(icon-urgo.png) no-repeat;
+	background-size: contain;
+	width: 16px;
+	height:16px;
+	margin-left: -20px;
+	position: absolute;
+}
+
 .Icon--github:before {
 	content: 'x';
 	color: transparent;
