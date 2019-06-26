@@ -142,13 +142,16 @@ section > article {
 	background-color: #B8DCFA;
 	color: #1C4072;
 	padding: 10px;
-	font-size: 1.1rem;
+	font-size: 1rem;
 	font-weight: bold;
 }
 
 .Resources .Columns-inner div > ul {
 	margin: 10px 30px;
 	list-style-type: square;
+}
+.Resources .Columns-inner div > ul {
+	font-size: 13px;
 }
 
 .Resources .Columns-inner div > ul.nostyletype {
@@ -361,6 +364,17 @@ strong {
 	content: 'x';
 	color: transparent;
 	background: url(icon-suez.png) no-repeat;
+	background-size: contain;
+	width: 16px;
+	height:16px;
+	margin-left: -20px;
+	position: absolute;
+}
+
+.Icon--orange:before {
+	content: 'x';
+	color: transparent;
+	background: url(icon-orange.png) no-repeat;
 	background-size: contain;
 	width: 16px;
 	height:16px;
