@@ -16,6 +16,7 @@ class GPURenderer {
     #bgBrightness;
     #bgColor;
     #brightness;
+    #bgHSP;
     renderFrame;
 
 
@@ -62,6 +63,10 @@ class GPURenderer {
         if (typeof bgBrightness === 'number') {
             this.setBrightness(brightness);
         }
+
+        var bgp2 = this.#bgBrightness*this.#bgBrightness;
+
+        this.#bgHSP = Math.sqrt(0.299 * bgp2 + 0.587 * bgp2 + 0.114 * bgp2);
     }
 
     #int2Hex(n) {
@@ -97,6 +102,10 @@ class GPURenderer {
 
                             fn f2i(f: f32) -> u32 {
                                 return u32(ceil(f));
+                            }
+
+                            fn u2f(u: u32) -> f32 {
+                                return f32(u);
                             }
 
                             [[group(0), binding(0)]] var<storage,read> inputPixels: Image;
@@ -135,15 +144,12 @@ class GPURenderer {
                                 // Recreate pixel color but force alpha to 255
                                 pixel = 255u << 24u | bb << 16u | bg << 8u | br;
 
-                                var t : u32 = br + bg + bb;
+                                var t : u32 = r + g + b;
+                                var hsp : f32 =  sqrt(.299f * u2f(r) * u2f(r) + .587f * u2f(g) * u2f(g) + .114 * u2f(b) * u2f(b));
                 
                                 // Pixels that are too dark will be hacked to give the 'off' dot look of the DMD
-                                //if ( (br < bgBrightness && bg < bgBrightness && bb < bgBrightness) || brightness == 0f) {
-                                //    pixel = ${that.#bgColor}u;
-                                    //pixel = 4278190335u;
-                                //}
-
-                                if (t < bgBrightness*3u) {
+                                //if (t < bgBrightness*3u) {
+                                if (hsp - 8f < ${this.#bgHSP}f) {
                                     pixel = ${that.#bgColor}u;
                                     //pixel = 4294901760u;
                                 }
