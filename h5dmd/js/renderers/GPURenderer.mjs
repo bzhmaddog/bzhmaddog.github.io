@@ -304,8 +304,8 @@ class GPURenderer {
             const passEncoder = commandEncoder.beginComputePass();
             passEncoder.setPipeline(computePipeline);
             passEncoder.setBindGroup(0, bindGroup);
-            passEncoder.dispatch(that.#dmdWidth, that.#dmdHeight);
-            passEncoder.endPass();
+            passEncoder.dispatchWorkgroups(that.#dmdWidth, that.#dmdHeight);
+            passEncoder.end();
     
             commandEncoder.copyBufferToBuffer(gpuTempBuffer, 0, gpuOutputBuffer, 0, that.#screenBufferByteLength);
     
