@@ -37,7 +37,7 @@ class DummyRenderer {
                     that.#shaderModule = device.createShaderModule({
                         code: `
                             struct Image {
-                                rgba: array<u32>;
+                                rgba: array<u32>
                             };
 
                             [[group(0), binding(0)]] var<storage,read> inputPixels: Image;

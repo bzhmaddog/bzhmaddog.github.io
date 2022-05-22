@@ -37,10 +37,10 @@ class ChangeAlphaRenderer {
                     that.#shaderModule = device.createShaderModule({
                         code: `
                             struct UBO {
-                                opacity: f32;
+                                opacity: f32
                             };
                             struct Image {
-                                rgba: array<u32>;
+                                rgba: array<u32>
                             };
 
                             fn f2u(f: f32) -> u32 {

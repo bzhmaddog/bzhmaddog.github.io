@@ -41,12 +41,12 @@ class OutlineRenderer {
                     that.#shaderModule = device.createShaderModule({
                         code: `
                             struct UBO {
-                                innerColor: u32;
-                                outerColor: u32;
-                                lineWidth: u32;
+                                innerColor: u32,
+                                outerColor: u32,
+                                lineWidth: u32
                             };
                             struct Image {
-                                rgba: array<u32>;
+                                rgba: array<u32>
                             };
 
                             [[group(0), binding(0)]] var<storage,read> inputPixels: Image;

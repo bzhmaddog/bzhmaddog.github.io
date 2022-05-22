@@ -93,19 +93,19 @@ class GPURenderer {
                     that.#shaderModule = device.createShaderModule({
                         code: `
                             struct UBO {
-                                brightness: f32;
+                                brightness: f32
                             };
 
                             struct Image {
-                                rgba: array<u32>;
+                                rgba: array<u32>
                             };
 
                             fn f2i(f: f32) -> u32 {
-                                return u32(ceil(f));
+                                return u32(ceil(f))
                             }
 
                             fn u2f(u: u32) -> f32 {
-                                return f32(u);
+                                return f32(u)
                             }
 
                             [[group(0), binding(0)]] var<storage,read> inputPixels: Image;
