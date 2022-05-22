@@ -36,10 +36,10 @@ class ChangeAlphaRenderer {
 
                     that.#shaderModule = device.createShaderModule({
                         code: `
-                            [[block]] struct UBO {
+                            struct UBO {
                                 opacity: f32;
                             };
-                            [[block]] struct Image {
+                            struct Image {
                                 rgba: array<u32>;
                             };
 
@@ -214,8 +214,8 @@ class ChangeAlphaRenderer {
 
             passEncoder.setPipeline(computePipeline);
             passEncoder.setBindGroup(0, bindGroup);
-            passEncoder.dispatchWorkgroups(that.#width, that.#height);
-            passEncoder.end();
+            //passEncoder.dispatchWorkgroups(that.#width, that.#height);
+            passEncoder.endPass();
 
             commandEncoder.copyBufferToBuffer(gpuTempBuffer, 0, gpuOutputBuffer, 0, that.#bufferByteLength);
     

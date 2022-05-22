@@ -38,11 +38,11 @@ class RemoveAliasingRenderer {
 
                     that.#shaderModule = device.createShaderModule({
                         code: `
-                            [[block]] struct UBO {
+                            struct UBO {
                                 treshold : u32;
                                 baseColor : u32;
                             };
-                            [[block]] struct Image {
+                            struct Image {
                                 rgba: array<u32>;
                             };
                             [[group(0), binding(0)]] var<storage,read> inputPixels: Image;
@@ -249,8 +249,8 @@ class RemoveAliasingRenderer {
 
             passEncoder.setPipeline(computePipeline);
             passEncoder.setBindGroup(0, bindGroup);
-            passEncoder.dispatchWorkgroups(that.#width, that.#height);
-            passEncoder.end();
+            //passEncoder.dispatchWorkgroups(that.#width, that.#height);
+            passEncoder.endPass();
 
             commandEncoder.copyBufferToBuffer(gpuTempBuffer, 0, gpuOutputBuffer, 0, that.#bufferByteLength);
     

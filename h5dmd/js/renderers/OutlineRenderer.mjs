@@ -40,12 +40,12 @@ class OutlineRenderer {
 
                     that.#shaderModule = device.createShaderModule({
                         code: `
-                            [[block]] struct UBO {
+                            struct UBO {
                                 innerColor: u32;
                                 outerColor: u32;
                                 lineWidth: u32;
                             };
-                            [[block]] struct Image {
+                            struct Image {
                                 rgba: array<u32>;
                             };
 
@@ -253,8 +253,8 @@ class OutlineRenderer {
 
             passEncoder.setPipeline(computePipeline);
             passEncoder.setBindGroup(0, bindGroup);
-            passEncoder.dispatchWorkgroups(that.#width, that.#height);
-            passEncoder.end();
+            passEncoder.dispatch(that.#width, that.#height);
+            passEncoder.endPass();
 
             commandEncoder.copyBufferToBuffer(gpuTempBuffer, 0, gpuOutputBuffer, 0, that.#bufferByteLength);
     

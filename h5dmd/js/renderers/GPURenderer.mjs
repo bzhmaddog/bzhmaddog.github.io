@@ -86,17 +86,17 @@ class GPURenderer {
 
             navigator.gpu.requestAdapter().then( adapter => {
                 that.#adapter = adapter;
-            
+
                 adapter.requestDevice().then( device => {
                     that.#device = device;
 
                     that.#shaderModule = device.createShaderModule({
                         code: `
-                            [[block]] struct UBO {
+                            struct UBO {
                                 brightness: f32;
                             };
 
-                            [[block]] struct Image {
+                            struct Image {
                                 rgba: array<u32>;
                             };
 
@@ -304,8 +304,8 @@ class GPURenderer {
             const passEncoder = commandEncoder.beginComputePass();
             passEncoder.setPipeline(computePipeline);
             passEncoder.setBindGroup(0, bindGroup);
-            passEncoder.dispatchWorkgroups(that.#dmdWidth, that.#dmdHeight);
-            passEncoder.end();
+            //passEncoder.dispatchWorkgroups(that.#dmdWidth, that.#dmdHeight);
+            passEncoder.endPass();
     
             commandEncoder.copyBufferToBuffer(gpuTempBuffer, 0, gpuOutputBuffer, 0, that.#screenBufferByteLength);
     

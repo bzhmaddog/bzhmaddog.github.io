@@ -38,7 +38,7 @@ class RemoveAlphaRenderer {
 
                     that.#shaderModule = device.createShaderModule({
                         code: `
-                            [[block]] struct Image {
+                            struct Image {
                                 rgba: array<u32>;
                             };
                             [[group(0), binding(0)]] var<storage,read> inputPixels: Image;
@@ -170,7 +170,7 @@ class RemoveAlphaRenderer {
 
             passEncoder.setPipeline(computePipeline);
             passEncoder.setBindGroup(0, bindGroup);
-            passEncoder.dispatchWorkgroups(that.#width, that.#height);
+            passEncoder.dispatch(that.#width, that.#height);
             passEncoder.end();
 
             commandEncoder.copyBufferToBuffer(gpuTempBuffer, 0, gpuOutputBuffer, 0, that.#bufferByteLength);
