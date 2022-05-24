@@ -43,7 +43,7 @@ class RemoveAlphaRenderer {
                             };
                             @group(0) @binding(0) var<storage,read> inputPixels: Image;
                             @group(0) @binding(1) var<storage,write> outputPixels: Image;
-                            @compute @workgroup_size(1)
+                            @compute @workgroup_size(1u)
                             fn main (@builtin(global_invocation_id) global_id: vec3<u32>) {
                                 let index : u32 = global_id.x + global_id.y * ${that.#width}u;
 
