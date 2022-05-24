@@ -94,11 +94,11 @@ class GPURenderer {
                         code: `
                             struct UBO {
                                 brightness: f32
-                            };
+                            }
 
                             struct Image {
                                 rgba: array<u32>
-                            };
+                            }
 
                             fn f2i(f: f32) -> u32 {
                                 return u32(ceil(f));
@@ -110,7 +110,8 @@ class GPURenderer {
 
                             @group(0) @binding(0) var<storage,read> inputPixels: Image;
                             @group(0) @binding(1) var<storage,write> outputPixels: Image;
-                            @group(0) @binding(2) var<uniform> uniforms : UBO;                            
+                            @group(0) @binding(2) var<uniform> uniforms : UBO;
+                                                        
                             @compute
                             @workgroup_size(1)
                             fn main (@builtin(global_invocation_id) global_id: vec3<u32>) {
