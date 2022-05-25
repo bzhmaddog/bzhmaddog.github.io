@@ -174,7 +174,7 @@ class DMD {
 		// Generate DMD frame
 		this.#renderer.renderFrame(frameImageData.data).then(dmdImageData => {
 			
-			console.log(dmdImageData);
+			//console.log(dmdImageData);
 
 			createImageBitmap(dmdImageData).then(bitmap => {
 				
