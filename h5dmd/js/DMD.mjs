@@ -175,6 +175,8 @@ class DMD {
 		this.#renderer.renderFrame(frameImageData.data).then(dmdImageData => {
 
 			createImageBitmap(dmdImageData).then(bitmap => {
+				
+				console.log(bitmap);
 
 				// Clear target canvas
 				that.#outputContext.clearRect(0, 0, that.#outputCanvas.width, that.#outputCanvas.height);
@@ -209,7 +211,6 @@ class DMD {
 	 * Request next Frame rendering cycle
 	 */
 	#requestNextFrame() {
-		console.log('here');
 		requestAnimationFrame(this.#renderDMD.bind(this));
 	}
 
