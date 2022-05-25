@@ -54,7 +54,7 @@ class OutlineRenderer {
                             @group(0) @binding(2) var<uniform> uniforms : UBO;
 
                             @stage(compute)
-                            @workgroup_size(64)
+                            @workgroup_size(1)
                             fn main (@builtin(global_invocation_id) global_id: vec3<u32>) {
                                 let index : u32 = global_id.x + global_id.y * ${that.#width}u;
                                 let lineSize : u32 = ${that.#width}u;
