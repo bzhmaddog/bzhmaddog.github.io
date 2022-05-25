@@ -173,10 +173,12 @@ class DMD {
 
 		// Generate DMD frame
 		this.#renderer.renderFrame(frameImageData.data).then(dmdImageData => {
+			
+			console.log(dmdImageData);
 
 			createImageBitmap(dmdImageData).then(bitmap => {
 				
-				console.log(bitmap);
+				//console.log(bitmap);
 
 				// Clear target canvas
 				that.#outputContext.clearRect(0, 0, that.#outputCanvas.width, that.#outputCanvas.height);
