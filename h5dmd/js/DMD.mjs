@@ -209,6 +209,7 @@ class DMD {
 	 * Request next Frame rendering cycle
 	 */
 	#requestNextFrame() {
+		console.log('here');
 		requestAnimationFrame(this.#renderDMD.bind(this));
 	}
 
