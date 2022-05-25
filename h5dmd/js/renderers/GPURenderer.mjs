@@ -307,7 +307,7 @@ class GPURenderer {
             passEncoder.setPipeline(computePipeline);
             passEncoder.setBindGroup(0, bindGroup);
             //passEncoder.dispatchWorkgroups(that.#dmdWidth, that.#dmdHeight);
-            passEncoder.endPass();
+            passEncoder.end();
     
             commandEncoder.copyBufferToBuffer(gpuTempBuffer, 0, gpuOutputBuffer, 0, that.#screenBufferByteLength);
     

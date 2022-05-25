@@ -255,8 +255,8 @@ class OutlineRenderer {
 
             passEncoder.setPipeline(computePipeline);
             passEncoder.setBindGroup(0, bindGroup);
-            passEncoder.dispatch(that.#width, that.#height);
-            passEncoder.endPass();
+            //passEncoder.dispatch(that.#width, that.#height);
+            passEncoder.end();
 
             commandEncoder.copyBufferToBuffer(gpuTempBuffer, 0, gpuOutputBuffer, 0, that.#bufferByteLength);
     

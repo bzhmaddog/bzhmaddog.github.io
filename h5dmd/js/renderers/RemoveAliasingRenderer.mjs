@@ -253,7 +253,7 @@ class RemoveAliasingRenderer {
             passEncoder.setPipeline(computePipeline);
             passEncoder.setBindGroup(0, bindGroup);
             //passEncoder.dispatchWorkgroups(that.#width, that.#height);
-            passEncoder.endPass();
+            passEncoder.end();
 
             commandEncoder.copyBufferToBuffer(gpuTempBuffer, 0, gpuOutputBuffer, 0, that.#bufferByteLength);
     
