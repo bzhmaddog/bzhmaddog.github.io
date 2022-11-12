@@ -54,7 +54,7 @@ class DMD {
 		this.#yOffset = yOffset;
 		this.#outputWidth = Math.floor(this.#outputCanvas.width / (dotSize + dotSpace));
 		this.#outputHeight = Math.floor(this.#outputCanvas.height / (dotSize + dotSpace));
-		this.#frameBuffer = new Buffer(this.#outputWidth, this.#outputHeight);
+		this.#frameBuffer = new Buffer(this.#outputWidth, this.#outputHeight, true);
 		this.#zIndex = 1;
 		this.#sortedLayers = [];
 		this.#renderFPS = function () { }; // Does nothing
@@ -173,12 +173,8 @@ class DMD {
 
 		// Generate DMD frame
 		this.#renderer.renderFrame(frameImageData.data).then(dmdImageData => {
-			
-			//console.log(dmdImageData);
 
 			createImageBitmap(dmdImageData).then(bitmap => {
-				
-				//console.log(bitmap);
 
 				// Clear target canvas
 				that.#outputContext.clearRect(0, 0, that.#outputCanvas.width, that.#outputCanvas.height);
