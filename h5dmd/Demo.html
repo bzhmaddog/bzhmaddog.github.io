@@ -21,6 +21,38 @@
     </head>
     <body>
         <canvas id="output" width="1280" height="390"></canvas>
+        <br />
+        <div id="checkboxes">
+            <div>
+                <input id="background_checkbox" type="checkbox" />
+                <label for="background_checkbox">Scales</label>
+            </div>
+            <div>
+                <input id="sprite_checkbox" type="checkbox" />
+                <label for="sprite_checkbox">Scales</label>
+            </div>
+            <div>
+                <input id="animation_checkbox" type="checkbox" />
+                <label for="animation_checkbox">Scales</label>
+            </div>
+            <div>
+                <input id="vstext_checkbox" type="checkbox" />
+                <label for="vstext_checkbox">Scales</label>
+            </div>
+            <div>
+                <input id="scotttext_checkbox" type="checkbox" />
+                <label for="scotttext_checkbox">Scales</label>
+            </div>
+            <div>
+                <input id="matthewtext_checkbox" type="checkbox" />
+                <label for="matthewtext_checkbox">Scales</label>
+            </div>
+            <div>
+                <input id="matthewimg_checkbox" type="checkbox" />
+                <label for="matthewimg_checkbox">Scales</label>
+            </div>
+        </div>
+
         <script type="module">
             import { DMD } from './js/DMD.mjs';
             import { Utils } from './js/Utils.mjs';
@@ -167,6 +199,15 @@
                             });
                         });                      
                         
+                        var checkboxElems = document.querySelectorAll("input[type='checkbox']");
+
+
+                        for (var i = 0; i < checkboxElems.length; i++) {
+                            checkboxElems[i].addEventListener("click", function(element) {
+                                console.log(element);
+                            });
+                        }
+
                     });
                 },false);
             })();
