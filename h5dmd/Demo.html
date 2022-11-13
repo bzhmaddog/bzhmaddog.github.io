@@ -85,7 +85,7 @@
                     //var dmd = new DMD(output, 7, 3, 1, 1, DMD.DotShape.Square, 14, 1, true);
 
                     window.dmd = dmd;
-                    
+
                     			// Init DMD then
         			dmd.init().then( () => {
                         // Start rendering dmd
@@ -212,9 +212,7 @@
                             checkboxElems[i].addEventListener("click", function(element) {
                                 var layerName = element.target.dataset.layer;
                                 var visible = element.target.checked
-                                var layer = dmd.getLayer(layer);
-
-                                console.log(layerName);
+                                var layer = dmd.getLayer(layerName);
 
                                 if (layer != null) {
                                     layer.setVisibility(visible);
