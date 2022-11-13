@@ -225,6 +225,10 @@
                                         if (layerName === "sprite") {
                                             layer.run('scott');
                                         } else if (layerName === "animation") {
+                                            layer.stop();
+                                        }
+                                    } else {
+                                        if (layerName === "animation") {
                                             layer.play(true);
                                         }
                                     }
