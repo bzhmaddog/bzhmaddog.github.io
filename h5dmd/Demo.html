@@ -24,32 +24,32 @@
         <br />
         <div id="checkboxes">
             <div>
-                <input id="background_checkbox" type="checkbox" />
-                <label for="background_checkbox">Scales</label>
+                <input id="background_checkbox" type="checkbox" layer="bg" />
+                <label for="background_checkbox">Background</label>
             </div>
             <div>
-                <input id="sprite_checkbox" type="checkbox" />
-                <label for="sprite_checkbox">Scales</label>
+                <input id="sprite_checkbox" type="checkbox" layer="sprite" />
+                <label for="sprite_checkbox">Sprite</label>
             </div>
             <div>
-                <input id="animation_checkbox" type="checkbox" />
-                <label for="animation_checkbox">Scales</label>
+                <input id="animation_checkbox" type="checkbox" layer="animation" />
+                <label for="animation_checkbox">background animation</label>
             </div>
             <div>
-                <input id="vstext_checkbox" type="checkbox" />
-                <label for="vstext_checkbox">Scales</label>
+                <input id="vstext_checkbox" type="checkbox" layer="text2" />
+                <label for="vstext_checkbox">VS text</label>
             </div>
             <div>
-                <input id="scotttext_checkbox" type="checkbox" />
-                <label for="scotttext_checkbox">Scales</label>
+                <input id="scotttext_checkbox" type="checkbox" layer="text1"/>
+                <label for="scotttext_checkbox">Scott pilgrim text</label>
             </div>
             <div>
-                <input id="matthewtext_checkbox" type="checkbox" />
-                <label for="matthewtext_checkbox">Scales</label>
+                <input id="matthewtext_checkbox" type="checkbox" layer="text4" />
+                <label for="matthewtext_checkbox">Matthew Patel text</label>
             </div>
             <div>
-                <input id="matthewimg_checkbox" type="checkbox" />
-                <label for="matthewimg_checkbox">Scales</label>
+                <input id="matthewimg_checkbox" type="checkbox" layer="canvas" />
+                <label for="matthewimg_checkbox">Matthew Patel Image</label>
             </div>
         </div>
 
@@ -204,7 +204,15 @@
 
                         for (var i = 0; i < checkboxElems.length; i++) {
                             checkboxElems[i].addEventListener("click", function(element) {
-                                console.log(element);
+                                var layerName = element.target.dataSet.layer;
+                                console.log(layerName);
+
+                                var layer = dmd.getLayer(layer);
+
+                                if (layer != null) {
+                                    layer.toggleVisibility();
+                                }
+
                             });
                         }
 
