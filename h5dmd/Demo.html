@@ -212,10 +212,12 @@
                                 var visible = element.target.checked
                                 var layer = dmd.getLayer(layer);
 
+                                console.log(layerName);
+
                                 if (layer != null) {
                                     layer.setVisibility(visible);
                                 } else {
-                                    console.log(`Layer not found : $layerName`);
+                                    console.log(`Layer not found : ${layerName}`);
                                 }
 
                             });
