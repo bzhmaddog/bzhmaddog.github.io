@@ -24,31 +24,31 @@
         <br />
         <div id="checkboxes">
             <div>
-                <input id="background_checkbox" type="checkbox" layer="bg" />
+                <input id="background_checkbox" type="checkbox" layer="bg" checked />
                 <label for="background_checkbox">Background</label>
             </div>
             <div>
-                <input id="sprite_checkbox" type="checkbox" layer="sprite" />
+                <input id="sprite_checkbox" type="checkbox" layer="sprite" checked />
                 <label for="sprite_checkbox">Sprite</label>
             </div>
             <div>
-                <input id="animation_checkbox" type="checkbox" layer="animation" />
+                <input id="animation_checkbox" type="checkbox" layer="animation" checked />
                 <label for="animation_checkbox">background animation</label>
             </div>
             <div>
-                <input id="vstext_checkbox" type="checkbox" layer="text2" />
+                <input id="vstext_checkbox" type="checkbox" layer="text2" checked />
                 <label for="vstext_checkbox">VS text</label>
             </div>
             <div>
-                <input id="scotttext_checkbox" type="checkbox" layer="text1"/>
+                <input id="scotttext_checkbox" type="checkbox" layer="text1" checked/>
                 <label for="scotttext_checkbox">Scott pilgrim text</label>
             </div>
             <div>
-                <input id="matthewtext_checkbox" type="checkbox" layer="text4" />
+                <input id="matthewtext_checkbox" type="checkbox" layer="text4" checked />
                 <label for="matthewtext_checkbox">Matthew Patel text</label>
             </div>
             <div>
-                <input id="matthewimg_checkbox" type="checkbox" layer="canvas" />
+                <input id="matthewimg_checkbox" type="checkbox" layer="canvas" checked />
                 <label for="matthewimg_checkbox">Matthew Patel Image</label>
             </div>
         </div>
@@ -204,8 +204,9 @@
 
                         for (var i = 0; i < checkboxElems.length; i++) {
                             checkboxElems[i].addEventListener("click", function(element) {
-                                var layerName = element.target.dataSet.layer;
-                                console.log(layerName);
+                                var layerName = element.target.dataset.layer;
+                                var visible = element.target.checked
+                                console.log(visible);
 
                                 var layer = dmd.getLayer(layer);
 
