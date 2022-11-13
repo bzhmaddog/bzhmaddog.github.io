@@ -41,7 +41,11 @@
             </div>
             <div>
                 <input id="vstext_checkbox" type="checkbox" data-layer="text2" checked />
-                <label for="vstext_checkbox">VS text</label>
+                <label for="vstext_checkbox">VS text inner</label>
+            </div>
+            <div>
+                <input id="vstext_checkbox2" type="checkbox" data-layer="text3" checked />
+                <label for="vstext_checkbox2">VS text outer</label>
             </div>
             <div>
                 <input id="scotttext_checkbox" type="checkbox" data-layer="text1" checked/>
@@ -216,6 +220,15 @@
 
                                 if (layer != null) {
                                     layer.setVisibility(visible);
+
+                                    if (visible) {
+                                        if (layerName === "sprite") {
+                                            layer.run('scott');
+                                        } else if (layerName === "animation") {
+                                            layer.play(true);
+                                        }
+                                    }
+                                
                                 } else {
                                     console.log(`Layer not found : ${layerName}`);
                                 }
