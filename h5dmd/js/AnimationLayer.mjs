@@ -101,8 +101,6 @@ class AnimationLayer extends BaseLayer {
         // If it is the same frame as last call then no need to redraw it
         if (frameIndex !== previousFrameIndex) {
             // Update content buffer with current frame data
-            //this._contentBuffer.clear();
-            //this._contentBuffer.context.drawImage(this.#images[this.#frameIndex], 0, 0, this.width, this.height);
             this.#drawImage();
         }
 
@@ -111,7 +109,6 @@ class AnimationLayer extends BaseLayer {
     }
 
     #drawImage() {
-        console.log('Drawing frame : ' + this.#frameIndex);
         this._contentBuffer.clear();
         this._contentBuffer.context.drawImage(this.#images[this.#frameIndex], 0, 0, this.width, this.height);
     }
