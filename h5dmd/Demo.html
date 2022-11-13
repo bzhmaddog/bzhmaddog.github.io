@@ -14,6 +14,10 @@
                 overflow: hidden;
             }
 
+            label {
+                color: white;
+            }
+
             /*#output {
                 border: 1px solid red;
             }*/
@@ -206,12 +210,12 @@
                             checkboxElems[i].addEventListener("click", function(element) {
                                 var layerName = element.target.dataset.layer;
                                 var visible = element.target.checked
-                                console.log(visible);
-
                                 var layer = dmd.getLayer(layer);
 
                                 if (layer != null) {
-                                    layer.toggleVisibility();
+                                    layer.setVisibility(visible);
+                                } else {
+                                    console.log(`Layer not found : $layerName`);
                                 }
 
                             });
