@@ -404,6 +404,18 @@ strong {
 	position: absolute;
 }
 
+.Icon--decathlon:before {
+	content: 'x';
+	color: transparent;
+	background: url(icon-store.svg) no-repeat;
+	background-size: contain;
+	width: 16px;
+	height:16px;
+	margin-left: -20px;
+	position: absolute;
+}
+
+
 .Header {
 	position: relative;
 }

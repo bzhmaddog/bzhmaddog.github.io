@@ -5,8 +5,8 @@
 const gulp = require('gulp');
 const sourcemaps = require('gulp-sourcemaps');
 const plumber = require('gulp-plumber');
-const sass = require('gulp-sass');
-const minifycss = require('gulp-minify-css');
+const sass = require('gulp-dart-sass');
+const minifycss = require('gulp-clean-css');
 const autoprefixer = require('gulp-autoprefixer');
 
 /** Compile SASS Files

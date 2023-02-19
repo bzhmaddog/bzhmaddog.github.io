@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "gulp",
-    "watch": "gulp watch",
-    "build:css": "gulp css"
+    "watch": "gulp watch"
   },
   "keywords": [],
   "author": "",
@@ -14,9 +13,9 @@
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",
-    "gulp-minify-css": "^1.2.4",
+    "gulp-clean-css": "^4.3.0",
     "gulp-plumber": "^1.1.0",
-    "gulp-sass": "^2.3.2",
+    "gulp-dart-sass": "^1.0.2",
     "gulp-sourcemaps": "^1.6.0"
   }
 }

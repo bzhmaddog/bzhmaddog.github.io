@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Cédric Martin - Développeur Fullstack</title>
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<link href="styles.css?v2" media="all" rel="stylesheet">
+	<link href="styles.css?v3" media="all" rel="stylesheet">
 	<script src="svg4everybody.js"></script>
 	<script>
 		//svg4everybody(); // run it now or whenever you are ready
@@ -14,7 +14,7 @@
 	<div class="Container">
 
 		<header class="Header">
-			<h1>Cédric Martin - 43 ans - Développeur Fullstack</h1>
+			<h1>Cédric Martin - 47 ans - Développeur Fullstack</h1>
 			<p class="Address">
 				<span>10 Place du bourg</span><br/>
 				<span>22560 Pleumeur-Bodou, France</span>
@@ -32,8 +32,8 @@
 					<ul>
 						<li>HTML5/CSS3(SASS)</li>
 						<li>JavaScript (React, Angular, Backbone.js, jQuery, Underscore, etc.)</li>
-						<li>PHP (Symfony 3,Zend, Laravel)</li>
-						<li>BDD : MYSQL / SQLITE / MONGODB</li>
+						<li>PHP (Symfony 3/4,Zend, Laravel)</li>
+						<li>BDD : MYSQL / SQLITE / MONGODB / REALM</li>
 						<li>Plateformes E-commerce (Magento, Drupal/Pressflow + Ubercart)</li>
 						<li>CMS (Drupal 6/7, Wordpress, Joomla, etc.)</li>
 						<li>Mobilité (Cordova Android/iOS)
@@ -42,13 +42,14 @@
 				<article class="Skill">
 					<h3>Autre :</h3>
 					<ul>
+						<li>Android (Java/Kotlin)</li>
 						<li>C/C++, Python, Bash, Perl, Delphi</li>
-						<li>Android/Java (Junior)</li>
 						<li>Outils de Build (Grunt, Gulp, Webpack, npm, etc.)</li>
 						<li>Outils de versionnage (Git/Gitflow, SVN)</li>
-						<li>Outils Agile/Scrum (JIRA/Bitbucket/Confluence, Redmine)</li>
-						<li>Gestion de serveurs Windows & Linux (LAMP, Nginx, IIS, Varnish)</li>
-						<li>Virtualisation (Docker / Vagrant)</li>
+						<li>Automatisation de build (Bitrise, Gitlab CI, Jenkins)</li>
+						<li>Outils Agile/Scrum (JIRA/Confluence, Redmine)</li>
+						<li>Gestion de serveurs Web Windows & Linux (LAMP, Nginx, IIS, Varnish)</li>
+						<li>Virtualisation et conteneurisation (Docker / Vagrant)</li>
 						<li>Microsoft Office / Open Office / Photoshop (Basic skills)</li>
 					</ul>
 				</article>
@@ -58,7 +59,89 @@
 		<section>
 			<h2>Expériences professionnelles récentes :</h2>
 			<article>
-				<h3>Depuis Janvier 2017 : Ingénieur concepteur @ Groupe Open, Lannion</h3>
+				<h3>Depuis Janvier 2017 : Concepteur developpeur senior @ Groupe Open, Lannion</h3>
+
+				<dl>
+					<dt>Depuis Avril.2021 > Developpeur Android sur l'application Decathlon Connect</dt>
+					<dd>Intégration de nouveaux produits</dd>
+					<dd>Migration du code legacy (2017) vers des standards plus récent</dd>
+					<dd>Mise en place de l'automatisation des builds (Bitrise / Github actions)</dd>
+				</dl>
+
+				<div class="Resources Columns">
+					<div class="Columns-inner">
+						<div>
+							<h4>Resources</h4>
+							<ul class="nostyletype">
+								<li class="Icon Icon--decathlon"><a href="https://play.google.com/store/apps/details?id=com.decathlon.decathlonconnect&hl=fr&gl=US">Decathlon Connect</a></li>
+							</ul>
+						</div>
+						<div>
+							<h4>Technologies</h4>
+							<ul>
+								<li>Java</li>
+								<li>Kotlin</li>
+								<li>Rx/Java</li>
+								<li>Bluetooth LE</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<dl>
+					<dt>Mai.2020~Mars.2021 > Référant sécurité pour la validation d'un TAS (Telephony Application Server) NFV (Redhat OpenStack)</dt>
+					<dd>Developpement d'une application Symfony dédié à l'historisation et l'analyse des audits de sécurité générés pas un outil interne Orange</dd>
+					<dd>Migration d'outils de Fuzzing utilisés sur les TAS classiques pour qu'ils fonctionnent dans un environnement virtualisé</dd>
+					<dd>Validation du hardening (39 machines) à l'aide de l'application développé en fonction des critères de compliance déterminés par Orange</dd>
+					<dd>Validation de la conformité des CDR (tickets de facturation des appels)</dd>
+					<dd>Validation de la robustesse des applications (Fuzzing)</dd>
+					<dd>Transfert de compétences de l'application d'historisation des audits vers les équipes de préprod et prod</dd>
+					<dd>Veille sur les CVE Linux</dd>
+				</dl>
+
+				<div class="Resources Columns">
+					<div class="Columns-inner">
+						<div>
+							<h4>Resources</h4>
+						</div>
+						<div>
+							<h4>Technologies</h4>
+							<ul>
+								<li>Php / Symfony / HTML / CSS / Javascript</li>
+								<li>Docker</li>
+								<li>Linux (OpenStack)</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<dl>
+					<dt>Nov.2019~Avr.2020 > POC intégration d'une balance connectée dans l'application Decathlon Connect</dt>
+					<dd>Rétro ingénierie du protocole de communication ble à partir d'une implementation faites sur une application legacy (My Geonaute)</dd>
+					<dd>Ecriture d'une doc de spécification à partir de cette rétro ingénierie</dd>
+					<dd>Partipation aux developpements de l'application Decathlon Connect</dd>
+				</dl>
+
+				<div class="Resources Columns">
+					<div class="Columns-inner">
+						<div>
+							<h4>Resources</h4>
+							<ul class="nostyletype">
+								<li class="Icon Icon--decathlon"><a href="https://play.google.com/store/apps/details?id=com.decathlon.decathlonconnect&hl=fr&gl=US">Decathlon Connect</a></li>
+							</ul>
+						</div>
+						<div>
+							<h4>Technologies</h4>
+							<ul>
+								<li>Java</li>
+								<li>Kotlin</li>
+								<li>Rx/Java</li>
+								<li>Bluetooth LE</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
 				<dl>
 					<dt>Sep.2018~Oct.2019 > Intégrations et développements pour le projet de recherche HomeIn chez Orange Labs</dt>
 					<dd>Adaptation de l'os du speaker Djingo pour un fonctionnement dans l'environnement HomeIn</dd>
@@ -86,7 +169,7 @@
 							</ul>
 						</div>
 					</div>
-				</div>				
+				</div>
 
 				<dl>
 					<dt>Juin.2018~Aout.2018 > Développement de l'application Android(Java) Urgonight pour la société Urgotech</dt>
@@ -149,7 +232,7 @@
 						<div>
 							<h4>Resources</h4>
 							<ul class="nostyletype">
-								<li class="Icon Icon--amc"><a href="https://play.google.com/store/apps/details?id=com.open.arcelormittal&hl=ln">My Space (Google Play)</a></li>
+								<li class="Icon Icon--amc"><a href="https://play.google.com/store/apps/details?id=com.open.arcelormittal&hl=ln">My Space (Google Play)</a><em> [Offline]</em></li>
 							</ul>
 						</div>
 						<div>
@@ -206,7 +289,6 @@
 								<li class="Icon Icon--mint"><a href="http://www.mintsim.com">Mint Sim (http://www.mintsim.com)</a></li>
 								<li class="Icon Icon--univision"><a href="http://www.univisionmobile.com">Univision Mobile (http://www.univisionmobile.com)</a></li>
 								<li class="Icon Icon--univision"><a href="http://m.unimo.co/en">&#8627;(http://m.unimo.co/en)</a></li>
-							
 							</ul>
 						</div>
 						<div>
@@ -267,7 +349,7 @@
 						<div>
 							<h4>Resources</h4>
 							<ul class="nostyletype">
-								<li class="Icon Icon--break"><a href="http://www.break.com">Break (http://www.break.com)</a></li>
+								<li class="Icon Icon--break"><a href="http://www.break.com">Break (http://www.break.com)</a><em> [Offline]</em></li>
 								<li class="Icon Icon--sj"><a href="http://www.screenjunkies.com">ScreenJunkies (http://www.screenjunkies.com)</a></li>
 							</ul>
 						</div>
@@ -440,24 +522,17 @@
 				<li><strong>Français</strong> : langue maternelle</li>
 				<li><strong>Anglais</strong> : courant (parlé et écrit)</li>
 				<li><strong>Japonais</strong> : niveau JLPT3 (pas de diplôme)</li>
-				<li><strong>Chinois</strong> : Survie</li>
+				<li><strong>Chinois</strong> : Débutant</li>
 			</ul>
 		</section>
 
 		<section id="Hobbies">
 			<h2>Hobbies:</h2>
 			<dl>
-				<dt>Internet & Informatique:</dt>
 				<dd>Développement Web et applications Mobile Android</dd>
-				<dd>Veille technologique, expérimentations</dd>
-				<dt>Activités ludiques:</dt>
 				<dd>Cinéma, Musique, Flippers (collection et restauration), Bowling, Mahjong, Jeux-vidéos</dd>
-				<dt>Sports:</dt>
-				<dd>Baseball, Planche à voile, Natation</dd>
-				<dt>Autre:</dt>
-				<dd>Bricolage, DIY</dd>
-				<dd>Electronique</dd>
-				<dd>Impression 3D</dd>
+				<dd>Bricolage, DIY, Electronique, Impression 3D</dd>
+				<dd>Softball, marche, Beatsaber</dd>
 			</dl>
 			<div class="Columns Resources">
 				<div class="Columns-inner">

@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+    node:
+        build:
+            context: .
+            dockerfile: docker/Dockerfile
+        volumes:
+          - ./:/app
+        tty: true
