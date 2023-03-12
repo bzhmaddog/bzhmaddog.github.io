@@ -6,14 +6,12 @@ class Sprite {
      * @param {number} hFrameOffset Distance between each frame (horizontaly)
      * @param {number} vFrameOffset Distance between each frame (vertically))
      */
-    constructor(id, hFrameOffset, vFrameOffset) {
+    constructor(id, spriteSheet, hFrameOffset, vFrameOffset) {
         this._id = id;
-        this._spriteSheet = new Image();
         this._buffer = new OffscreenBuffer(0, 0);
         this._animations = {};
         this._animation = null;
         this._isAnimating = false;
-        this._spriteSheetLoaded = false;
         this._loop = 1;
         this._queue = [];
         this._loopSequence = false;
@@ -23,16 +21,7 @@ class Sprite {
         this._frameDuration = 0;
         this._hFrameOffset = hFrameOffset;
         this._vFrameOffset = vFrameOffset;
-    }
-    loadSpritesheet(src) {
-        const that = this;
-        return new Promise(resolve => {
-            that._spriteSheet.addEventListener('load', function () {
-                that._spriteSheetLoaded = true;
-                resolve();
-            });
-            that._spriteSheet.src = src;
-        });
+        this._spriteSheet = spriteSheet;
     }
     /**
      *
@@ -142,10 +131,6 @@ class Sprite {
      * @param {number} nbLoop
      */
     enqueueSingle(id, nbLoop) {
-        // Exit if source image is not loaded
-        if (!this._spriteSheetLoaded) {
-            return;
-        }
         this._queue.push({
             params: this._animations[id],
             loop: (typeof nbLoop === 'number') ? nbLoop : 0
