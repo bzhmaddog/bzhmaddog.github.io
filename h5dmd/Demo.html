@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta httpEquiv="origin-trial" content="AjmbVK5jmmfoO2lgbG0tNNQ52Kb2nrkT5oFntPiNoHO1QbNeSQ1sC/H2hAGWfDSr7IhxbIMrIOKP7BxGbXWtzwYAAABTeyJvcmlnaW4iOiJodHRwczovL2J6aG1hZGRvZy5naXRodWIuaW86NDQzIiwiZmVhdHVyZSI6IldlYkdQVSIsImV4cGlyeSI6MTY2MzcxODM5OX0=" />
+        <meta httpEquiv="origin-trial" content="AkfwxtdOv8lmILy1N481kK//CxRGUt8ZVnkI1Ef594MR9ZuWXiEG+nMchAsePoS/4CcSpqYhu+kQFyYXku4ZpAEAAABTeyJvcmlnaW4iOiJodHRwczovL2J6aG1hZGRvZy5naXRodWIuaW86NDQzIiwiZmVhdHVyZSI6IldlYkdQVSIsImV4cGlyeSI6MTY5MTcxMTk5OX0=" />
 
         <style>
             * {
@@ -14,7 +14,7 @@
                 overflow: hidden;
             }
 
-            label {
+            span, li, label {
                 color: white;
             }
 
@@ -60,108 +60,113 @@
                 <label for="matthewimg_checkbox">Matthew Patel Image</label>
             </div>
         </div>
+
+        <div style="margin-top:20px">
+            <span>Note (2023/02/18) : This demo have been tested  working on the following browsers :</span>
+	    <br />
+	    <span>Make sure #enable-unsafe-webgpu flag is enabled and that you access this page using https</span>
+            <ul>
+                <li>Windows: Chromium 105, 107, 110</li>
+                <li>ArchLinux: Chromium 109 (google-chrome-dev 109.0.5414.10-1)</li>
+                <li>MacOs: Chrome Canary (112)</li>
+            </ul>
+        </div>
+
         <script type="module">
-			import { DMD } from "./js/DMD.js";
-			import { Colors } from "./js/Colors.js";
-			import { DotShape } from "./js/renderers/DMDRenderer.js";
-			import { Options } from "./js/Options.js";
-		
+            import { DMD } from './js/DMD.mjs';
+            import { Utils } from './js/Utils.mjs';
+            import { Colors } from './js/Colors.mjs';
+            import { CanvasLayer } from './js/CanvasLayer.mjs';
+
             (function () {
                 'use strict';
-				
-				// Fix base uri when runing demo in nested path
-				var base = document.createElement('base');
-				base.href = document.location.href.replace("/Demo.html", "");
-				document.getElementsByTagName('head')[0].appendChild(base);
-				
 
                 // When dom is loaded create the objects and bind the events
                 document.addEventListener('DOMContentLoaded', function () {
 
-                    var output = document.getElementById('output');
+                    // Check if webgpu is supported
+                    if ("gpu" in navigator) {
+                        var output = document.getElementById('output');
 
-                    var dmd = new DMD(output, 2, 1, 1, 1, DotShape.Square, 14, 1, true);
+                    // 256x78
+                    //var dmd = new DMD(output, 4, 1, 1, 1, DMD.DotShape.Square, 14, 1, true);
+
+                    // 426x130
+                    var dmd = new DMD(output, 2, 1, 1, 1, DMD.DotShape.Square, 14, 1, true);
+
+                    // 320x97
+                    //var dmd = new DMD(output, 2, 2, 1, 1, DMD.DotShape.Square, 14, 1, true);
+
+                    // 128x39
+                    //var dmd = new DMD(output, 7, 3, 1, 1, DMD.DotShape.Square, 14, 1, true);
 
                     window.dmd = dmd;
 
-					// Init DMD then
+                    // Init DMD then
         			dmd.init().then( () => {
+
                         // Start rendering dmd
                         dmd.run();
-						
-						
-                        var bgLayer = dmd.createCanvasLayer( 'bg', {}, function() {
-                            //var img = new Image();
-							
-							var bgURI = document.baseURI + "/images/boss-mode-bg.png";
-							
-							fetch(bgURI)
-							.then(response => response.blob())
-							.then(blob => createImageBitmap(blob))
-							.then( bitmap => {
-								bgLayer.drawImage(
-									bitmap,
-									{
-										top: 0,
-										left: 0,
-										width: 426, // Number of horizontal DMD dots 
-										height: 130 // Number of vertical DMD dots
-									}
-								);
-							});
+
+                        // Create background layer
+                        dmd.createLayer(DMD.LayerType.Image, 'bg', {
+                            src : 'images/boss-mode-bg.png',
+                            //opacity : 0.1
                         });
 
-						// Paths are relative to baseURI
-                        dmd.createAnimationLayer('animation', {
+                        // Create background animation layer
+                        dmd.createLayer(DMD.LayerType.Animation, 'animation', {
                             images : [
-                                '/images/animation/0.webp',
-                                '/images/animation/1.webp',
-                                '/images/animation/2.webp',
-                                '/images/animation/3.webp',
-                                '/images/animation/4.webp',
-                                '/images/animation/5.webp',
-                                '/images/animation/6.webp',
-                                '/images/animation/7.webp',
-                                '/images/animation/8.webp',
-                                '/images/animation/9.webp',
-                                '/images/animation/10.webp',
-                                '/images/animation/11.webp',
-                                '/images/animation/12.webp',
-                                '/images/animation/13.webp',
-                                '/images/animation/14.webp'
+                                'images/animation/0.webp',
+                                'images/animation/1.webp',
+                                'images/animation/2.webp',
+                                'images/animation/3.webp',
+                                'images/animation/4.webp',
+                                'images/animation/5.webp',
+                                'images/animation/6.webp',
+                                'images/animation/7.webp',
+                                'images/animation/8.webp',
+                                'images/animation/9.webp',
+                                'images/animation/10.webp',
+                                'images/animation/11.webp',
+                                'images/animation/12.webp',
+                                'images/animation/13.webp',
+                                'images/animation/14.webp'
                             ],
                             duration : 800,
                             autoplay : true,
                             loop : true
                         });
 
-                        var matthewLayer = dmd.createCanvasLayer('canvas', {}, function() {
+                        // Create a canvas layer to display Matthew image
+                        var canvasLayer = dmd.createLayer(DMD.LayerType.Canvas, 'canvas', {}, function() {
+                            var img = new Image();
 
-							var bgURI = document.baseURI + "/images/boss-matthew-big.png";
-							
-							fetch(bgURI)
-							.then(response => response.blob())
-							.then(blob => createImageBitmap(blob))
-							.then( bitmap => {
-								matthewLayer.drawImage(
-									bitmap,
-									{
+		                    img.onload = function() {
+                                // x,y coordinate are related to the screen width/height (not dmd width/height) to be consistant depending on the settings used
+			                    canvasLayer.drawImage(
+                                    img,
+                                    {
                                         align: 'right',
                                         vAlign : 'middle',
                                         height : '70%'
                                     }
-								);
-							});
+                                );
+		                    }
+
+                            img.src = 'images/boss-matthew-big.png';
                         });
-						
-                        var textLayer1 = dmd.createTextLayer('text1', {
+
+                        // Create a text
+                        var textLayer1 = dmd.createLayer(DMD.LayerType.Text, 'text1', {
                             'text' : "Scott Pilgrim",
                             left : '0',
                             top : 0,
                             fontSize : 10
                         });
 
-                        var textLayer2 = dmd.createTextLayer('text2', {
+                        // Create another text
+                        var textLayer2 = dmd.createLayer(DMD.LayerType.Text, 'text2', {
                             'text' : "VS",
                             align : 'center',
                             vAlign : 'middle',
@@ -172,31 +177,34 @@
                             hOffset : '-15%'
                         });
 
-                        var textLayer3 = dmd.createTextLayer('text3', {
+                        // Create another text
+                        var textLayer3 = dmd.createLayer(DMD.LayerType.Text, 'text3', {
                             'text' : "VS",
                             align : 'center',
                             vAlign : 'middle',
                             fontFamily : 'Arial',
                             fontSize : 40,
                             fontStyle : 'italic bold',
-                            color : '#00000000', // inner color totaly transparent to create an hollow text
+                            color : '#00000000', // totally transparent
                             strokeWidth : 2,
-                            strokeColor : Colors.Red,
+                            strokeColor : Colors.red,
                             hOffset : '-15%'
                         });
 
-                        var textLayer4 = dmd.createTextLayer('text4', {
+                        // Another text
+                        var textLayer4 = dmd.createLayer(DMD.LayerType.Text, 'text4', {
                             'text' : "Matthew Patel",
                             align : 'right',
-                            vAlign : 'bottom',                            
+                            vAlign : 'bottom',
                             fontSize : 10,
                             hOffset : -1
                         });
 
-                        var spriteLayer = dmd.createSpriteLayer('sprite', {}, function() {
+                        // Create a sprite layer and run sprite animation sequence forever
+                        var spriteLayer = dmd.createLayer(DMD.LayerType.Sprites, 'sprite', {}, function() {
                             spriteLayer.createSprite(
                                 'scott',
-                                '/resources/sprites/scott2x.png',
+                                'images/scott2x.png',
                                 6,
                                 0,
                                 [
@@ -220,34 +228,11 @@
                                 spriteLayer.enqueueSequence('scott', seq, true);
                                 spriteLayer.run('scott');
                             });
-                        });
-
-						// TODO : handle alpha transparency
-						/*var videoLayer = dmd.createVideoLayer('video', {
-							src : 'resources/videos/earth.webm',
-							autoplay : true,
-							width : 231,
-							height : 130,
-							loop : true
-						}, function(){
-						});*/	
-
-						// TODO : Fix antialiasing rendered and outline renderer
-						/*var textLayer5 = dmd.createTextLayer('text4', {
-                            'text' : "Test",
-                            align : 'center',
-                            vAlign : 'bottom',
-                            fontSize : 30,
-                            hOffset : -1,
-							//antialiasing: false,
-							outlineWidth: 2,
-							outlineColor: Colors.Red
-                        });*/
-						
+                        });                      
                         
-                        
-						var checkboxElems = document.querySelectorAll("input[type='checkbox']");
+                        var checkboxElems = document.querySelectorAll("input[type='checkbox']");
 
+                        // Add click event listener on checkboxes to enable/disable each layer
                         for (var i = 0; i < checkboxElems.length; i++) {
                             checkboxElems[i].addEventListener("click", function(element) {
                                 var layerName = element.target.dataset.layer;
@@ -266,12 +251,19 @@
                                 } else {
                                     console.log(`Layer not found : ${layerName}`);
                                 }
-                            });
-						}
 
-                    }); // DMD.init()
-                },false); // DOM loaded
-            })(); // Main
+                            });
+                        }
+
+                    });
+
+                } else {
+                    alert('Sorry your browser does not support WEBGPU (or the feature is not enabled)');
+                }
+
+
+                },false);
+            })();
         </script>
     </body>
 </html>
