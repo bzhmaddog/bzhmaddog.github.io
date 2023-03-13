@@ -60,6 +60,16 @@
                 <label for="matthewimg_checkbox">Matthew Patel Image</label>
             </div>
         </div>
+	    
+	<div style="margin-top:20px">
+            <span>Note (2023/02/18) : This demo have been tested  working on the following browsers :</span>
+            <ul>
+                <li>Windows: Chromium 105, 107, 110</li>
+                <li>ArchLinux: Chromium 109 (google-chrome-dev 109.0.5414.10-1)</li>
+                <li>MacOs: Chrome Canary (TBD)</li>
+            </ul>
+        </div>
+	    
         <script type="module">
 			import { DMD } from "./js/DMD.js";
 			import { Colors } from "./js/Colors.js";
@@ -77,6 +87,9 @@
 
                 // When dom is loaded create the objects and bind the events
                 document.addEventListener('DOMContentLoaded', function () {
+
+		    // Check if webgpu is supported
+                    if ("gpu" in navigator) {
 
                     var output = document.getElementById('output');
 
@@ -280,6 +293,11 @@
 						}
 
                     }); // DMD.init()
+		
+		} else {
+                    alert('Sorry your browser does not support WEBGPU (or the feature is not enabled)');
+                }			    
+			    
                 },false); // DOM loaded
             })(); // Main
         </script>
