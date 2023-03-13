@@ -1,12 +1,3 @@
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 import { OffscreenBuffer } from "../OffscreenBuffer.js";
 import { Options } from "../Options.js";
 var LayerType;
@@ -182,44 +173,6 @@ class BaseLayer {
         console.log(`Layer [${this._id}] : Start rendering`);
         this._renderNextFrame = this._requestAnimationFrame;
         this._requestAnimationFrame();
-    }
-    /**
-     * Fetch an image from remote server
-     * @param {string} src
-     * @returns
-     */
-    _loadImage(src) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const uriStr = document.baseURI + src;
-            let response = yield fetch(uriStr);
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            else {
-                return yield response.blob();
-            }
-        });
-    }
-    /**
-     * Fetch image from server with an index used to determine position
-     * @param {string} src
-     * @param {number} index
-     * @returns
-     */
-    _loadImageSynced(src, index) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const uriStr = document.baseURI + src;
-            let response = yield fetch(uriStr);
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            else {
-                return {
-                    blob: response.blob(),
-                    index: index
-                };
-            }
-        });
     }
     /**
      * Return if the layer have renderer in the queue

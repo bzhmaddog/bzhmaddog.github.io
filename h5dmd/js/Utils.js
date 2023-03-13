@@ -1,3 +1,13 @@
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+;
 class Utils {
     /**
      * Process an array of Promise
@@ -83,6 +93,36 @@ class Utils {
      */
     static hexToArray(hex) {
         return hex.match(/.{2}/g) || [];
+    }
+    /**
+     * Fetch image from server with an index used to determine position
+     * @param {array} images
+     * @param {number} index
+     */
+    static loadImagesOrdered(images) {
+        var bitmaps = [];
+        var cnt = 0;
+        var promises = images.map(url => fetch(url));
+        return Promise
+            .all(promises)
+            .then(responses => Promise.all(responses.map(res => res.blob())))
+            .then(blobs => Promise.all(blobs.map(blob => createImageBitmap(blob))));
+    }
+    /**
+     * Fetch image from server with an index used to determine position
+     * @param {array} images
+     * @param {number} index
+     */
+    static loadImagesOrderedAsync(images) {
+        return __awaiter(this, void 0, void 0, function* () {
+            var bitmaps = [];
+            var cnt = 0;
+            var promises = images.map(url => fetch(url));
+            return yield Promise
+                .all(promises)
+                .then(responses => Promise.all(responses.map(res => res.blob())))
+                .then(blobs => Promise.all(blobs.map(blob => createImageBitmap(blob))));
+        });
     }
 }
 export { Utils };

@@ -15,13 +15,11 @@ class AnimationLayer extends BaseLayer {
         this._frameIndex = 0;
         this._loop = options.get('loop', false);
         this.__renderNextFrame = function () { };
-        if (!Array.isArray(options.get('images'))) {
-            throw new Error("options.images is required (array of paths to images)");
-        }
-        if (typeof options.get('duration') !== 'number') {
-            throw new Error("options.duration is required (value in milliseconds)");
-        }
-        this._loadImages(options.get('images', []));
+        setTimeout(this._layerLoaded.bind(this), 1);
+    }
+    setAnimationData(data) {
+        this._images = data;
+        this._onImagesLoaded();
     }
     /**
      * Called when all images are finished loading
@@ -33,7 +31,8 @@ class AnimationLayer extends BaseLayer {
         this._contentBuffer.clear();
         this._contentBuffer.context.drawImage(this._images[this._frameIndex], 0, 0, this.width, this.height);
         // Call parent loaded callback
-        this._layerLoaded();
+        //this._layerLoaded();
+        this._layerUpdated();
         if (this._options.get('autoplay')) {
             this.play();
         }
@@ -79,32 +78,6 @@ class AnimationLayer extends BaseLayer {
      */
     _requestRenderNextFrame() {
         requestAnimationFrame(this.__renderFrame.bind(this));
-    }
-    /**
-     * Load animation images
-     * @param {array of string or Image} images
-     */
-    _loadImages(images) {
-        var tmpImages = [];
-        var that = this;
-        var cnt = 0;
-        for (var i = 0; i < images.length; i++) {
-            tmpImages.push(undefined);
-            // Index is used to put loaded image in the correct position in the array
-            this._loadImageSynced(images[i], i).then(response => {
-                response.blob.then(blob => {
-                    createImageBitmap(blob).then(bitmap => {
-                        //console.log(response.index, bitmap);
-                        tmpImages[response.index] = bitmap;
-                        cnt++;
-                        if (cnt === images.length) {
-                            that._images = [...tmpImages];
-                            that._onImagesLoaded(); // All images are loaded
-                        }
-                    });
-                });
-            });
-        }
     }
     /**
      * Play animation with current images array

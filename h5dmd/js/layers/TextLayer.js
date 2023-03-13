@@ -5,7 +5,6 @@ import { Utils } from '../Utils.js';
 import { Options } from '../Options.js';
 class TextLayer extends BaseLayer {
     constructor(id, width, height, options, renderers, loadedListener, updatedListener) {
-        //console.log(_renderers);
         var defaultOptions = new Options({
             top: 0,
             left: 0,
@@ -31,7 +30,6 @@ class TextLayer extends BaseLayer {
         this._text = "";
         //this._contentBuffer.imageSmoothingEnabled = this._options.antialiasing;
         //this.#ctx.imageSmoothingEnabled = false;
-        //console.log(_renderers);
         if (typeof renderers['no-antialiasing'] === 'undefined' || typeof renderers['outline'] === 'undefined') {
             throw new Error("'Remove aliasing' or 'outline' filter not found");
         }
@@ -55,10 +53,10 @@ class TextLayer extends BaseLayer {
      * @param {Options} options
      * @returns
      */
-    _drawText(options = new Options()) {
+    _drawText(_options = new Options()) {
         var that = this;
         // merge passed options with default options set during layer creation
-        var options = Object.assign(new Options(), this._options, options);
+        var options = Object.assign(new Options(), this._options, _options);
         return new Promise(resolve => {
             //console.log(this._id, this.#text);
             //if (options.antialiasing === false) {
@@ -180,16 +178,11 @@ class TextLayer extends BaseLayer {
             this._textBuffer.context.fillText(this._text, left, top);
             //console.log(this.getId(),this.#textBuffer.context.getImageData(0,0, this.width, this.height).data);
             var frameImageData = this._textBuffer.context.getImageData(0, 0, this.width, this.height);
-            var aaParams = [
-                frameImageData.data,
-                this.getRendererParams('no-antialiasing'),
-                Utils.hexRGBToHexRGBA(this._options.get('color').replace('#', ''), '255')
-            ];
             // If outlined text then pixelate first then render outline
             if (options.get('outlineWidth') > 0) {
                 if (this._options.get('antialiasing')) {
                     this._getRendererInstance('outline').renderFrame(frameImageData, new Options({
-                        innerColor: Utils.hexRGBToHexRGBA(this._options.get('color').replace('#', ''), '255'),
+                        innerColor: Utils.hexRGBToHexRGBA(this._options.get('color').replace('#', ''), 'FF'),
                         outerColor: Utils.hexRGBToHexRGBA(this._options.get('outlineColor').replace('#', ''), 'FF'),
                         width: this._options.get('outlineWidth') // TODO Check if correct
                     })).then((outputData) => {
@@ -201,33 +194,22 @@ class TextLayer extends BaseLayer {
                     });
                 }
                 else {
-                    alert('broken');
-                    /*
-
-                    this._getRendererInstance('no-antialiasing').renderFrame(
-                        frameImageData.data,
-                        new Options({
-
-                        })
-                    ).then((aaData) => {
-                        
-                        //console.log(this._options);
-
-                        this._getRendererInstance('outline').renderFrame(
-                            aaData.data,
-                            new Options({
-                                innerColor : Utils.hexRGBToHexRGBA(this._options.get('color').replace('#',''), '255'),
-                                outerColor : Utils.hexRGBToHexRGBA(this._options.get('outlineColor').replace('#',''), 'FF'),
-                                width : this._options.get('outlineWidth')
-                            })
-                        ).then(outputData => {
+                    this._getRendererInstance('no-antialiasing').renderFrame(frameImageData, new Options({
+                        treshold: this.getRendererParams('no-antialiasing'),
+                        baseColor: Utils.hexRGBToHexRGBA(this._options.get('color').replace('#', ''), 'FF')
+                    })).then(aaData => {
+                        this._getRendererInstance('outline').renderFrame(aaData, new Options({
+                            innerColor: Utils.hexRGBToHexRGBA(this._options.get('color').replace('#', ''), 'FF'),
+                            outerColor: Utils.hexRGBToHexRGBA(this._options.get('outlineColor').replace('#', ''), 'FF'),
+                            width: this._options.get('outlineWidth')
+                        })).then(outputData => {
                             createImageBitmap(outputData).then(bitmap => {
                                 this._contentBuffer.clear();
                                 this._contentBuffer.context.drawImage(bitmap, 0, 0);
                                 resolve(); // outputData
                             });
                         });
-                    });*/
+                    });
                 }
                 // otherwise just render the text as is;    
             }
@@ -238,14 +220,16 @@ class TextLayer extends BaseLayer {
                     resolve();
                 }
                 else {
-                    alert('broken');
-                    /*this._getRendererInstance('no-antialiasing').renderFrame.apply(this._getRendererInstance('no-antialiasing'), aaParams).then((aaData) => {
+                    this._getRendererInstance('no-antialiasing').renderFrame(frameImageData, new Options({
+                        treshold: this.getRendererParams('no-antialiasing'),
+                        baseColor: Utils.hexRGBToHexRGBA(this._options.get('color').replace('#', ''), 'FF')
+                    })).then(aaData => {
                         createImageBitmap(aaData).then(bitmap => {
                             this._contentBuffer.clear();
                             this._contentBuffer.context.drawImage(bitmap, 0, 0);
                             resolve();
                         });
-                    });*/
+                    });
                 }
             }
         });
