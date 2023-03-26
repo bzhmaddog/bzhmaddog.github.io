@@ -5,7 +5,7 @@ import { Utils } from '../Utils.js';
 import { Options } from '../Options.js';
 class TextLayer extends BaseLayer {
     constructor(id, width, height, options, renderers, loadedListener, updatedListener) {
-        var defaultOptions = new Options({
+        const defaultOptions = new Options({
             top: 0,
             left: 0,
             color: Colors.White,
@@ -23,8 +23,8 @@ class TextLayer extends BaseLayer {
             outlineColor: Colors.Black,
             antialiasing: true
         });
-        super(id, LayerType.Text, width, height, renderers, loadedListener, updatedListener);
-        Object.assign(this._options, defaultOptions, options);
+        const layerOptions = Object.assign({}, defaultOptions, options);
+        super(id, LayerType.Text, width, height, layerOptions, renderers, loadedListener, updatedListener);
         var that = this;
         this._textBuffer = new OffscreenBuffer(this.width, this.height);
         this._text = "";
@@ -195,7 +195,7 @@ class TextLayer extends BaseLayer {
                 }
                 else {
                     this._getRendererInstance('no-antialiasing').renderFrame(frameImageData, new Options({
-                        treshold: this.getRendererParams('no-antialiasing'),
+                        treshold: 255,
                         baseColor: Utils.hexRGBToHexRGBA(this._options.get('color').replace('#', ''), 'FF')
                     })).then(aaData => {
                         this._getRendererInstance('outline').renderFrame(aaData, new Options({
@@ -221,7 +221,7 @@ class TextLayer extends BaseLayer {
                 }
                 else {
                     this._getRendererInstance('no-antialiasing').renderFrame(frameImageData, new Options({
-                        treshold: this.getRendererParams('no-antialiasing'),
+                        treshold: 255,
                         baseColor: Utils.hexRGBToHexRGBA(this._options.get('color').replace('#', ''), 'FF')
                     })).then(aaData => {
                         createImageBitmap(aaData).then(bitmap => {
@@ -250,6 +250,10 @@ class TextLayer extends BaseLayer {
                 that._layerUpdated();
             });
         }
+    }
+    setVisibility(isVisible) {
+        super.setVisibility(isVisible);
+        //this._layerUpdated();
     }
 }
 export { TextLayer };

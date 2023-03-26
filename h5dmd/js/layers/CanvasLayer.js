@@ -3,12 +3,10 @@ import { LayerType } from "./BaseLayer.js";
 import { Options } from "../Options.js";
 class CanvasLayer extends BaseLayer {
     constructor(id, width, height, options, renderers, loadedListener, updatedListener) {
-        super(id, LayerType.Canvas, width, height, renderers, loadedListener, updatedListener);
         // Default options for Canvas layers
-        var defaultOptions = new Options({ top: 0, left: 0, keepAspectRatio: true });
-        // Layer global options
-        Object.assign(this._options, defaultOptions, options);
-        this._visibility = this._options.get('visible');
+        const defaultOptions = new Options({ top: 0, left: 0, keepAspectRatio: true });
+        const layerOptions = Object.assign({}, defaultOptions, options);
+        super(id, LayerType.Canvas, width, height, layerOptions, renderers, loadedListener, updatedListener);
         setTimeout(this._layerLoaded.bind(this), 1);
     }
     /**

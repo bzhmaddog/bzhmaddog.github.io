@@ -3,9 +3,9 @@ import { Options } from "../Options.js";
 import { LayerType } from "./BaseLayer.js";
 class AnimationLayer extends BaseLayer {
     constructor(id, width, height, options, renderers, loadedListener, updatedListener, playListener, pauseListener, stopListener) {
-        super(id, LayerType.Video, width, height, renderers, loadedListener, updatedListener);
-        var defaultOptions = new Options({ loop: false, autoplay: false });
-        Object.assign(this._options, defaultOptions, options);
+        const defaultOptions = new Options({ loop: false, autoplay: false });
+        const layerOptions = Object.assign({}, defaultOptions, options);
+        super(id, LayerType.Video, width, height, layerOptions, renderers, loadedListener, updatedListener);
         this._onPlayListener = playListener;
         this._onPauseListener = pauseListener;
         this._onStopListener = stopListener;

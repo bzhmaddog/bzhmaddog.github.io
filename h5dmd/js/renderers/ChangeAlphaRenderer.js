@@ -79,7 +79,7 @@ class ChangeAlphaRenderer extends LayerRenderer {
      * @returns {Promise<ImageData>}
      */
     _doRendering(frameData, options) {
-        var o = options.get('opacity', 1);
+        var opacity = options.get('opacity', 1);
         const that = this;
         const UBOBuffer = this._device.createBuffer({
             size: 4,
@@ -160,7 +160,7 @@ class ChangeAlphaRenderer extends LayerRenderer {
             new Uint8Array(gpuInputBuffer.getMappedRange()).set(new Uint8Array(frameData.data));
             gpuInputBuffer.unmap();
             // Write values to uniform buffer object
-            const uniformData = [o];
+            const uniformData = [opacity];
             const uniformTypedArray = new Float32Array(uniformData);
             this._device.queue.writeBuffer(UBOBuffer, 0, uniformTypedArray.buffer);
             const commandEncoder = that._device.createCommandEncoder();

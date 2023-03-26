@@ -77,6 +77,7 @@ class DMD {
         var that = this;
         return new Promise(resolve => {
             let renderers = [];
+            // Build array of promises
             Object.keys(this._layerRenderers).forEach(id => {
                 renderers.push(this._layerRenderers[id].init());
             });
@@ -86,12 +87,6 @@ class DMD {
                     this._initDone = true;
                     resolve();
                 });
-                /*Utils.chainPromises(renderers)
-                    .then(() => {
-                        this.initDone = true;
-                        resolve();
-                    });
-                    */
             });
         });
     }

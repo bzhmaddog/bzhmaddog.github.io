@@ -2,12 +2,9 @@ import { BaseLayer, LayerType } from "./BaseLayer.js";
 import { Sprite } from "../Sprite.js";
 class SpritesLayer extends BaseLayer {
     constructor(id, width, height, options, renderers, loadedListener, updatedListener) {
-        super(id, LayerType.Sprites, width, height, renderers, loadedListener, updatedListener);
-        var defaultOptions = {
-            loop: false,
-            autoplay: false
-        };
-        Object.assign(this._options, defaultOptions, options);
+        const defaultOptions = { loop: false, autoplay: false };
+        const layerOptions = Object.assign({}, defaultOptions, options);
+        super(id, LayerType.Sprites, width, height, layerOptions, renderers, loadedListener, updatedListener);
         this._sprites = {};
         this._runningSprites = 0;
         this.__renderNextFrame = function () { };
