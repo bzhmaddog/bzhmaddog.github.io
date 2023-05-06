@@ -3,6 +3,8 @@ import { OffscreenBuffer } from '../OffscreenBuffer.js';
 import { Colors } from '../Colors.js';
 import { Utils } from '../Utils.js';
 import { Options } from '../Options.js';
+import { RemoveAliasingRenderer } from '../renderers/RemoveAliasingRenderer.js';
+import { OutlineRenderer } from '../renderers/OutlineRenderer.js';
 class TextLayer extends BaseLayer {
     constructor(id, width, height, options, renderers, loadedListener, updatedListener) {
         const defaultOptions = new Options({
@@ -24,24 +26,25 @@ class TextLayer extends BaseLayer {
             antialiasing: true
         });
         const layerOptions = Object.assign({}, defaultOptions, options);
-        super(id, LayerType.Text, width, height, layerOptions, renderers, loadedListener, updatedListener);
+        var layerRenderers = Object.assign({
+            'no-antialiasing': new RemoveAliasingRenderer(width, height),
+            'outline': new OutlineRenderer(width, height) // used by TextLayer when outlineWidth > 1
+        }, renderers);
+        super(id, LayerType.Text, width, height, layerOptions, layerRenderers, loadedListener, updatedListener);
         var that = this;
         this._textBuffer = new OffscreenBuffer(this.width, this.height);
         this._text = "";
-        //this._contentBuffer.imageSmoothingEnabled = this._options.antialiasing;
-        //this.#ctx.imageSmoothingEnabled = false;
-        if (typeof renderers['no-antialiasing'] === 'undefined' || typeof renderers['outline'] === 'undefined') {
-            throw new Error("'Remove aliasing' or 'outline' filter not found");
-        }
+        //this._contentBuffer.imageSmoothingEnabled = this._options.antialiasing
+        //this.#ctx.imageSmoothingEnabled = false
         setTimeout(this._layerLoaded.bind(this), 1);
-        //this.#buffer.context.fillStyle = 'transparent';
-        if (this._options.hasProperty('text')) {
+        //this.#buffer.context.fillStyle = 'transparent'
+        if (this._options.hasValue('text')) {
             if (typeof this._options.get('text') !== 'string') {
                 throw new TypeError("options.text is not a string");
             }
             if (this._options.get('text') !== "") {
                 this._text = this._options.get('text');
-                //console.log(this._id, this.#text);
+                //console.log(this._id, this.#text)
                 this._drawText().then(() => {
                     setTimeout(that._layerUpdated.bind(that), 1);
                 });
@@ -50,15 +53,14 @@ class TextLayer extends BaseLayer {
     }
     /**
      * Draw text onto canvas
-     * @param {Options} options
-     * @returns
+     * @param _options
      */
     _drawText(_options = new Options()) {
         var that = this;
         // merge passed options with default options set during layer creation
         var options = Object.assign(new Options(), this._options, _options);
         return new Promise(resolve => {
-            //console.log(this._id, this.#text);
+            //console.log(this._id, this.#text)
             //if (options.antialiasing === false) {
             this._textBuffer.context.imageSmoothingEnabled = options.get('antialiasing');
             this._setAntialiasing(options.get('antialiasing'));
@@ -68,21 +70,21 @@ class TextLayer extends BaseLayer {
             }
             this._textBuffer.clear();
             /*if (typeof options.text === 'undefined' || options.text === '') {
-                throw new Error("Cannot draw empty text");
+                throw new Error("Cannot draw empty text")
             }*/
             var left = options.get('left');
             var top = options.get('top');
             var m;
             // fillText doesn't at 0 font pb ?
             /*if (options.strokeWidth === 0) {
-                left--;
+                left--
             }*/
             this._textBuffer.context.textBaseline = options.get('textBaseline');
             this._textBuffer.context.fillStyle = options.get('color');
             /*if (typeof options.letterSpacing === 'number') {
                 //console.log(options.letterSpacing)
-                this.#textBuffer.canvas.style.letterSpacing = options.letterSpacing + options.fontUnit;
-                this.#textBuffer.context.textAlign = 'center';
+                this.#textBuffer.canvas.style.letterSpacing = options.letterSpacing + options.fontUnit
+                this.#textBuffer.context.textAlign = 'center'
             }*/
             var fontSize = options.get('fontSize');
             var fontUnit = options.get('fontUnit');
@@ -118,17 +120,17 @@ class TextLayer extends BaseLayer {
             // Convert % to pixels/dots
             if (typeof options.get('left') === 'string' && options.get('left').at(-1) === '%') {
                 var vl = parseFloat(options.get('left').replace('%', ''));
-                //left =  ((vl * this.width) / 100) - (m.width / 2);
+                //left =  ((vl * this.width) / 100) - (m.width / 2)
                 left = Math.floor((vl * this.width) / 100);
             }
             // Convert % to pixels/dots
             if (typeof options.get('top') === 'string' && options.get('top').at(-1) === '%') {
                 var vt = parseFloat(options.get('top').replace('%', ''));
-                //top = ((vt * this.height) / 100) - (this.#textBuffer.context.measureText('M').width / 2); // m.height not available
+                //top = ((vt * this.height) / 100) - (this.#textBuffer.context.measureText('M').width / 2) // m.height not available
                 top = Math.floor((vt * this.height) / 100);
             }
-            if (typeof options.get('align') === 'string') {
-                switch (options.get('align')) {
+            if (typeof options.get('hAlign') === 'string') {
+                switch (options.get('hAlign')) {
                     case 'left':
                         left = 0;
                         break;
@@ -157,13 +159,13 @@ class TextLayer extends BaseLayer {
             // convert % in pixels
             if (typeof options.get('hOffset') === 'string' && options.get('hOffset').at(-1) === '%') {
                 var vh = parseFloat(options.get('hOffset').replace('%', ''));
-                //hOffset = ((vh * m.width) / 100);
+                //hOffset = ((vh * m.width) / 100)
                 hOffset = Math.floor((vh * this.width) / 100);
             }
             // convert % in pixels
             if (typeof options.get('vOffset') === 'string' && options.get('vOffset').at(-1) === '%') {
                 var vv = parseFloat(options.get('vOffset').replace('%', ''));
-                //hOffset = ((vv * textHeight) / 100);
+                //hOffset = ((vv * textHeight) / 100)
                 hOffset = Math.floor((vv * this.height) / 100);
             }
             // % in offset are relative of the width/height of the text
@@ -176,7 +178,7 @@ class TextLayer extends BaseLayer {
                 this._textBuffer.context.strokeText(this._text, left, top);
             }
             this._textBuffer.context.fillText(this._text, left, top);
-            //console.log(this.getId(),this.#textBuffer.context.getImageData(0,0, this.width, this.height).data);
+            //console.log(this.getId(),this.#textBuffer.context.getImageData(0,0, this.width, this.height).data)
             var frameImageData = this._textBuffer.context.getImageData(0, 0, this.width, this.height);
             // If outlined text then pixelate first then render outline
             if (options.get('outlineWidth') > 0) {
@@ -211,7 +213,7 @@ class TextLayer extends BaseLayer {
                         });
                     });
                 }
-                // otherwise just render the text as is;    
+                // otherwise just render the text as is
             }
             else {
                 if (this._options.get('antialiasing')) {
@@ -226,6 +228,7 @@ class TextLayer extends BaseLayer {
                     })).then(aaData => {
                         createImageBitmap(aaData).then(bitmap => {
                             this._contentBuffer.clear();
+                            this._contentBuffer.context.fillRect(0, 0, this.width, this.height);
                             this._contentBuffer.context.drawImage(bitmap, 0, 0);
                             resolve();
                         });
@@ -253,7 +256,6 @@ class TextLayer extends BaseLayer {
     }
     setVisibility(isVisible) {
         super.setVisibility(isVisible);
-        //this._layerUpdated();
     }
 }
 export { TextLayer };

@@ -94,11 +94,13 @@ class OutlineRenderer extends LayerRenderer {
                         `
                     });
                     console.log('OutlineRenderer:init()');
-                    that._shaderModule.compilationInfo().then(i => {
-                        if (i.messages.length > 0) {
-                            console.warn("OutlineRenderer:compilationInfo() ", i.messages);
-                        }
-                    });
+                    if (typeof that._shaderModule.compilationInfo === 'function') {
+                        that._shaderModule.compilationInfo().then(i => {
+                            if (i.messages.length > 0) {
+                                console.warn("OutlineRenderer:compilationInfo() ", i.messages);
+                            }
+                        });
+                    }
                     that.renderFrame = that._doRendering;
                     resolve();
                 });
@@ -197,7 +199,6 @@ class OutlineRenderer extends LayerRenderer {
                 Utils.hexColorToInt(Utils.rgba2abgr(options.get('outerColor'))),
                 options.get('width')
             ];
-            //console.log(uniformData);
             const uniformTypedArray = new Int32Array(uniformData);
             this._device.queue.writeBuffer(UBOBuffer, 0, uniformTypedArray.buffer);
             const commandEncoder = that._device.createCommandEncoder();
@@ -214,7 +215,6 @@ class OutlineRenderer extends LayerRenderer {
                 const pixelsBuffer = new Uint8Array(gpuOutputBuffer.getMappedRange());
                 // Generate Image data usable by a canvas
                 const imageData = new ImageData(new Uint8ClampedArray(pixelsBuffer), that._width, that._height);
-                //console.log(imageData.data);
                 // return to caller
                 resolve(imageData);
             });

@@ -19,7 +19,6 @@ class DMDRenderer extends Renderer {
      */
     constructor(dmdWidth, dmdHeight, screenWidth, screenHeight, pixelSize, dotSpace, dotShape, bgBrightness, brightness) {
         super("DMDRenderer");
-        //console.log(arguments);
         this._dmdWidth = dmdWidth;
         this._dmdHeight = dmdHeight;
         this._screenWidth = screenWidth;
@@ -137,11 +136,13 @@ class DMDRenderer extends Renderer {
                         `
                     });
                     console.log("GPURenderer:init()");
-                    this._shaderModule.compilationInfo().then(i => {
-                        if (i.messages.length > 0) {
-                            console.warn('GPURenderer:compilationInfo()', i.messages);
-                        }
-                    });
+                    if (typeof this._shaderModule.compilationInfo === 'function') {
+                        this._shaderModule.compilationInfo().then(i => {
+                            if (i.messages.length > 0) {
+                                console.warn('GPURenderer:compilationInfo()', i.messages);
+                            }
+                        });
+                    }
                     that.renderFrame = that._doRendering;
                     resolve();
                 });
@@ -241,8 +242,6 @@ class DMDRenderer extends Renderer {
             }
         });
         return new Promise(resolve => {
-            //new Uint8Array(gpuConfBuffer.getMappedRange()).set(new Uint8Array([this._brightness]));
-            //gpuConfBuffer.unmap();
             // Put original image data in the input buffer (257x78)
             new Uint8Array(gpuInputBuffer.getMappedRange()).set(new Uint8Array(frameData.data));
             gpuInputBuffer.unmap();
@@ -264,7 +263,7 @@ class DMDRenderer extends Renderer {
                 const pixelsBuffer = new Uint8Array(gpuOutputBuffer.getMappedRange());
                 // Generate Image data usable by a canvas
                 const imageData = new ImageData(new Uint8ClampedArray(pixelsBuffer), that._screenWidth, that._screenHeight);
-                // console.log(imageData);
+                // console.log(imageData)
                 // return to caller
                 resolve(imageData);
             });

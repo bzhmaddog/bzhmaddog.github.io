@@ -79,7 +79,7 @@ class Sprite {
             let xOffset = this._frameIndex * (this._animation.params.width + this._hFrameOffset) + this._animation.params.xOffset;
             // Shift vertical position so that sprites are aligned at the bottom
             let yPos = this._maxHeight - this._animation.params.height;
-            //console.log(`${this._frameIndex} / ${xOffset} / ${yPos}`);
+            //console.log(`${this._frameIndex} / ${xOffset} / ${yPos}`)
             this._buffer.clear();
             this._buffer.context.drawImage(this._spriteSheet, xOffset, this._animation.params.yOffset, this._animation.params.width, this._animation.params.height, 0, yPos, this._animation.params.width, this._animation.params.height);
         }
@@ -154,7 +154,7 @@ class Sprite {
         // Boolean
         this._loopSequence = !!loop;
         // Start animation
-        //this._processQueue();
+        //this._processQueue()
     }
     run() {
         this._processQueue();

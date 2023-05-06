@@ -125,9 +125,9 @@ class SpritesLayer extends BaseLayer {
     }
     /*getSprite(id) {
         if (typeof this._sprites[id] !== 'undefined') {
-            return this._sprites[id].sprite;
+            return this._sprites[id].sprite
         } else {
-            throw new Error(`No sprite named : ${id} found in layer [#{this._id}]`);
+            throw new Error(`No sprite named : ${id} found in layer [#{this._id}]`)
         }
     }*/
     /**
@@ -138,10 +138,10 @@ class SpritesLayer extends BaseLayer {
      */
     /*moveSprite(id: string, x: string, y: string) {
         if (typeof this._sprites[id] !== 'undefined') {
-            this._sprites[id].x = x;
-            this._sprites[id].x = y;
+            this._sprites[id].x = x
+            this._sprites[id].x = y
         } else {
-            console.error(`Layer[${this.id}] : sprite [${id}] does not exist`);
+            console.error(`Layer[${this.id}] : sprite [${id}] does not exist`)
         }
     }*/
     /**

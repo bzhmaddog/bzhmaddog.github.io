@@ -7,36 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-;
 class Utils {
-    /**
-     * Process an array of Promise
-     * TODO : handle errors
-     * @param {Array} promises
-     * @returns
-     */
-    /*static chainPromises(promises: Promise<any>): Promise<void> {
-       return new Promise(resolve => {
-
-           var queue = [...promises];
-
-           var processQueue = function() {
-               if (queue.length) {
-                   var promise = queue.shift();
-                   promise.then(() => {
-                       processQueue();
-                   });
-
-               // finished
-               } else {
-                   resolve();
-               }
-           }
-
-           // start process
-           processQueue();
-       });
-   }*/
     /**
      * Add alpha component to a RGB string
      * @param {string} str
@@ -59,9 +30,9 @@ class Utils {
  */
     /*static hexRGBToHexRGBA(str: string, alpha: number): string {
         if (alpha >= 0 && alpha <= 255) {
-            return str + alpha.toString(16);
+            return str + alpha.toString(16)
         } else {
-            throw new TypeError("alpha must be an int between 0 and 255 or a an hex string between 00 and FF");
+            throw new TypeError("alpha must be an int between 0 and 255 or a an hex string between 00 and FF")
         }
     }*/
     /**

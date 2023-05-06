@@ -9,7 +9,7 @@ class AnimationLayer extends BaseLayer {
         this._onPlayListener = playListener;
         this._onPauseListener = pauseListener;
         this._onStopListener = stopListener;
-        this._images = []; // [new Image()];
+        this._images = [];
         this._isPlaying = false;
         this._isPaused = false;
         this._frameIndex = 0;
@@ -27,11 +27,9 @@ class AnimationLayer extends BaseLayer {
     _onImagesLoaded() {
         // calculate how long each frame should be displayed
         this._frameDuration = this._options.get('duration') / this._images.length;
-        //console.log(`Frame duration = ${this._frameDuration}`);
-        this._contentBuffer.clear();
+        //console.log(`Frame duration = ${this._frameDuration}`)
+        //this._contentBuffer.clear()
         this._contentBuffer.context.drawImage(this._images[this._frameIndex], 0, 0, this.width, this.height);
-        // Call parent loaded callback
-        //this._layerLoaded();
         this._layerUpdated();
         if (this._options.get('autoplay')) {
             this.play();

@@ -13,7 +13,7 @@ class Options extends Object {
         }
     }
     get(property, defaultValue) {
-        if (this.hasOwnProperty(property)) {
+        if (this.hasValue(property)) {
             return this[property];
         }
         else {
@@ -33,7 +33,7 @@ class Options extends Object {
      * @param {string} properties
      * @returns boolean
      */
-    hasProperty(properties) {
+    hasValue(properties) {
         return this.hasOwnProperty(properties);
     }
     getValues() {

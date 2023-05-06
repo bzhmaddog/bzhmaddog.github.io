@@ -8,9 +8,6 @@ import { AnimationLayer } from './layers/AnimationLayer.js';
 import { SpritesLayer } from './layers/SpritesLayer.js';
 import { TextLayer } from './layers/TextLayer.js';
 import { Options } from './Options.js';
-import { ChangeAlphaRenderer } from './renderers/ChangeAlphaRenderer.js';
-import { RemoveAliasingRenderer } from './renderers/RemoveAliasingRenderer.js';
-import { OutlineRenderer } from './renderers/OutlineRenderer.js';
 class DMD {
     /**
      *
@@ -38,15 +35,17 @@ class DMD {
         this._renderFPS = function () { }; // Does nothing
         this._backgroundColor = `rgba(14,14,14,255)`;
         this._isRunning = false;
-        this._fps = 0;
         this._renderNextFrame = function () { };
+        this._fps = 0;
+        this._minFPS = 9999;
+        this._maxFPS = 0;
         console.log(`Creating a ${this._outputWidth}x${this._outputHeight} DMD on a ${this._outputCanvas.width}x${this._outputCanvas.height} canvas`);
         this._renderer = new DMDRenderer(this._outputWidth, this._outputHeight, this._outputCanvas.width, this._outputCanvas.height, dotSize, dotSpace, dotShape || DotShape.Circle, backgroundBrightness, brightness);
         // Add renderers needed for layers rendering
         this._layerRenderers = {
-            'opacity': new ChangeAlphaRenderer(this._outputWidth, this._outputHeight),
-            'no-antialiasing': new RemoveAliasingRenderer(this._outputWidth, this._outputHeight),
-            'outline': new OutlineRenderer(this._outputWidth, this._outputHeight) // used by TextLayer when outlineWidth > 1
+        //'opacity' : new ChangeAlphaRenderer(this._outputWidth, this._outputHeight), // used by layer with opacity < 1
+        //'no-antialiasing' : new RemoveAliasingRenderer(this._outputWidth, this._outputHeight), // used by TextLayer if antialiasing  = false
+        //'outline' : new OutlineRenderer(this._outputWidth, this._outputHeight)  // used by TextLayer when outlineWidth > 1
         };
         this._initDone = false;
         // IF needed create and show fps div in hte top right corner of the screen
@@ -59,7 +58,7 @@ class DMD {
             this._fpsBox.style.top = '0';
             this._fpsBox.style.zIndex = '99999'; // WTF is this a string : check if/where we do addition/substraction
             this._fpsBox.style.color = 'red';
-            this._fpsBox.style.background = "rgba(255,255,255,0.5)";
+            this._fpsBox.style.background = 'rgba(255,255,255,0.5)';
             this._fpsBox.style.padding = '5px';
             this._fpsBox.style.minWidth = '40px';
             this._fpsBox.style.textAlign = 'center';
@@ -70,23 +69,14 @@ class DMD {
         this.reset();
     }
     /**
-     * Init DMD renderer then all layer renderers
+     * Init DMD renderer
      * @returns Promise
      */
     init() {
-        var that = this;
         return new Promise(resolve => {
-            let renderers = [];
-            // Build array of promises
-            Object.keys(this._layerRenderers).forEach(id => {
-                renderers.push(this._layerRenderers[id].init());
-            });
-            this._renderer.init().then(device => {
-                // Check if it still behave like chainPromises
-                Promise.all(renderers).then(() => {
-                    this._initDone = true;
-                    resolve();
-                });
+            this._renderer.init().then(() => {
+                this._initDone = true;
+                resolve();
             });
         });
     }
@@ -113,36 +103,56 @@ class DMD {
      * Render output DMD
      */
     renderDMD() {
-        var that = this;
         // Fill rectangle with background color
         this._frameBuffer.context.fillStyle = this._backgroundColor;
         this._frameBuffer.context.fillRect(0, 0, this._outputWidth, this._outputHeight);
+        const before = performance.now();
         // Draw each visible layer on top of previous one to create the final screen
         this._sortedLayers.forEach(l => {
             if (this._layers.hasOwnProperty(l.id)) {
                 var layer = this._layers[l.id];
                 if (layer.isVisible() && layer.isLoaded()) {
+                    //if (layer.layerType === LayerType.Text && layer.id === 'ball-value') {
+                    //if (layer.layerType === LayerType.Text && layer.id === 'ball-text') {
+                    //if (layer.layerType === LayerType.Text && layer.id === 'attract-credits') {
+                    //if (layer.layerType === LayerType.Text) {
+                    //console.log(l)
+                    //this._frameBuffer.context.fillStyle = "#FF0000FF"
+                    //this._frameBuffer.context.fillRect(l.left, l.top, layer.width, layer.height)
+                    /*this._frameBuffer.context.strokeStyle = "#FF0000"
+                    this._frameBuffer.context.beginPath()
+                    this._frameBuffer.context.rect(l.left, l.top, layer.width, layer.height)
+                    this._frameBuffer.context.stroke()*/
+                    //}
                     // Draw layer content into a buffer
-                    this._frameBuffer.context.drawImage(layer.canvas, 0, 0);
+                    this._frameBuffer.context.drawImage(layer.canvas, l.left, l.top);
                 }
             }
         });
+        const after = performance.now() - before;
+        //console.log('render time = ', after)
         // Get data from the merged layers content
         var frameImageData = this._frameBuffer.context.getImageData(0, 0, this._frameBuffer.width, this._frameBuffer.height);
         // Generate DMD frame
         this._renderer.renderFrame(frameImageData).then((dmdImageData) => {
             createImageBitmap(dmdImageData).then(bitmap => {
                 // Clear target canvas
-                that._outputContext.clearRect(0, 0, that._outputCanvas.width, that._outputCanvas.height);
+                this._outputContext.clearRect(0, 0, this._outputCanvas.width, this._outputCanvas.height);
                 // Render final DMD image onto target canvas
-                that._outputContext.drawImage(bitmap, 0, 0);
-                // Render FPS box if needed
-                that._renderFPS();
-                var now = window.performance.now();
-                var delta = (now - that._lastRenderTime);
-                that._lastRenderTime = now;
+                this._outputContext.drawImage(bitmap, 0, 0);
+                var now = performance.now();
+                var delta = (now - this._lastRenderTime);
+                this._lastRenderTime = now;
                 // Calculate FPS
-                this._fps = Math.round((1000 / delta) * 1e2) / 1e2;
+                this._fps = Math.floor(Math.round((1000 / delta) * 1e2) / 1e2);
+                if (this._fps < this._minFPS) {
+                    this._minFPS = this._fps;
+                }
+                if (this._fps > this._maxFPS) {
+                    this._maxFPS = this._fps;
+                }
+                // Render FPS box if needed
+                this._renderFPS();
                 this._renderNextFrame();
             });
         });
@@ -151,7 +161,7 @@ class DMD {
      * Update FPS output div with current fps value
      */
     __renderFPS() {
-        this._fpsBox.innerHTML = `${this.fps} fps`;
+        this._fpsBox.innerHTML = `${this._minFPS} / ${this._fps} / ${this._maxFPS}`;
     }
     /**
      * Request next Frame rendering cycle
@@ -201,12 +211,10 @@ class DMD {
             var cb = function () {
                 cnt++;
                 var delta = window.performance.now() - start;
-                //console.log(delta);
                 var b = Easing.easeOutSine(delta, startBrightness, 1, duration);
                 that._renderer.setBrightness(b);
                 if (that._renderer.brightness >= 1 || delta > duration) {
                     that._renderer.setBrightness(1);
-                    //console.log(cnt);
                     resolve();
                 }
                 else {
@@ -224,22 +232,22 @@ class DMD {
         // Pass brightness to the renderer
         this._renderer.setBrightness(b);
     }
-    createCanvasLayer(id, options, layerLoadedListener, layerUpdatedListener) {
-        return this._createLayer(LayerType.Canvas, id, options, layerLoadedListener, layerUpdatedListener);
+    createCanvasLayer(id, layerDimensions, options, renderers, layerLoadedListener, layerUpdatedListener) {
+        return this._createLayer(LayerType.Canvas, id, layerDimensions, options, renderers, layerLoadedListener, layerUpdatedListener);
     }
-    createVideoLayer(id, options, layerLoadedListener, layerUpdatedListener, layerOnPlayListener, layerOnPauseListener
+    createVideoLayer(id, layerDimensions, options, renderers, layerLoadedListener, layerUpdatedListener, layerOnPlayListener, layerOnPauseListener
     // Why no _layerOnStopListener ?
     ) {
-        return this._createLayer(LayerType.Video, id, options, layerLoadedListener, layerUpdatedListener, layerOnPlayListener, layerOnPauseListener);
+        return this._createLayer(LayerType.Video, id, layerDimensions, options, renderers, layerLoadedListener, layerUpdatedListener, layerOnPlayListener, layerOnPauseListener);
     }
-    createAnimationLayer(id, options, layerLoadedListener, layerUpdatedListener, layerOnPlayListener, layerOnPauseListener, layerOnStopListener) {
-        return this._createLayer(LayerType.Animation, id, options, layerLoadedListener, layerUpdatedListener, layerOnPlayListener, layerOnPauseListener, layerOnStopListener);
+    createAnimationLayer(id, layerDimensions, options, renderers, layerLoadedListener, layerUpdatedListener, layerOnPlayListener, layerOnPauseListener, layerOnStopListener) {
+        return this._createLayer(LayerType.Animation, id, layerDimensions, options, renderers, layerLoadedListener, layerUpdatedListener, layerOnPlayListener, layerOnPauseListener, layerOnStopListener);
     }
-    createSpriteLayer(id, options, layerLoadedListener, layerUpdatedListener) {
-        return this._createLayer(LayerType.Sprites, id, options, layerLoadedListener, layerUpdatedListener);
+    createSpriteLayer(id, layerDimensions, options, renderers, layerLoadedListener, layerUpdatedListener) {
+        return this._createLayer(LayerType.Sprites, id, layerDimensions, options, renderers, layerLoadedListener, layerUpdatedListener);
     }
-    createTextLayer(id, options, layerLoadedListener, layerUpdatedListener) {
-        return this._createLayer(LayerType.Text, id, options, layerLoadedListener, layerUpdatedListener);
+    createTextLayer(id, layerDimensions, options, renderers, layerLoadedListener, layerUpdatedListener) {
+        return this._createLayer(LayerType.Text, id, layerDimensions, options, renderers, layerLoadedListener, layerUpdatedListener);
     }
     /**
      * Remove specified layer
@@ -387,48 +395,71 @@ class DMD {
      * @see BaseLayer for available options
      * @return layer
      */
-    _createLayer(type, id, _options, _layerLoadedListener, _layerUpdatedListener, _layerOnPlayListener, _layerOnPauseListener, _layerOnStopListener) {
+    _createLayer(type, id, _layerDimensions, _options, _layerRenderers, _layerLoadedListener, _layerUpdatedListener, _layerOnPlayListener, _layerOnPauseListener, _layerOnStopListener) {
+        //const _defaultOptions = new Options({ top : 0, left : 0})
         // This method is called by child layer creator which can be called from javascript directly so
         // make sure we have an Options object from now on
         var options = new Options(_options);
         if (typeof this._layers[id] === 'undefined') {
+            const layerWidth = _layerDimensions.width || this._outputWidth;
+            const layerHeight = _layerDimensions.height || this._outputHeight;
+            var layerTop = _layerDimensions.top || 0;
+            var layerLeft = _layerDimensions.left || 0;
+            if (typeof _layerDimensions.hAlign === 'string') {
+                switch (_layerDimensions.hAlign) {
+                    case "left":
+                        layerLeft = _layerDimensions.hOffset || 0;
+                        break;
+                    case "center":
+                        layerLeft = (this._outputWidth - layerWidth) / 2 + (_layerDimensions.hOffset || 0) - 1;
+                        break;
+                    case "right":
+                        layerLeft = this._outputWidth - layerWidth + (_layerDimensions.hOffset || 0) - 1;
+                        console.log(`${id}`, layerLeft);
+                }
+            }
+            if (typeof _layerDimensions.vAlign === 'string') {
+                switch (_layerDimensions.vAlign) {
+                    case 'top':
+                        layerTop = _layerDimensions.vOffset || 0;
+                        break;
+                    case 'middle':
+                        layerTop = (this._outputHeight - layerHeight) / 2 + (_layerDimensions.vOffset || 0) - 1;
+                        break;
+                    case 'bottom':
+                        layerTop = this._outputHeight - layerHeight + (_layerDimensions.vOffset || 0) - 1;
+                }
+            }
             var layer;
             switch (type) {
                 case LayerType.Canvas:
-                    layer = new CanvasLayer(id, this._outputWidth, this._outputHeight, options, this._layerRenderers, _layerLoadedListener, _layerUpdatedListener);
+                    layer = new CanvasLayer(id, layerWidth, layerHeight, options, _layerRenderers, _layerLoadedListener, _layerUpdatedListener);
                     break;
                 case LayerType.Video:
-                    layer = new VideoLayer(id, this._outputWidth, this._outputHeight, options, this._layerRenderers, _layerLoadedListener, _layerUpdatedListener, _layerOnPlayListener, _layerOnPauseListener);
+                    layer = new VideoLayer(id, layerWidth, layerHeight, options, _layerRenderers, _layerLoadedListener, _layerUpdatedListener, _layerOnPlayListener, _layerOnPauseListener);
                     break;
                 case LayerType.Animation:
-                    layer = new AnimationLayer(id, this._outputWidth, this._outputHeight, options, this._layerRenderers, _layerLoadedListener, _layerUpdatedListener, _layerOnPlayListener, _layerOnPauseListener, _layerOnStopListener);
+                    layer = new AnimationLayer(id, layerWidth, layerHeight, options, _layerRenderers, _layerLoadedListener, _layerUpdatedListener, _layerOnPlayListener, _layerOnPauseListener, _layerOnStopListener);
                     break;
                 case LayerType.Sprites:
-                    layer = new SpritesLayer(id, this._outputWidth, this._outputHeight, options, this._layerRenderers, _layerLoadedListener, _layerUpdatedListener);
+                    layer = new SpritesLayer(id, layerWidth, layerHeight, options, _layerRenderers, _layerLoadedListener, _layerUpdatedListener);
                     break;
                 case LayerType.Text:
-                    layer = new TextLayer(id, this._outputWidth, this._outputHeight, options, this._layerRenderers, _layerLoadedListener, _layerUpdatedListener);
+                    layer = new TextLayer(id, layerWidth, layerHeight, options, _layerRenderers, _layerLoadedListener, _layerUpdatedListener);
                     break;
-                /*case LayerType.Image:
-                    layer = new ImageLayer(id, this.outputWidth, this.outputHeight, options, this.layerRenderers, _layerLoadedListener,_layerUpdatedListener);
-                    break;
-                case LayerType.Text:
-                    layer = new TextLayer(id, this.outputWidth, this.outputHeight, options, this.layerRenderers, _layerLoadedListener,_layerUpdatedListener);
-                    break;
-*/
                 default:
                     throw new TypeError(`Invalid layer type : ${type}`);
             }
             this._layers[id] = layer; // use getType() to retrieve the type later 
             var zIndex = this._zIndex;
-            if (options.hasProperty('zIndex')) {
+            if (options.hasValue('zIndex')) {
                 zIndex = options.get('zIndex');
             }
             else {
                 this._zIndex++;
             }
             // Add new layer to sorted array
-            this._sortedLayers.push({ id: id, zIndex: zIndex });
+            this._sortedLayers.push({ id: id, zIndex: zIndex, top: layerTop, left: layerLeft });
             // Sort by zIndex inc
             this.sortLayers();
             return layer;

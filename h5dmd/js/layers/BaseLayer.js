@@ -1,5 +1,6 @@
 import { OffscreenBuffer } from "../OffscreenBuffer.js";
 import { Options } from "../Options.js";
+import { ChangeAlphaRenderer } from "../renderers/ChangeAlphaRenderer.js";
 var LayerType;
 (function (LayerType) {
     LayerType[LayerType["Image"] = 0] = "Image";
@@ -12,7 +13,6 @@ var LayerType;
 class BaseLayer {
     constructor(id, layerType, width, height, options, renderers, loadedListener, updatedListener) {
         this._loaded = false;
-        this._outputBuffer = new OffscreenBuffer(width, height);
         this._layerType = layerType;
         this._id = id;
         this._contentBuffer = new OffscreenBuffer(width, height, true);
@@ -21,11 +21,22 @@ class BaseLayer {
         this._updatedListener = updatedListener;
         this._defaultRenderQueue = [];
         this._renderQueue = [];
-        this._availableRenderers = Object.assign({}, renderers);
+        this._availableRenderers = Object.assign({
+            'opacity': new ChangeAlphaRenderer(width, height)
+        }, renderers);
         this._options = new Options({ visible: true, groups: ['default'], opacity: 1, renderers: [] });
-        //this._rendererParams = {};
         Object.assign(this._options, options);
         this._renderNextFrame = function () { console.log(`Layer [${this._id}] : Rendering ended`); };
+        let rendererPromises = [];
+        // Build array of promises
+        Object.keys(this._availableRenderers).forEach(id => {
+            rendererPromises.push(this._availableRenderers[id].init());
+        });
+        Promise.all(rendererPromises).then(() => {
+            console.log(`Layer[${id}] : Renderers init done`);
+        });
+        //console.log(`${id} : available renderers =>`, this._availableRenderers)
+        //console.log(`${id} :`, this._options.get('renderers', []))
         if (this._options.get('renderers').length > 0) {
             // Build default render queue to save some time in renderFrame
             // Since this should not change after creation
@@ -41,7 +52,7 @@ class BaseLayer {
                     console.log(`Renderer "${r}" is not in the list of available renderers`);
                 }
             }
-            //console.log(this._defaultRenderQueue);
+            //console.log(`${id} :`, this._defaultRenderQueue)
         }
     }
     /**
@@ -55,7 +66,7 @@ class BaseLayer {
      */
     _renderFrame() {
         const that = this;
-        // clone renderers array;
+        // clone renderers array
         this._renderQueue = [...this._defaultRenderQueue] || [];
         // If opacity is below 1 add opacity renderer
         if (this._options.get('opacity') < 1) {
@@ -80,13 +91,7 @@ class BaseLayer {
         // if there is a renderer in the queue then run render pass with this renderer
         if (this._renderQueue.length) {
             var renderer = this._renderQueue.shift(); // pop renderer from render queue
-            // First param is always the image data
-            //var params = [frameImageData.data];
-            // Merge renderer params with array of params specific to this renderer if any
-            /*if (this.getRendererParams(renderer.id) !== null) {
-                params = params.concat(this.getRendererParams(renderer.id));
-            } */
-            //console.warn(this._id, this.getRendererParams(renderer.id));
+            //console.log(`${this.id} `, renderer)
             // Apply 'filter' to provided content with current renderer then process next renderer in queue
             renderer.instance.renderFrame(frameImageData, renderer.params).then((outputData) => {
                 that._processRenderQueue(outputData);
@@ -255,6 +260,9 @@ class BaseLayer {
     }
     get groups() {
         return this._options.get('groups', ['default']);
+    }
+    get options() {
+        return this._options;
     }
 }
 export { BaseLayer, LayerType };

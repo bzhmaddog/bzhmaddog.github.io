@@ -32,12 +32,14 @@ class DummyRenderer extends LayerRenderer {
                             }
                         `
                     });
-                    console.warn('DummyRenderer:init() : Are you sure you wanted to use this renderer ?');
-                    this._shaderModule.compilationInfo().then(i => {
-                        if (i.messages.length > 0) {
-                            console.warn("DummyRenderer:compilationInfo() ", i.messages);
-                        }
-                    });
+                    console.error('DummyRenderer:init() : Are you sure you wanted to use this renderer ?');
+                    if (typeof that._shaderModule.compilationInfo === 'function') {
+                        that._shaderModule.compilationInfo().then(i => {
+                            if (i.messages.length > 0) {
+                                console.warn("DummyRenderer:compilationInfo() ", i.messages);
+                            }
+                        });
+                    }
                     that.renderFrame = that._doRendering;
                     resolve();
                 });
