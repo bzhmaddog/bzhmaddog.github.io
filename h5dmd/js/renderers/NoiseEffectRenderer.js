@@ -1,15 +1,11 @@
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 import { OffscreenBuffer } from "../OffscreenBuffer.js";
 import { LayerRenderer } from "./LayerRenderer.js";
 class NoiseEffectRenderer extends LayerRenderer {
+    _noises;
+    _startTime;
+    _frameDuration;
+    _nbFrames;
+    _tmpBuffer;
     /**
      * https://robson.plus/white-noise-image-generator/
      * @param {number} width
@@ -42,16 +38,14 @@ class NoiseEffectRenderer extends LayerRenderer {
      * @param {string} src
      * @returns
      */
-    _loadNoise(src) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let response = yield fetch(src);
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            else {
-                return yield response.blob();
-            }
-        });
+    async _loadNoise(src) {
+        let response = await fetch(src);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        else {
+            return await response.blob();
+        }
     }
     init() {
         const that = this;
@@ -104,13 +98,11 @@ class NoiseEffectRenderer extends LayerRenderer {
                         `
                     });
                     console.log('ScoreEffectRenderer:init()');
-                    if (typeof that._shaderModule.compilationInfo === 'function') {
-                        that._shaderModule.compilationInfo().then(i => {
-                            if (i.messages.length > 0) {
-                                console.warn("ScoreEffectRenderer:compilationInfo() ", i.messages);
-                            }
-                        });
-                    }
+                    that._shaderModule.getCompilationInfo()?.then(i => {
+                        if (i.messages.length > 0) {
+                            console.warn("ScoreEffectRenderer:compilationInfo() ", i.messages);
+                        }
+                    });
                     that.renderFrame = that._doRendering;
                     resolve();
                 });

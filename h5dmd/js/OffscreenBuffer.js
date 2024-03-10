@@ -2,6 +2,8 @@
  * Provide a simple class to build a buffer for our layers and our DMD
  */
 class OffscreenBuffer {
+    _canvas;
+    _context;
     /**
     * @param width {integer} The width of the buffer
     * @param height {integer} The height of the buffer

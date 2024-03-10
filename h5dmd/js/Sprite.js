@@ -1,5 +1,22 @@
 import { OffscreenBuffer } from "./OffscreenBuffer.js";
 class Sprite {
+    _id;
+    _buffer;
+    _spriteSheet;
+    _animations;
+    _animation;
+    _isAnimating;
+    _loop;
+    _queue;
+    _loopSequence;
+    _hFrameOffset;
+    _vFrameOffset;
+    _maxHeight;
+    _maxWidth;
+    _endOfQueueListener;
+    _frameDuration;
+    _frameIndex;
+    _startTime;
     /**
      *
      * @param {string} spriteSheetSrc Path to the spritesheet file

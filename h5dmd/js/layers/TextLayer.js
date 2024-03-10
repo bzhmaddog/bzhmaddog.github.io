@@ -6,6 +6,8 @@ import { Options } from '../Options.js';
 import { RemoveAliasingRenderer } from '../renderers/RemoveAliasingRenderer.js';
 import { OutlineRenderer } from '../renderers/OutlineRenderer.js';
 class TextLayer extends BaseLayer {
+    _text;
+    _textBuffer;
     constructor(id, width, height, options, renderers, loadedListener, updatedListener) {
         const defaultOptions = new Options({
             top: 0,
@@ -27,7 +29,7 @@ class TextLayer extends BaseLayer {
         });
         const layerOptions = Object.assign({}, defaultOptions, options);
         var layerRenderers = Object.assign({
-            'no-antialiasing': new RemoveAliasingRenderer(width, height),
+            'no-antialiasing': new RemoveAliasingRenderer(width, height), // used by TextLayer if antialiasing  = false
             'outline': new OutlineRenderer(width, height) // used by TextLayer when outlineWidth > 1
         }, renderers);
         super(id, LayerType.Text, width, height, layerOptions, layerRenderers, loadedListener, updatedListener);
@@ -197,7 +199,7 @@ class TextLayer extends BaseLayer {
                 }
                 else {
                     this._getRendererInstance('no-antialiasing').renderFrame(frameImageData, new Options({
-                        treshold: 255,
+                        treshold: 255, // TODO find how param was set before
                         baseColor: Utils.hexRGBToHexRGBA(this._options.get('color').replace('#', ''), 'FF')
                     })).then(aaData => {
                         this._getRendererInstance('outline').renderFrame(aaData, new Options({
@@ -223,7 +225,7 @@ class TextLayer extends BaseLayer {
                 }
                 else {
                     this._getRendererInstance('no-antialiasing').renderFrame(frameImageData, new Options({
-                        treshold: 255,
+                        treshold: 255, // TODO: Find how param was set before
                         baseColor: Utils.hexRGBToHexRGBA(this._options.get('color').replace('#', ''), 'FF')
                     })).then(aaData => {
                         createImageBitmap(aaData).then(bitmap => {

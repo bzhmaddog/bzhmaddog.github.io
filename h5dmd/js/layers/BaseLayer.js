@@ -11,8 +11,19 @@ var LayerType;
     LayerType[LayerType["Sprites"] = 5] = "Sprites";
 })(LayerType || (LayerType = {}));
 class BaseLayer {
+    _contentBuffer;
+    _options;
+    _id;
+    _loaded = false;
+    _outputBuffer;
+    _layerType;
+    _renderNextFrame;
+    _loadedListener;
+    _updatedListener;
+    _availableRenderers;
+    _defaultRenderQueue;
+    _renderQueue;
     constructor(id, layerType, width, height, options, renderers, loadedListener, updatedListener) {
-        this._loaded = false;
         this._layerType = layerType;
         this._id = id;
         this._contentBuffer = new OffscreenBuffer(width, height, true);

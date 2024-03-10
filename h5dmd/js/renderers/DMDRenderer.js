@@ -5,6 +5,20 @@ var DotShape;
     DotShape[DotShape["Circle"] = 1] = "Circle";
 })(DotShape || (DotShape = {}));
 class DMDRenderer extends Renderer {
+    _dmdWidth;
+    _dmdHeight;
+    _screenWidth;
+    _screenHeight;
+    _dotSpace;
+    _pixelSize;
+    _dotShape;
+    _dmdBufferByteLength;
+    _screenBufferByteLength;
+    _bgBrightness;
+    _bgColor;
+    _brightness;
+    _bgHSP;
+    renderFrame;
     /**
      *
      * @param {number} dmdWidth
@@ -136,13 +150,11 @@ class DMDRenderer extends Renderer {
                         `
                     });
                     console.log("GPURenderer:init()");
-                    if (typeof this._shaderModule.compilationInfo === 'function') {
-                        this._shaderModule.compilationInfo().then(i => {
-                            if (i.messages.length > 0) {
-                                console.warn('GPURenderer:compilationInfo()', i.messages);
-                            }
-                        });
-                    }
+                    this._shaderModule.getCompilationInfo()?.then(i => {
+                        if (i.messages.length > 0) {
+                            console.warn('GPURenderer:compilationInfo()', i.messages);
+                        }
+                    });
                     that.renderFrame = that._doRendering;
                     resolve();
                 });

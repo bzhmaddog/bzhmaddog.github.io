@@ -1,4 +1,9 @@
 class Renderer {
+    _adapter;
+    _device;
+    _shaderModule;
+    _name;
+    _initDone;
     constructor(name) {
         this._name = name;
     }

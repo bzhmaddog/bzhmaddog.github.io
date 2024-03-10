@@ -2,6 +2,17 @@ import { BaseLayer } from "./BaseLayer.js";
 import { Options } from "../Options.js";
 import { LayerType } from "./BaseLayer.js";
 class AnimationLayer extends BaseLayer {
+    _onPlayListener;
+    _onPauseListener;
+    _onStopListener;
+    __renderNextFrame;
+    _images;
+    _isPlaying;
+    _isPaused;
+    _loop;
+    _frameIndex;
+    _startTime;
+    _frameDuration;
     constructor(id, width, height, options, renderers, loadedListener, updatedListener, playListener, pauseListener, stopListener) {
         const defaultOptions = new Options({ loop: false, autoplay: false });
         const layerOptions = Object.assign({}, defaultOptions, options);

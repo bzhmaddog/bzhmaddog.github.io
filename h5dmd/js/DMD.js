@@ -9,6 +9,28 @@ import { SpritesLayer } from './layers/SpritesLayer.js';
 import { TextLayer } from './layers/TextLayer.js';
 import { Options } from './Options.js';
 class DMD {
+    _outputCanvas;
+    _outputContext;
+    _xOffset;
+    _yOffset;
+    _layers;
+    _sortedLayers;
+    _outputWidth;
+    _outputHeight;
+    _frameBuffer;
+    _fpsBox;
+    _zIndex;
+    _renderer;
+    _isRunning;
+    _fps;
+    _lastRenderTime;
+    _layerRenderers;
+    _initDone;
+    _backgroundColor;
+    _renderNextFrame;
+    _renderFPS;
+    _minFPS;
+    _maxFPS;
     /**
      *
      * @param {HTMLCanvasElement} outputCanvas Dom Element where the DMD will be drawed
@@ -415,7 +437,6 @@ class DMD {
                         break;
                     case "right":
                         layerLeft = this._outputWidth - layerWidth + (_layerDimensions.hOffset || 0) - 1;
-                        console.log(`${id}`, layerLeft);
                 }
             }
             if (typeof _layerDimensions.vAlign === 'string') {

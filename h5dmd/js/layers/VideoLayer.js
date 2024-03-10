@@ -7,11 +7,17 @@ var VideoState;
     VideoState[VideoState["PLAYING"] = 2] = "PLAYING";
 })(VideoState || (VideoState = {}));
 class VideoLayer extends BaseLayer {
+    _video;
+    _onPlayListener;
+    _onPauseListener;
+    _onStopListener;
+    __renderNextFrame;
+    _internalAction;
+    _state = VideoState.STOPPED;
     constructor(id, width, height, options, renderers, loadedListener, updatedListener, playListener, pauseListener, stopListener) {
         const defaultOptions = new Options({ loop: false, autoplay: false, pauseOnHide: true, stopOnHide: false });
         const layerOptions = Object.assign({}, defaultOptions, options);
         super(id, LayerType.Video, width, height, layerOptions, renderers, loadedListener, updatedListener);
-        this._state = VideoState.STOPPED;
         this._onPlayListener = playListener;
         this._onPauseListener = pauseListener;
         this._onStopListener = stopListener;
