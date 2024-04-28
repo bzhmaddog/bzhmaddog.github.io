@@ -35,10 +35,9 @@ class BaseLayer {
         this._availableRenderers = Object.assign({
             'opacity': new ChangeAlphaRenderer(width, height)
         }, renderers);
-        this._options = new Options({ visible: true, groups: ['default'], opacity: 1, renderers: [] });
-        Object.assign(this._options, options);
+        this._options = new Options({ visible: true, groups: ['default'], opacity: 1, renderers: [] }).merge(options);
         this._renderNextFrame = function () { console.log(`Layer [${this._id}] : Rendering ended`); };
-        let rendererPromises = [];
+        const rendererPromises = [];
         // Build array of promises
         Object.keys(this._availableRenderers).forEach(id => {
             rendererPromises.push(this._availableRenderers[id].init());
@@ -51,7 +50,7 @@ class BaseLayer {
         if (this._options.get('renderers').length > 0) {
             // Build default render queue to save some time in renderFrame
             // Since this should not change after creation
-            for (var i = 0; i < this._options.get('renderers').length; i++) {
+            for (let i = 0; i < this._options.get('renderers').length; i++) {
                 const r = this._options.get('renderers')[i];
                 if (typeof this._availableRenderers[r] !== 'undefined') {
                     this._defaultRenderQueue.push({
@@ -76,7 +75,6 @@ class BaseLayer {
      * Start rendering process
      */
     _renderFrame() {
-        const that = this;
         // clone renderers array
         this._renderQueue = [...this._defaultRenderQueue] || [];
         // If opacity is below 1 add opacity renderer
@@ -88,7 +86,7 @@ class BaseLayer {
             });
         }
         // Get initial data from layer content
-        var frameImageData = this._contentBuffer.context.getImageData(0, 0, this._outputBuffer.width, this._outputBuffer.height);
+        const frameImageData = this._contentBuffer.context.getImageData(0, 0, this._outputBuffer.width, this._outputBuffer.height);
         // start renderers queue processing
         this._processRenderQueue(frameImageData);
     }
@@ -98,26 +96,25 @@ class BaseLayer {
      * @returns {ImageData} result data of the renderer
      */
     _processRenderQueue(frameImageData) {
-        var that = this;
         // if there is a renderer in the queue then run render pass with this renderer
         if (this._renderQueue.length) {
-            var renderer = this._renderQueue.shift(); // pop renderer from render queue
+            const renderer = this._renderQueue.shift(); // pop renderer from render queue
             //console.log(`${this.id} `, renderer)
             // Apply 'filter' to provided content with current renderer then process next renderer in queue
-            renderer.instance.renderFrame(frameImageData, renderer.params).then((outputData) => {
-                that._processRenderQueue(outputData);
+            renderer?.instance.renderFrame(frameImageData, renderer.params).then((outputData) => {
+                this._processRenderQueue(outputData);
             });
             // no more renderer in queue then draw final image and start queue process again	
         }
         else {
             // Erase current output buffer content
-            that._outputBuffer.clear();
+            this._outputBuffer.clear();
             // Put final frame data into output buffer and start process again (if needed)
             createImageBitmap(frameImageData).then(bitmap => {
                 // Put final layer data in the output buffer
-                that._outputBuffer.context.drawImage(bitmap, 0, 0);
+                this._outputBuffer.context.drawImage(bitmap, 0, 0);
                 // request next frame rendering
-                that._renderNextFrame();
+                this._renderNextFrame();
             });
         }
     }
@@ -126,16 +123,15 @@ class BaseLayer {
      * @param {boolean} startRenderingLoop
      */
     _layerLoaded(startRenderingLoop = false) {
-        var that = this;
         this._loaded = true;
         console.log(`Layer [${this._id}] : Loaded`);
         // If no renderer in the queue then just render the frame data once
         if (this._defaultRenderQueue.length === 0 && this._options.get('opacity') === 1) {
             // Put content data in output buffer
-            var frameImageData = this._contentBuffer.context.getImageData(0, 0, this._outputBuffer.width, this._outputBuffer.height);
+            const frameImageData = this._contentBuffer.context.getImageData(0, 0, this._outputBuffer.width, this._outputBuffer.height);
             this._outputBuffer.clear();
             createImageBitmap(frameImageData).then(bitmap => {
-                that._outputBuffer.context.drawImage(bitmap, 0, 0);
+                this._outputBuffer.context.drawImage(bitmap, 0, 0);
             });
         }
         // start rendering visible layers which have renderers
@@ -270,7 +266,7 @@ class BaseLayer {
         return this._layerType;
     }
     get groups() {
-        return this._options.get('groups', ['default']);
+        return this._options.get('groups') || ['default'];
     }
     get options() {
         return this._options;

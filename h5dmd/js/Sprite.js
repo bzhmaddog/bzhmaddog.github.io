@@ -71,12 +71,12 @@ class Sprite {
      * Main render routine
      */
     _doAnimation(t) {
-        var now = t;
-        var previousFrameIndex = this._frameIndex;
+        const now = t;
+        const previousFrameIndex = this._frameIndex;
         if (this._startTime === null) {
             this._startTime = now;
         }
-        var delta = now - this._startTime;
+        const delta = now - this._startTime;
         // Calculate frame number given delta and duration
         this._frameIndex = Math.floor(delta / this._frameDuration);
         // If loop is 
@@ -93,9 +93,9 @@ class Sprite {
         }
         // Only redraw buffer is frame is different
         if (this._frameIndex !== previousFrameIndex) {
-            let xOffset = this._frameIndex * (this._animation.params.width + this._hFrameOffset) + this._animation.params.xOffset;
+            const xOffset = this._frameIndex * (this._animation.params.width + this._hFrameOffset) + this._animation.params.xOffset;
             // Shift vertical position so that sprites are aligned at the bottom
-            let yPos = this._maxHeight - this._animation.params.height;
+            const yPos = this._maxHeight - this._animation.params.height;
             //console.log(`${this._frameIndex} / ${xOffset} / ${yPos}`)
             this._buffer.clear();
             this._buffer.context.drawImage(this._spriteSheet, xOffset, this._animation.params.yOffset, this._animation.params.width, this._animation.params.height, 0, yPos, this._animation.params.width, this._animation.params.height);
@@ -162,7 +162,7 @@ class Sprite {
         // Build array of animation
         // array[0] = animation id
         // array[1] = number of loop
-        for (var i = 0; i < seq.length; i++) {
+        for (let i = 0; i < seq.length; i++) {
             this._queue.push({
                 params: this._animations[seq[i][0]],
                 loop: Math.max(1, seq[i][1])

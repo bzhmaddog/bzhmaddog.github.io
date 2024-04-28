@@ -12,7 +12,7 @@ class OffscreenBuffer {
         this._canvas = document.createElement('canvas'); // Offscreen canvas
         this._canvas.width = width;
         this._canvas.height = height;
-        var options = null;
+        let options = null;
         if (willReadFrequently) {
             //console.log("Buffer() : Settings willReadyFrequently to true")
             options = { willReadFrequently: true };

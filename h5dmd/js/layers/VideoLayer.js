@@ -15,8 +15,7 @@ class VideoLayer extends BaseLayer {
     _internalAction;
     _state = VideoState.STOPPED;
     constructor(id, width, height, options, renderers, loadedListener, updatedListener, playListener, pauseListener, stopListener) {
-        const defaultOptions = new Options({ loop: false, autoplay: false, pauseOnHide: true, stopOnHide: false });
-        const layerOptions = Object.assign({}, defaultOptions, options);
+        const layerOptions = new Options({ loop: false, autoplay: false, pauseOnHide: true, stopOnHide: false }).merge(options);
         super(id, LayerType.Video, width, height, layerOptions, renderers, loadedListener, updatedListener);
         this._onPlayListener = playListener;
         this._onPauseListener = pauseListener;
@@ -46,20 +45,20 @@ class VideoLayer extends BaseLayer {
         this.__renderNextFrame = this._requestRenderNextFrame;
         this._requestRenderNextFrame();
         if (typeof this._onPlayListener === 'function') {
-            this._onPlayListener();
+            this._onPlayListener(this);
         }
     }
     _onVideoPaused() {
         this.__renderNextFrame = function () { console.log('End of video rendering'); };
         this._stopRendering();
         if (typeof this._onPauseListener === 'function') {
-            this._onPauseListener();
+            this._onPauseListener(this);
         }
     }
     __renderFrame() {
         this._contentBuffer.clear();
         this._contentBuffer.context.drawImage(this._video, 0, 0, this._options.get('width'), this._options.get('height'));
-        this.__renderNextFrame();
+        this.__renderNextFrame(this);
     }
     _requestRenderNextFrame() {
         requestAnimationFrame(this.__renderFrame.bind(this));
@@ -140,7 +139,7 @@ class VideoLayer extends BaseLayer {
      */
     setVideo(video) {
         this._video = video;
-        this._video.loop = this._options.get('loop', false);
+        this._video.loop = this._options.get('loop');
         this._video.addEventListener('play', this._onVideoPlayed.bind(this));
         this._video.addEventListener('pause', this._onVideoPaused.bind(this));
         // Video is already loaded
@@ -150,9 +149,9 @@ class VideoLayer extends BaseLayer {
         // create a video element (not attached to the dom)
         this._video = document.createElement('video');
         // set the dimensions
-        this._video.width = this._options.get('width', this.width);
-        this._video.height = this._options.get('height', this.height);
-        this._video.loop = this._options.get('loop', false);
+        this._video.width = this._options.get('width') || this.width;
+        this._video.height = this._options.get('height') || this.height;
+        this._video.loop = this._options.get('loop') || false;
         // Bind loaded event of the video to publish an event so the client 
         // can do whatever it want (example: play the video) 
         this._video.addEventListener('play', this._onVideoPlayed.bind(this));

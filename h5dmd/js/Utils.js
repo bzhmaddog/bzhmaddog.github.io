@@ -33,8 +33,7 @@ class Utils {
      * @returns {number}
      */
     static hexColorToInt(str, prefix) {
-        var p = prefix || "";
-        return parseInt(str.replace(/^#/gi, p), 16);
+        return parseInt(str.replace(/^#/gi, prefix || ""), 16);
     }
     /**
      * Revert RGBA components
@@ -42,7 +41,7 @@ class Utils {
      * @returns {string} abgr string
      */
     static rgba2abgr(rgba) {
-        var arr = rgba.match(/.{2}/g);
+        const arr = rgba.match(/.{2}/g);
         if (arr === null) {
             throw new TypeError("Invalid rgba string");
         }
@@ -62,9 +61,7 @@ class Utils {
      * @param {number} index
      */
     static loadImagesOrdered(images) {
-        var bitmaps = [];
-        var cnt = 0;
-        var promises = images.map(url => fetch(url));
+        const promises = images.map(url => fetch(url));
         return Promise
             .all(promises)
             .then(responses => Promise.all(responses.map(res => res.blob())))
@@ -76,9 +73,7 @@ class Utils {
      * @param {number} index
      */
     static async loadImagesOrderedAsync(images) {
-        var bitmaps = [];
-        var cnt = 0;
-        var promises = images.map(url => fetch(url));
+        const promises = images.map(url => fetch(url));
         return await Promise
             .all(promises)
             .then(responses => Promise.all(responses.map(res => res.blob())))

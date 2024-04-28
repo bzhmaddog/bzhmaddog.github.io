@@ -7,7 +7,7 @@ class Renderer {
     constructor(name) {
         this._name = name;
     }
-    getName() {
+    get name() {
         return this._name;
     }
 }

@@ -1,3 +1,4 @@
+import { Options } from "../Options.js";
 import { BaseLayer, LayerType } from "./BaseLayer.js";
 import { Sprite } from "../Sprite.js";
 class SpritesLayer extends BaseLayer {
@@ -5,8 +6,7 @@ class SpritesLayer extends BaseLayer {
     _runningSprites;
     __renderNextFrame;
     constructor(id, width, height, options, renderers, loadedListener, updatedListener) {
-        const defaultOptions = { loop: false, autoplay: false };
-        const layerOptions = Object.assign({}, defaultOptions, options);
+        const layerOptions = new Options({ loop: false, autoplay: false }).merge(options);
         super(id, LayerType.Sprites, width, height, layerOptions, renderers, loadedListener, updatedListener);
         this._sprites = {};
         this._runningSprites = 0;
@@ -17,11 +17,11 @@ class SpritesLayer extends BaseLayer {
      * Render frame with all sprites data
      */
     __renderFrame() {
-        const that = this;
         this._contentBuffer.clear();
         Object.keys(this._sprites).forEach(id => {
-            if (this._sprites[id].visible) {
-                this._contentBuffer.context.drawImage(that._sprites[id].sprite.data, that._sprites[id].x, that._sprites[id].y);
+            const sprite = this._sprites[id];
+            if (sprite.visible) {
+                this._contentBuffer.context.drawImage(sprite.sprite.data, sprite.x, sprite.y);
             }
         });
         this.__renderNextFrame(); // if needed
@@ -43,16 +43,15 @@ class SpritesLayer extends BaseLayer {
      * @param {string} y (vertical position on layer)
      */
     createSprite(id, spriteSheet, hFrameOffset, vFrameOffset, animations, x, y) {
-        const that = this;
         return new Promise((resolve, reject) => {
             if (typeof this._sprites[id] === 'undefined') {
                 if (animations.length) {
-                    var sprite = new Sprite(id, spriteSheet, hFrameOffset, vFrameOffset);
-                    for (var i = 0; i < animations.length; i++) {
+                    const sprite = new Sprite(id, spriteSheet, hFrameOffset, vFrameOffset);
+                    for (let i = 0; i < animations.length; i++) {
                         const args = animations[i];
                         sprite.addAnimation(...args);
                     }
-                    that.addSprite(id, sprite, x, y);
+                    this.addSprite(id, sprite, x, y);
                     resolve(sprite);
                 }
                 else {
@@ -74,7 +73,7 @@ class SpritesLayer extends BaseLayer {
      * @returns {boolean} true if sprite was assed false otherwise
      */
     addSprite(id, sprite, _x, _y, v) {
-        var isVisible = true;
+        let isVisible = true;
         if (typeof sprite === 'object' && sprite.constructor !== Sprite) {
             console.error("Provided sprite is not a Sprite object");
             return false;
@@ -86,17 +85,17 @@ class SpritesLayer extends BaseLayer {
         if (typeof v !== 'undefined') {
             isVisible = !!v;
         }
-        var x = _x || 0;
-        var y = _y || 0;
+        let x = _x || 0;
+        let y = _y || 0;
         if (_x.at(-1) === '%') {
-            var vx = parseFloat(_x.replace('%', ''));
+            const vx = parseFloat(_x.replace('%', ''));
             x = Math.floor((vx * this.width) / 100);
         }
         else {
             x = parseInt(_x, 10);
         }
         if (_y.at(-1) === '%') {
-            var vy = parseFloat(_y.replace('%', ''));
+            const vy = parseFloat(_y.replace('%', ''));
             y = Math.floor((vy * this.height) / 100);
         }
         else {
@@ -114,10 +113,9 @@ class SpritesLayer extends BaseLayer {
         return true;
     }
     /**
-     * End of quest listener
-     * @param {string} id : sprite queue which ended
+     * End of queue listener
      */
-    _onQueueEnded(id) {
+    _onQueueEnded() {
         this._runningSprites--;
         // If not more sprite is running then no need to keep rendering new frames
         if (this._runningSprites <= 0) {

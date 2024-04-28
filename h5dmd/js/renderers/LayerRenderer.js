@@ -17,10 +17,10 @@ class LayerRenderer extends Renderer {
      * @returns {Promise<ImageData>}
      */
     _doNothing(frameData) {
-        return new Promise(resolve => {
+        return new Promise((resolve) => {
             resolve(frameData);
         });
     }
 }
-export { LayerRenderer };
+export { LayerRenderer, };
 //# sourceMappingURL=LayerRenderer.js.map

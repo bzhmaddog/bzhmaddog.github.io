@@ -71,7 +71,7 @@ class DMD {
         };
         this._initDone = false;
         // IF needed create and show fps div in hte top right corner of the screen
-        if (!!showFPS) {
+        if (showFPS) {
             // Dom element to ouput fps value
             // TODO : Remove later
             this._fpsBox = document.createElement('div');
@@ -128,33 +128,33 @@ class DMD {
         // Fill rectangle with background color
         this._frameBuffer.context.fillStyle = this._backgroundColor;
         this._frameBuffer.context.fillRect(0, 0, this._outputWidth, this._outputHeight);
-        const before = performance.now();
+        //const before:number = performance.now()
         // Draw each visible layer on top of previous one to create the final screen
         this._sortedLayers.forEach(l => {
-            if (this._layers.hasOwnProperty(l.id)) {
-                var layer = this._layers[l.id];
-                if (layer.isVisible() && layer.isLoaded()) {
-                    //if (layer.layerType === LayerType.Text && layer.id === 'ball-value') {
-                    //if (layer.layerType === LayerType.Text && layer.id === 'ball-text') {
-                    //if (layer.layerType === LayerType.Text && layer.id === 'attract-credits') {
-                    //if (layer.layerType === LayerType.Text) {
-                    //console.log(l)
-                    //this._frameBuffer.context.fillStyle = "#FF0000FF"
-                    //this._frameBuffer.context.fillRect(l.left, l.top, layer.width, layer.height)
-                    /*this._frameBuffer.context.strokeStyle = "#FF0000"
-                    this._frameBuffer.context.beginPath()
-                    this._frameBuffer.context.rect(l.left, l.top, layer.width, layer.height)
-                    this._frameBuffer.context.stroke()*/
-                    //}
-                    // Draw layer content into a buffer
-                    this._frameBuffer.context.drawImage(layer.canvas, l.left, l.top);
-                }
+            //if (this._layers.hasOwnProperty(l.id)) {
+            const layer = this._layers[l.id];
+            if (layer.isVisible() && layer.isLoaded()) {
+                //if (layer.layerType === LayerType.Text && layer.id === 'ball-value') {
+                //if (layer.layerType === LayerType.Text && layer.id === 'ball-text') {
+                //if (layer.layerType === LayerType.Text && layer.id === 'attract-credits') {
+                //if (layer.layerType === LayerType.Text) {
+                //console.log(l)
+                //this._frameBuffer.context.fillStyle = "#FF0000FF"
+                //this._frameBuffer.context.fillRect(l.left, l.top, layer.width, layer.height)
+                /*this._frameBuffer.context.strokeStyle = "#FF0000"
+                this._frameBuffer.context.beginPath()
+                this._frameBuffer.context.rect(l.left, l.top, layer.width, layer.height)
+                this._frameBuffer.context.stroke()*/
+                //}
+                // Draw layer content into a buffer
+                this._frameBuffer.context.drawImage(layer.canvas, l.left, l.top);
             }
+            //}
         });
-        const after = performance.now() - before;
+        //const after: number = performance.now() - before
         //console.log('render time = ', after)
         // Get data from the merged layers content
-        var frameImageData = this._frameBuffer.context.getImageData(0, 0, this._frameBuffer.width, this._frameBuffer.height);
+        const frameImageData = this._frameBuffer.context.getImageData(0, 0, this._frameBuffer.width, this._frameBuffer.height);
         // Generate DMD frame
         this._renderer.renderFrame(frameImageData).then((dmdImageData) => {
             createImageBitmap(dmdImageData).then(bitmap => {
@@ -162,8 +162,8 @@ class DMD {
                 this._outputContext.clearRect(0, 0, this._outputCanvas.width, this._outputCanvas.height);
                 // Render final DMD image onto target canvas
                 this._outputContext.drawImage(bitmap, 0, 0);
-                var now = performance.now();
-                var delta = (now - this._lastRenderTime);
+                const now = performance.now();
+                const delta = (now - this._lastRenderTime);
                 this._lastRenderTime = now;
                 // Calculate FPS
                 this._fps = Math.floor(Math.round((1000 / delta) * 1e2) / 1e2);
@@ -200,16 +200,15 @@ class DMD {
      * @returns {Promise<void>}
      */
     fadeOut(duration) {
-        var start = window.performance.now();
-        var that = this;
-        var startBrightness = that._renderer.brightness;
+        const start = window.performance.now();
+        const startBrightness = this._renderer.brightness;
         return new Promise(resolve => {
-            var cb = function () {
-                var delta = window.performance.now() - start;
-                var b = startBrightness - Easing.easeOutSine(delta, 0, startBrightness, duration);
-                that._renderer.setBrightness(b);
-                if (that._renderer.brightness <= 0 || delta > duration) {
-                    that._renderer.setBrightness(0);
+            const cb = function () {
+                const delta = window.performance.now() - start;
+                const b = startBrightness - Easing.easeOutSine(delta, 0, startBrightness, duration);
+                this._renderer.setBrightness(b);
+                if (this._renderer.brightness <= 0 || delta > duration) {
+                    this._renderer.setBrightness(0);
                     resolve();
                 }
                 else {
@@ -225,18 +224,16 @@ class DMD {
      * @returns {Promise<void>}
      */
     fadeIn(duration) {
-        var start = window.performance.now();
-        var that = this;
-        var startBrightness = that._renderer.brightness;
-        var cnt = 0;
+        const start = window.performance.now();
+        const startBrightness = this._renderer.brightness;
         return new Promise(resolve => {
-            var cb = function () {
-                cnt++;
-                var delta = window.performance.now() - start;
-                var b = Easing.easeOutSine(delta, startBrightness, 1, duration);
-                that._renderer.setBrightness(b);
-                if (that._renderer.brightness >= 1 || delta > duration) {
-                    that._renderer.setBrightness(1);
+            const r = this._renderer;
+            const cb = function () {
+                const delta = window.performance.now() - start;
+                const b = Easing.easeOutSine(delta, startBrightness, 1, duration);
+                r.setBrightness(b);
+                if (r.brightness >= 1 || delta > duration) {
+                    r.setBrightness(1);
                     resolve();
                 }
                 else {
@@ -421,12 +418,12 @@ class DMD {
         //const _defaultOptions = new Options({ top : 0, left : 0})
         // This method is called by child layer creator which can be called from javascript directly so
         // make sure we have an Options object from now on
-        var options = new Options(_options);
+        const options = new Options(_options);
         if (typeof this._layers[id] === 'undefined') {
             const layerWidth = _layerDimensions.width || this._outputWidth;
             const layerHeight = _layerDimensions.height || this._outputHeight;
-            var layerTop = _layerDimensions.top || 0;
-            var layerLeft = _layerDimensions.left || 0;
+            let layerTop = _layerDimensions.top || 0;
+            let layerLeft = _layerDimensions.left || 0;
             if (typeof _layerDimensions.hAlign === 'string') {
                 switch (_layerDimensions.hAlign) {
                     case "left":
@@ -451,7 +448,7 @@ class DMD {
                         layerTop = this._outputHeight - layerHeight + (_layerDimensions.vOffset || 0) - 1;
                 }
             }
-            var layer;
+            let layer;
             switch (type) {
                 case LayerType.Canvas:
                     layer = new CanvasLayer(id, layerWidth, layerHeight, options, _layerRenderers, _layerLoadedListener, _layerUpdatedListener);
@@ -472,8 +469,8 @@ class DMD {
                     throw new TypeError(`Invalid layer type : ${type}`);
             }
             this._layers[id] = layer; // use getType() to retrieve the type later 
-            var zIndex = this._zIndex;
-            if (options.hasValue('zIndex')) {
+            let zIndex = this._zIndex;
+            if (options.has('zIndex')) {
                 zIndex = options.get('zIndex');
             }
             else {

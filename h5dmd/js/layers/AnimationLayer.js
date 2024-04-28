@@ -14,8 +14,7 @@ class AnimationLayer extends BaseLayer {
     _startTime;
     _frameDuration;
     constructor(id, width, height, options, renderers, loadedListener, updatedListener, playListener, pauseListener, stopListener) {
-        const defaultOptions = new Options({ loop: false, autoplay: false });
-        const layerOptions = Object.assign({}, defaultOptions, options);
+        const layerOptions = new Options({ loop: false, autoplay: false }).merge(options);
         super(id, LayerType.Video, width, height, layerOptions, renderers, loadedListener, updatedListener);
         this._onPlayListener = playListener;
         this._onPauseListener = pauseListener;
@@ -24,7 +23,7 @@ class AnimationLayer extends BaseLayer {
         this._isPlaying = false;
         this._isPaused = false;
         this._frameIndex = 0;
-        this._loop = options.get('loop', false);
+        this._loop = layerOptions.get('loop');
         this.__renderNextFrame = function () { };
         setTimeout(this._layerLoaded.bind(this), 1);
     }
@@ -52,13 +51,13 @@ class AnimationLayer extends BaseLayer {
      * @returns
      */
     __renderFrame(t) {
-        var now = t;
-        var previousFrameIndex = this._frameIndex;
+        const now = t;
+        const previousFrameIndex = this._frameIndex;
         if (!this._startTime) {
             this._startTime = now;
         }
-        var position = now - this._startTime;
-        var frameIndex = Math.floor(position / this._frameDuration);
+        const position = now - this._startTime;
+        let frameIndex = Math.floor(position / this._frameDuration);
         // If not looping stop at the last image in the array
         if (!this._loop && frameIndex >= this._images.length) {
             this.stop();
@@ -109,7 +108,7 @@ class AnimationLayer extends BaseLayer {
             this._requestRenderNextFrame();
             this._startRendering();
             if (typeof this._onPlayListener === 'function') {
-                this._onPlayListener();
+                this._onPlayListener(this);
             }
         }
     }
@@ -124,7 +123,7 @@ class AnimationLayer extends BaseLayer {
             this.__renderNextFrame = function () { };
             this._stopRendering();
             if (typeof this._onStopListener === 'function') {
-                this._onStopListener();
+                this._onStopListener(this);
             }
         }
     }
@@ -140,7 +139,7 @@ class AnimationLayer extends BaseLayer {
                 this._isPaused = true;
                 this.__renderNextFrame = function () { };
                 if (typeof this._onPauseListener === 'function') {
-                    this._onPauseListener();
+                    this._onPauseListener(this);
                 }
             }
             else {
@@ -161,7 +160,7 @@ class AnimationLayer extends BaseLayer {
         }
     }
     nextFrame() {
-        var nextFrame = this._frameIndex + 1;
+        let nextFrame = this._frameIndex + 1;
         if (nextFrame >= this._images.length) {
             nextFrame = 0;
         }
@@ -170,7 +169,7 @@ class AnimationLayer extends BaseLayer {
         this._layerUpdated();
     }
     previousFrame() {
-        var prevFrame = this._frameIndex - 1;
+        let prevFrame = this._frameIndex - 1;
         if (prevFrame <= 0) {
             prevFrame = this._images.length - 1;
         }

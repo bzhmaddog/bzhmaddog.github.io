@@ -1,43 +1,40 @@
 /**
- * This class is a quick and dirty replacement for Typescript 'inability' to handle
- * objects with custom properties
+ * Improve Map by adding a merge feature
  */
-class Options extends Object {
+class Options extends Map {
     constructor(o) {
         super();
-        if (o instanceof Options) {
-            Object.assign(this, o.getValues());
+        if (o) {
+            this._merge(o, this);
         }
-        else if (typeof o === 'object') {
-            Object.assign(this, o);
-        }
-    }
-    get(property, defaultValue) {
-        if (this.hasValue(property)) {
-            return this[property];
-        }
-        else {
-            if (typeof defaultValue !== 'undefined') {
-                return defaultValue;
-            }
-            else {
-                return undefined;
-            }
-        }
-    }
-    set(property, value) {
-        this[property] = value;
     }
     /**
-     * Return true if instance have specified property
-     * @param {string} properties
-     * @returns boolean
+     * Merge provided Options or object into current Options without altering current instance
+     * @returns a new Options object
      */
-    hasValue(properties) {
-        return this.hasOwnProperty(properties);
+    merge(o) {
+        const newOptions = new Options(this);
+        if (o) {
+            this._merge(o, newOptions);
+        }
+        return newOptions;
     }
-    getValues() {
-        return this;
+    /**
+     * Merge input into specified output
+     */
+    _merge(input, output) {
+        if (input instanceof Options) {
+            for (const [k, v] of input.entries()) {
+                output.set(k, v);
+            }
+        }
+        else if (input instanceof Map) {
+            const obj = Object.fromEntries(input);
+            Object.keys(obj).forEach(key => { output.set(key, obj[key]); });
+        }
+        else if (typeof input === 'object') {
+            Object.keys(input).forEach(key => { output.set(key, input[key]); });
+        }
     }
 }
 export { Options };
