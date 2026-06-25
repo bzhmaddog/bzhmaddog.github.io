@@ -488,7 +488,7 @@ h2.section-title {
 	}
 
 	section:not(.section) {
-		width: 34.5em;
+		width: 40em;
 		padding: 0 1em 1em 0;
 		margin-top:0;
 		border: none;
@@ -546,6 +546,21 @@ h2.section-title {
 	background: #444;
 	border-color: #444;
 }
+
+/* PDF page breaks */
+@media print {
+        body {
+                background: #fff;
+        }
+
+        #resume {
+                width: auto;
+                margin: 0;
+                padding: 0;
+                background: #fff;
+                box-shadow: none;
+        }
+
 	</style>
 
 
@@ -633,21 +648,21 @@ h2.section-title {
 							<p>Various missions: Web applications, Android native and hybrid, NFV security, IoT/voice assistants.</p>
 						</div>
 						<ul class="highlights">
-							<li>Apr. 2026 - now: Senior Fullstack Developer for BRGM - Maintenance and enhancement of the Envinorma web platfrom</li>
-							<li>Mar. 2026 - May. 2026: Senior Front-end Developer for DIRE () - Refactoring/Improvement of the &#x27;Synoptique&#x27; feature of the Sagacite web platform</li>
-							<li>Feb. 2026 - Feb. 2026: Senior Fullstack Developer for BRGM - Maintenance and enhancement of the Envinorma web platfrom</li>
-							<li>Jan. 2026 - Jan. 2026: Backup Senior Front-End Developer for BRGM - Redesign of Infoterre web platform</li>
-							<li>Sep. 2025 - Dec. 2025: Senior Fullstack Developer for Orange Labs - Realised a POC for an AI assistant for Orange employees.</li>
-							<li>Jan. 2025 - Aug. 2025: Senior Fullstack Developer for BRGM (French ministry of ecology transformation) - Maintenance and enhancement of the Envinorma web platfrom</li>
-							<li>Apr. 2024 - Dec. 2024: Senior Front-End Developer for SCHAPI (French ministry of ecology transformation) - Redesign of Schapi Superviseur app</li>
-							<li>Apr. 2021 - Mar. 2024: Android developer on the Decathlon Connect app (Java, Kotlin, RxJava, Bluetooth LE) - integration of new products, migration of legacy code to modern standards, build automation setup (Bitrise / GitHub Actions).</li>
-							<li>May 2020 - Mar. 2021: Security lead for the validation of an NFV TAS (Telephony Application Server) on Redhat OpenStack - built a Symfony app for security audit tracking and analysis, migrated fuzzing tools to a virtualised environment, validated hardening of 39 machines, CDR compliance, robustness testing (fuzzing), Linux CVE monitoring.</li>
-							<li>Nov. 2019 - Apr. 2020: POC for integrating a connected scale into the Decathlon Connect app - reverse-engineered the BLE communication protocol from a legacy app (My Geonaute) and wrote the specification.</li>
-							<li>Sep. 2018 - Oct. 2019: HomeIn research project at Orange Labs - Python/C++ integration of Orange solutions (TTS / ASR / speaker recognition), web configuration UI, &#x27;Speakit&#x27; voice assistant on Raspberry Pi 3 (Snips), WakeWord evaluation test bench (Sensory / Fluent / SoundHound / Snips / Nuance).</li>
-							<li>Jun. 2018 - Aug. 2018: Urgonight Android app (Java) for Urgotech - reusable widgets, screen integration from mockups, Web/SVG animations in a WebView.</li>
-							<li>Dec. 2017 - May 2018: B2B marketplace for non-organic waste exchange for SUEZ Group - multilingual application stack (Symfony 3.4 / PHP 7), development environment (Vagrant), front-end development.</li>
-							<li>Aug. 2017 - Nov. 2017: Hybrid desktop/mobile order management app for Arcelor Mittal Construction - adaptive interfaces (desktop, Android, iOS), mobile build generation.</li>
-							<li>Jan. 2017 - Jul. 2017: B2B marketplace for organic waste exchange for SUEZ R&amp;V - application stack (Symfony 3.2 / PHP 5), junior developer onboarding, front and back office development.</li>
+							<li><strong>Apr. 2026 - now:</strong> Senior Fullstack Developer for BRGM - Maintenance and enhancement of the <a href='https://envinorma.developpement-durable.gouv.fr/' target='_blank' rel='noopener'>Envinorma</a> web platform</li>
+							<li><strong>Mar. 2026 - May. 2026:</strong> Senior Front-end Developer for DIRE () - Refactoring/Improvement of the 'Synoptique' feature of the Sagacite web platform</li>
+							<li><strong>Feb. 2026 - Feb. 2026:</strong> Senior Fullstack Developer for BRGM - Maintenance and enhancement of the <a href='https://envinorma.developpement-durable.gouv.fr/' target='_blank' rel='noopener'>Envinorma</a> web platform</li>
+							<li><strong>Jan. 2026 - Jan. 2026:</strong> Backup Senior Front-End Developer for BRGM - Redesign of Infoterre web platform</li>
+							<li><strong>Sep. 2025 - Dec. 2025:</strong> Senior Fullstack Developer for Orange Labs - Realised a POC for an AI assistant for Orange employees.</li>
+							<li><strong>Jan. 2025 - Aug. 2025:</strong> Senior Fullstack Developer for BRGM (French ministry of ecology transformation) - Maintenance and enhancement of the <a href='https://envinorma.developpement-durable.gouv.fr/' target='_blank' rel='noopener'>Envinorma</a> web platform</li>
+							<li><strong>Apr. 2024 - Dec. 2024:</strong> Senior Front-End Developer for SCHAPI (French ministry of ecology transformation) - Redesign of Schapi Superviseur app</li>
+							<li><strong>Apr. 2021 - Mar. 2024:</strong> Android developer on the Decathlon Connect app (Java, Kotlin, RxJava, Bluetooth LE) - integration of new products, migration of legacy code to modern standards, build automation setup (Bitrise / GitHub Actions).</li>
+							<li><strong>May 2020 - Mar. 2021:</strong> Security lead for the validation of an NFV TAS (Telephony Application Server) on Redhat OpenStack - built a Symfony app for security audit tracking and analysis, migrated fuzzing tools to a virtualised environment, validated hardening of 39 machines, CDR compliance, robustness testing (fuzzing), Linux CVE monitoring.</li>
+							<li><strong>Nov. 2019 - Apr. 2020:</strong> POC for integrating a connected scale into the Decathlon Connect app - reverse-engineered the BLE communication protocol from a legacy app (My Geonaute) and wrote the specification.</li>
+							<li><strong>Sep. 2018 - Oct. 2019:</strong> HomeIn research project at Orange Labs - Python/C++ integration of Orange solutions (TTS / ASR / speaker recognition), web configuration UI, 'Speakit' voice assistant on Raspberry Pi 3 (Snips), WakeWord evaluation test bench (Sensory / Fluent / SoundHound / Snips / Nuance).</li>
+							<li><strong>Jun. 2018 - Aug. 2018:</strong> Urgonight Android app (Java) for Urgotech - reusable widgets, screen integration from mockups, Web/SVG animations in a WebView.</li>
+							<li><strong>Dec. 2017 - May 2018:</strong> B2B marketplace for non-organic waste exchange for SUEZ Group - multilingual application stack (Symfony 3.4 / PHP 7), development environment (Vagrant), front-end development.</li>
+							<li><strong>Aug. 2017 - Nov. 2017:</strong> Hybrid desktop/mobile order management app for Arcelor Mittal Construction - adaptive interfaces (desktop, Android, iOS), mobile build generation.</li>
+							<li><strong>Jan. 2017 - Jul. 2017:</strong> B2B marketplace for organic waste exchange for SUEZ R&V - application stack (Symfony 3.2 / PHP 5), junior developer onboarding, front and back office development.</li>
 						</ul>
 					</div>
 						<header>
@@ -673,7 +688,7 @@ h2.section-title {
 						<ul class="highlights">
 							<li>Maintenance on existing sites (Drupal 7 / Acquia Lightning).</li>
 							<li>Implementation of new features and static pages.</li>
-							<li>R&amp;D for upcoming company sites (Ultra Mobile, Mint Sim, Univision Mobile).</li>
+							<li>R&D for upcoming company sites (Ultra Mobile, Mint Sim, Univision Mobile).</li>
 						</ul>
 					</div>
 						<header>
@@ -775,9 +790,9 @@ h2.section-title {
 							Lannion, France
 						</div>
 						<ul class="highlights">
-							<li>2011: Server-side JavaScript R&amp;D (webble.it, Extract Widget) - REST API in Node.js, headless browser in JavaScript (jsdom/cssom), node-cookies NPM module, Bash scripts and daemons.</li>
+							<li>2011: Server-side JavaScript R&D (webble.it, Extract Widget) - REST API in Node.js, headless browser in JavaScript (jsdom/cssom), node-cookies NPM module, Bash scripts and daemons.</li>
 							<li>2010: blimpme.com - user management back office CMS and payment interface.</li>
-							<li>2010: Via&#x27;Agri - QtWebkit container app (C++/Qt), Google Maps API v2 to v3 migration, cellar plan interface.</li>
+							<li>2010: Via'Agri - QtWebkit container app (C++/Qt), Google Maps API v2 to v3 migration, cellar plan interface.</li>
 							<li>2008-2009: Pratis Live V1 - Trident (IE) container app in Pascal/Delphi, JavaScript API for Vidal drug catalogue data, dosage/calendar/WYSIWYG widgets.</li>
 							<li>2006-2007: Creation and maintenance of various websites, user and client support.</li>
 						</ul>

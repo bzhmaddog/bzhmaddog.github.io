@@ -63,6 +63,14 @@ Handlebars.registerHelper('fluencyDots', function(fluency) {
   );
 });
 
+Handlebars.registerHelper('boldDate', function(text) {
+  var result = (text || '').replace(
+    /^([A-Z][a-z]+\.?\s+\d{4}\s*-\s*(?:[A-Z][a-z]+\.?\s+\d{4}|now)):/,
+    '<strong>$1:</strong>'
+  );
+  return new Handlebars.SafeString(result);
+});
+
 Handlebars.registerHelper('MY', function(date) {
 	var d = date.toString();
 	return moment(d).format('MMMM YYYY');
