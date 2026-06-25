@@ -7,9 +7,5 @@
     "type": "git",
     "url": "https://github.com/francescoes/jsonresume-theme-spartan"
   },
-  "license": "MIT",
-  "dependencies": {
-    "handlebars": ">=4.5.3",
-    "moment": ">=2.24.0"
-  }
+  "license": "MIT"
 }
