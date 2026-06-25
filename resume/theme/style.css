@@ -198,6 +198,12 @@ h2.section-title {
 	font-weight: 700;
 }
 
+.work-location {
+	color: #757575;
+	font-size: 0.9em;
+	margin-top: 0.1em;
+}
+
 #interests .item, #languages .item {
 	padding: 0 1.5em 1em 0;
 	border-bottom: none;

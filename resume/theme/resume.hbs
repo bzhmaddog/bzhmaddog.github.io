@@ -63,9 +63,9 @@
 					{{/location}}
 
 					<div id="contact">
-						{{#if website}}
+						{{#if url}}
 						<div class="website">
-							<a href="{{website}}">{{website}}</a>
+							<a href="{{url}}">{{url}}</a>
 						</div>
 						{{/if}}
 						{{#if email}}
@@ -124,10 +124,10 @@
 					<h2 class='section-title'>Experience</h2>
 					<section id="work">
 					{{#each resume.work}}
-						{{#if company}}
+						{{#if name}}
 						<header>
 							<h3 class="name">
-								{{company}}
+								{{name}}
 							</h3>
 							{{/if}}
 							<div class="date">
@@ -153,9 +153,14 @@
 							{{position}}
 						</div>
 						{{/if}}
-						{{#if website}}
+						{{#if location}}
+						<div class="work-location">
+							{{location}}
+						</div>
+						{{/if}}
+						{{#if url}}
 						<div class="website">
-							<a href="{{website}}">{{website}}</a>
+							<a href="{{url}}">{{url}}</a>
 						</div>
 						{{/if}}
 						{{#if summary}}
@@ -268,9 +273,9 @@
 								{{position}}
 							</div>
 							{{/if}}
-							{{#if website}}
+							{{#if url}}
 							<div class="website">
-								<a href="{{website}}">{{website}}</a>
+								<a href="{{url}}">{{url}}</a>
 							</div>
 							{{/if}}
 							{{#if summary}}
@@ -331,7 +336,7 @@
 							<div class="item">
 								{{#if name}}
 								<span class="name">
-									{{#if website}}
+									{{#if url}}
 									<span class="website">
 										<a href="{{website}}">{{name}}</a>
 									</span>

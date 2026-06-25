@@ -11,7 +11,7 @@
     "email": "cedmart1@gmail.com",
     "phone": "(+33) 06 04 40 46 68",
     "url": "https://bzhmaddog.github.io",
-    "summary": "Senior fullstack developer with 27+ years of experience across web, Android mobile, system administration and embedded systems. Equally at home on front end and back end, from e-commerce platforms to voice assistants, with a strong interest in reverse engineering, security, and build automation.",
+    "summary": "Senior fullstack developer with 27+ years of experience across web, Android mobile, system administration and embedded systems. Equally at home on front end and back end — from e-commerce platforms and mapping applications to AI assistants and voice interfaces. Known for autonomy, proactivity, and the ability to anticipate technical and functional challenges. Quickly adapts to evolving technologies and project needs, making him a reliable asset in any team he joins.",
     "profiles": [
       {
         "network": "GitHub",
@@ -163,12 +163,18 @@
       "keywords": [
         "HTML5",
         "CSS3 (SASS)",
-        "JavaScript (React, Angular, Backbone.js, jQuery, Underscore)",
+        "TypeScript (vanilla, Angular (16+), Vite",
+        "JavaScript (React, Angular-js), Backbone.js, jQuery, Underscore)",
         "PHP (Symfony 3/4, Zend, Laravel)",
+        "Ruby on Rails (7)",
         "MySQL",
+        "PostgreSQL",
         "SQLite",
         "MongoDB",
         "Realm",
+        "Mapping (OpenLayers, WMS/WFS/WMTS)",
+        "Charts (Highcharts)",
+        "UI Frameworks (Bootstrap, Material UI, PrimeNG)",
         "E-commerce (Magento, Drupal/Pressflow + Ubercart)",
         "CMS (Drupal 6/7, WordPress, Joomla)",
         "Mobile Web (Cordova Android/iOS)"
@@ -178,8 +184,11 @@
       "name": "Mobile & Languages",
       "keywords": [
         "Android (Java/Kotlin)",
+        "Flutter (Dart)",
+        "Electron",
         "C/C++",
         "Python",
+        "Ruby",
         "Bash",
         "Perl",
         "Delphi"
@@ -191,9 +200,10 @@
         "Build tools (Grunt, Gulp, Webpack, npm)",
         "Version control (Git/Gitflow, SVN)",
         "CI/CD (Bitrise, GitLab CI, Jenkins, GitHub Actions)",
+        "Testing (Cypress, Vitest, Capibara)",
         "Agile/Scrum (JIRA/Confluence, Redmine)",
-        "Web servers - Windows & Linux (LAMP, Nginx, IIS, Varnish)",
-        "Virtualisation & containerisation (Docker, Vagrant)"
+        "Web servers - Windows & Linux (LAMP, Nginx, IIS, MapServer)",
+        "Virtualisation & containerisation (Docker, Podman, Vagrant)"
       ]
     }
   ],
