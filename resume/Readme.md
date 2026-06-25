@@ -1,33 +1,24 @@
 # Resume
 
-Built with [JSON Resume](https://jsonresume.org/). The resume content lives in
-language-specific data files (`resume.fr.json`) and is rendered to HTML with a
-theme via [`resume-cli`](https://www.npmjs.com/package/resume-cli).
+Built with [JSON Resume](https://jsonresume.org/). Content lives in
+`resume.en.json` and is rendered to `index.html` via
+[`resume-cli`](https://www.npmjs.com/package/resume-cli).
 
-## Install
+> All commands below are run from the **repo root**.
 
-```bash
-npm install
-```
-
-## Commands (French)
+## Commands
 
 ```bash
-npm run resume:validate:fr   # validate resume.fr.json against the schema
-npm run resume:build:fr      # render -> fr.html
-npm run resume:serve:fr      # live preview at http://localhost:4000
-npm run resume:audit:fr      # ATS (Applicant Tracking System) score
-npm run resume:build         # alias for resume:build:fr
+npm run dev            # watch + serve at http://localhost:3000 (rebuild on change)
+npm run build          # one-shot render -> resume/index.html
+npm run watch          # rebuild on change (theme/** or resume.en.json), no server
+npm run serve          # static server only at http://localhost:3000, no watch
+npm run validate       # validate resume.en.json against the schema
+npm run audit          # ATS (Applicant Tracking System) score
 ```
 
-## Adding another language
+## Customising the theme
 
-Create `resume.<lang>.json` (e.g. `resume.en.json`) and use the matching
-scripts (`resume:build:en`, `resume:serve:en`, ...). JSON Resume has no built-in
-i18n, so each language is a separate data file.
-
-## Theme
-
-Rendering uses `jsonresume-theme-class`. Browse alternatives at
-<https://jsonresume.org/themes/> and pass `--theme jsonresume-theme-<slug>` to
-`resume export` after installing it.
+The theme is vendored locally in `resume/theme/`. Edit `resume/theme/style.css`
+to override styles — changes are picked up automatically when running `npm run dev`
+from the repo root. To change the layout or markup, edit `resume/theme/resume.hbs`.
