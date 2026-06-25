@@ -1,0 +1,626 @@
+<!doctype html>
+<html>
+	<head>
+	<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, minimal-ui">
+	
+	<title>Cédric Martin - CV</title>
+
+	<style>
+	/*! normalize.css 2012-02-07T12:37 UTC - http://github.com/necolas/normalize.css */article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary{display:block}audio,canvas,video{display:inline-block;*display:inline;*zoom:1}audio:not([controls]){display:none}[hidden]{display:none}html{font-size:100%;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}html,button,input,select,textarea{font-family:sans-serif}body{margin:0}a:focus{outline:thin dotted}a:hover,a:active{outline:0}h1{font-size:2em;margin:.67em 0}h2{font-size:1.5em;margin:.83em 0}h3{font-size:1.17em;margin:1em 0}h4{font-size:1em;margin:1.33em 0}h5{font-size:.83em;margin:1.67em 0}h6{font-size:.75em;margin:2.33em 0}abbr[title]{border-bottom:1px dotted}b,strong{font-weight:bold}blockquote{margin:1em 40px}dfn{font-style:italic}mark{background:#ff0;color:#000}p,pre{margin:1em 0}pre,code,kbd,samp{font-family:monospace,serif;_font-family:'courier new',monospace;font-size:1em}pre{white-space:pre;white-space:pre-wrap;word-wrap:break-word}q{quotes:none}q:before,q:after{content:'';content:none}small{font-size:75%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-0.5em}sub{bottom:-0.25em}dl,menu,ol,ul{margin:1em 0}dd{margin:0 0 0 40px}menu,ol,ul{padding:0 0 0 40px}nav ul,nav ol{list-style:none;list-style-image:none}img{border:0;-ms-interpolation-mode:bicubic}svg:not(:root){overflow:hidden}figure{margin:0}form{margin:0}fieldset{border:1px solid #c0c0c0;margin:0 2px;padding:.35em .625em .75em}legend{border:0;padding:0;white-space:normal;*margin-left:-7px}button,input,select,textarea{font-size:100%;margin:0;vertical-align:baseline;*vertical-align:middle}button,input{line-height:normal}button,input[type="button"],input[type="reset"],input[type="submit"]{cursor:pointer;-webkit-appearance:button;*overflow:visible}button[disabled],input[disabled]{cursor:default}input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0;*height:13px;*width:13px}input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}input[type="search"]::-webkit-search-decoration,input[type="search"]::-webkit-search-cancel-button{-webkit-appearance:none}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}textarea{overflow:auto;vertical-align:top}table{border-collapse:collapse;border-spacing:0}
+
+/* General, overall styling */
+body {
+	background: #F9F9F9;
+	font-size: 0.9em;
+	font-family: 'Lato', sans-serif;
+	margin-bottom: 100px;
+}
+
+em {
+	color: #999;
+}
+
+p {
+	line-height: 1.4;
+}
+
+a {
+	color: #31A6D6;
+}
+
+a:visited {
+	color: #3061A5;
+}
+
+a:hover {
+	color: #3061A5;
+}
+
+ul {
+	margin-bottom: 0;
+}
+section {
+	margin-bottom: 2em;
+}
+
+blockquote {
+	margin: 0;
+	margin-bottom: 1em;
+}
+
+/* End general, overall styling */
+
+/* Header name styling */
+
+header {
+	background: #68B6E3;
+	padding: 50px;
+	margin-bottom: 50px;
+}
+
+header h1 {
+	color: #FFFFFF;
+	max-width: 700px;
+	margin: 0 auto;
+}
+
+header h2 {
+	color: #F3F3F3;
+	font-size: 1em;
+	max-width: 700px;
+	margin: 0 auto;
+}
+
+/* End header name styling */
+
+/* Set width of main body of CV */
+.container {
+	max-width: 700px;
+	padding: 0 50px;
+	margin: 0 auto;
+}
+
+/* End */
+
+/* Styling Basics (Name, Contact, About, Profiles) */
+
+#basics {
+	margin-bottom: 10px;
+	border-top: 1px #E2E2E2 solid;
+	border-bottom: 1px #E2E2E2 solid;
+}
+#basics h3 {
+	margin-top: 1.5em;
+	margin-bottom: 10px;
+}
+#basics .contact strong {
+	line-height: 1.3;
+	float: left;
+	width: 80px;
+}
+
+.contact h3 {
+	padding-bottom: 10px;
+}
+
+.website,
+.email,
+.phone {
+	margin-bottom: 10px;
+	float: left;
+	width: 50%;
+}
+
+.summary {
+	padding-top: 5px;
+	clear: both;
+}
+
+#profiles {
+	overflow: hidden;
+}
+
+#profiles .item {
+	float: left;
+	width: 50%;
+}
+
+.username{
+	margin-top: 10px;
+}
+
+/* End 'Basics' Styling */
+
+/* Work and volunteering experience styling */
+
+.work_date,
+.work_position,
+.work_website,
+.institution,
+.study_date,
+.qualification {
+	margin-bottom: 10px;
+	float: left;
+	width: 30%;
+}
+
+.courses {
+	clear: both;
+}
+
+.dissertation {
+	margin-top: 10px;
+}
+
+#work,
+#volunteer {
+	padding-bottom: 5px;
+	border-bottom: 1px #E2E2E2 solid;
+}
+
+#work .item,
+#volunteer .item {
+	margin: 25px 0;
+}
+
+/* End work and volunteering */
+
+/* Skills, languages, interests and references styling */
+
+#skills {
+	margin-bottom: 10px;
+	border-bottom: 1px #E2E2E2 solid;
+	padding-bottom: 5px;
+}
+
+#skills .item,
+#languages .item {
+	margin: 0 0 25px 0;
+}
+
+#interests .item {
+	margin-bottom: 25px;
+}
+
+#skills {
+	overflow: hidden;
+}
+
+#languages .item,
+#interests .item,
+#skills .item {
+	float: left;
+	width: 50%;
+}
+
+#references,
+#interests {
+	clear: both;
+}
+
+/* End styling */
+
+	</style>
+	
+	</head>
+	<body>
+	
+	<header>
+	<h1>Cédric Martin</h1>
+	<h2>Développeur Fullstack</h2>
+	</header>
+
+	<div id="content" class="container">
+	<section id="basics">
+		<div class="contact">
+		<h3>Contact</h3>
+		<div class="email">
+			<strong>Email</strong>
+			cedmart1@gmail.com
+		</div>
+		<div class="phone">
+			<strong>Phone</strong>
+			(+33) 06 04 40 46 68
+		</div>
+		</div>
+		<div class="summary">
+			<h3>About</h3>
+			<p>Développeur fullstack senior avec plus de 18 ans d&#x27;expérience sur le web, le mobile (Android) et l&#x27;embarqué. Polyvalent du front au back, de l&#x27;e-commerce aux assistants vocaux, avec une appétence pour la rétro-ingénierie, la sécurité et l&#x27;automatisation des builds.</p>
+		</div>
+		<section id="profiles">
+			<div class="item">
+				<strong class="network">
+					GitHub
+				</strong>
+				<div class="url">
+					<a href="https://github.com/bzhmaddog">
+						bzhmaddog
+					</a>
+				</div>
+			</div>
+			<div class="item">
+				<strong class="network">
+					LinkedIn
+				</strong>
+				<div class="url">
+					<a href="https://www.linkedin.com/in/cedmart1">
+						cedmart1
+					</a>
+				</div>
+			</div>
+		</section>
+	</section>
+
+	<section id="work">
+		<h2>Work</h2>
+		<div class="item">
+			
+			<div class="work_position">
+				Concepteur développeur senior
+			</div>
+
+			<div class="work_date">
+				<span class="startDate">
+					2017-01-01
+				</span>
+				<span class="endDate">
+					- Present
+				</span>
+			</div>
+
+
+
+			<div class="summary">
+				<p>Missions variées en régie et au forfait : mobile Android, sécurité NFV, IoT/assistants vocaux et plateformes web.</p>
+			</div>
+			<ul class="highlights">
+				<li>Avr. 2021 - présent : Développeur Android sur l&#x27;application Decathlon Connect (Java, Kotlin, RxJava, Bluetooth LE) : intégration de nouveaux produits, migration du code legacy vers des standards récents, mise en place de l&#x27;automatisation des builds (Bitrise / GitHub Actions).</li>
+				<li>Mai 2020 - Mars 2021 : Référent sécurité pour la validation d&#x27;un TAS (Telephony Application Server) NFV sous Redhat OpenStack : application Symfony d&#x27;historisation et d&#x27;analyse des audits de sécurité, migration des outils de fuzzing en environnement virtualisé, validation du hardening (39 machines), conformité des CDR, robustesse (fuzzing), veille CVE Linux.</li>
+				<li>Nov. 2019 - Avr. 2020 : POC d&#x27;intégration d&#x27;une balance connectée dans Decathlon Connect : rétro-ingénierie du protocole BLE depuis une app legacy (My Geonaute) et rédaction des spécifications.</li>
+				<li>Sep. 2018 - Oct. 2019 : Projet de recherche HomeIn chez Orange Labs : intégration Python/C++ de solutions Orange (synthèse vocale / ASR / reconnaissance de locuteur), IHM web de configuration, assistant vocal &#x27;Speakit&#x27; sur Raspberry Pi 3 (Snips), banc de test d&#x27;évaluation de solutions WakeWord.</li>
+				<li>Juin 2018 - Aout 2018 : Application Android (Java) Urgonight pour Urgotech : widgets réutilisables, intégration des écrans depuis les mockups, animations Web/SVG en WebView.</li>
+				<li>Déc. 2017 - Mai 2018 : Marketplace B2B d&#x27;échange de matières non organiques pour le groupe SUEZ : socle applicatif multilingue (Symfony 3.4 / PHP 7), environnement de dev (Vagrant), développement front.</li>
+				<li>Aout 2017 - Nov. 2017 : Application hybride desktop/mobile de gestion de commandes pour Arcelor Mittal Construction : interfaces adaptatives (desktop, Android, iOS), génération des builds mobiles.</li>
+				<li>Janv. 2017 - Juil. 2017 : Marketplace B2B d&#x27;échange de matières organiques pour SUEZ R&amp;V : socle applicatif (Symfony 3.2 / PHP 5), onboarding des développeurs juniors, développement front et back office.</li>
+			</ul>
+		</div>
+		<div class="item">
+			
+			<div class="work_position">
+				Développeur Web Senior (Freelance)
+			</div>
+
+			<div class="work_date">
+				<span class="startDate">
+					2016-10-01
+				</span>
+				<span class="endDate">
+					- 2017-01-31
+				</span>
+			</div>
+
+
+
+			<ul class="highlights">
+				<li>Opérations de maintenance sur les sites existants (Drupal 7 / Acquia Lightning).</li>
+				<li>Implémentation de nouvelles fonctionnalités et pages statiques.</li>
+				<li>R&amp;D pour les prochains sites de la société (Ultra Mobile, Mint Sim, Univision Mobile).</li>
+			</ul>
+		</div>
+		<div class="item">
+			
+			<div class="work_position">
+				Développeur Web Senior (Front end)
+			</div>
+
+			<div class="work_date">
+				<span class="startDate">
+					2013-08-01
+				</span>
+				<span class="endDate">
+					- 2016-09-30
+				</span>
+			</div>
+
+
+
+			<ul class="highlights">
+				<li>2015-2016 : Équipe LAMP : maintenance, refonte complète de thegloss.com sur WordPress Multisite, portage d&#x27;un outil interne de conception de pages WordPress vers WPMU, site vitrine smoshcraft.net, POC de plateforme multi-site Laravel consommant une API existante.</li>
+				<li>2013-2015 : Équipe .NET : interfaces utilisateur responsive pour sites publics et CMS internes, composants web réutilisables avec React.js (Break, ScreenJunkies).</li>
+			</ul>
+		</div>
+		<div class="item">
+			
+			<div class="work_position">
+				Développeur Web Senior
+			</div>
+
+			<div class="work_date">
+				<span class="startDate">
+					2012-05-01
+				</span>
+				<span class="endDate">
+					- 2013-08-31
+				</span>
+			</div>
+
+
+
+			<ul class="highlights">
+				<li>Développement de fonctionnalités pour une boutique de meubles design (Drupal / Pressflow + Übercart).</li>
+				<li>Front end : nouvelles fonctionnalités et optimisation des interfaces ; back end : outils pour les équipes produit et le management.</li>
+				<li>Création d&#x27;un configurateur de canapé permettant aux clients de choisir détails et options.</li>
+			</ul>
+		</div>
+		<div class="item">
+			
+			<div class="work_position">
+				Développeur Web Senior
+			</div>
+
+			<div class="work_date">
+				<span class="startDate">
+					2011-09-01
+				</span>
+				<span class="endDate">
+					- 2012-05-31
+				</span>
+			</div>
+
+
+
+			<ul class="highlights">
+				<li>Plateforme e-commerce d&#x27;achat groupé/discount et magazine de découverte des commerces de Shanghai.</li>
+				<li>Plateforme WordPress prête à l&#x27;emploi pour le marché chinois (localisation, moyens de paiement), modules et widgets front et back.</li>
+				<li>Intégration complète de Magento avec WordPress, gestion des abonnés, génération et envoi de newsletters.</li>
+				<li>Plateforme de génération/activation de coupons via QR code et web app smartphone pour les marchands.</li>
+			</ul>
+		</div>
+		<div class="item">
+			
+			<div class="work_position">
+				Développeur Web
+			</div>
+
+			<div class="work_date">
+				<span class="startDate">
+					2006-12-01
+				</span>
+				<span class="endDate">
+					- 2011-07-31
+				</span>
+			</div>
+
+
+
+			<ul class="highlights">
+				<li>2011 : R&amp;D JavaScript côté serveur (webble.it, Extract Widget) : API REST Node.js, navigateur headless en JavaScript (jsdom/cssom), module NPM node-cookies, scripts Bash et daemons.</li>
+				<li>2010 : blimpme.com : interface de gestion des utilisateurs (back office CMS) et interface de paiement.</li>
+				<li>2010 : Via&#x27;Agri : application conteneur QtWebkit (C++/Qt), migration Gmap v2 vers v3, plan de chais.</li>
+				<li>2008-2009 : Pratis Live V1 : application conteneur Trident (IE) en Pascal/Delphi, API JavaScript d&#x27;accès aux données Vidal, widgets posologie/calendrier/wysiwyg.</li>
+				<li>2006-2007 : Création et maintenance de sites internet, support aux utilisateurs et clients.</li>
+			</ul>
+		</div>
+		<div class="item">
+			
+			<div class="work_position">
+				Support technique FREE (Hotline)
+			</div>
+
+			<div class="work_date">
+				<span class="startDate">
+					2006-11-01
+				</span>
+				<span class="endDate">
+					- 2006-12-31
+				</span>
+			</div>
+
+
+
+		</div>
+		<div class="item">
+			
+			<div class="work_position">
+				Webmaster / Développeur PHP &amp; SysAdmin
+			</div>
+
+			<div class="work_date">
+				<span class="startDate">
+					2005-10-01
+				</span>
+				<span class="endDate">
+					- 2006-04-30
+				</span>
+			</div>
+
+
+
+			<ul class="highlights">
+				<li>Refonte totale de tradefaireguide.com (migration UTF-8, développement d&#x27;un CMS).</li>
+			</ul>
+		</div>
+		<div class="item">
+			
+			<div class="work_position">
+				SysAdmin &amp; référent TIC
+			</div>
+
+			<div class="work_date">
+				<span class="startDate">
+					1999-09-01
+				</span>
+				<span class="endDate">
+					- 2004-06-30
+				</span>
+			</div>
+
+
+
+			<ul class="highlights">
+				<li>Gestion des utilisateurs, administration du parc informatique, initiation aux TIC pour étudiants et enseignants, animation du club informatique.</li>
+			</ul>
+		</div>
+	</section>
+
+	
+	<section id="education">
+		<h2>Education</h2>
+		<div class="item">
+			
+			<div class="institution">
+				Institut Universitaire de Technologie de Lannion
+			</div>
+
+			<div class="study_date">
+				<span class="startDate">
+					2004-09-01
+				</span>
+				<span class="endDate">
+					- 2005-06-30
+				</span>
+			</div>
+
+
+
+		</div>
+		<div class="item">
+			
+			<div class="institution">
+				Greta de Lannion
+			</div>
+
+			<div class="study_date">
+				<span class="startDate">
+					2000-09-01
+				</span>
+				<span class="endDate">
+					- 2001-06-30
+				</span>
+			</div>
+
+
+
+		</div>
+	</section>
+	
+	<section id="skills">
+		<h2>Skills</h2>
+		<div class="item">
+			<div class="name">
+				Développement Web
+			</div>
+			<ul class="keywords">
+				<li>HTML5</li>
+				<li>CSS3 (SASS)</li>
+				<li>JavaScript (React, Angular, Backbone.js, jQuery, Underscore)</li>
+				<li>PHP (Symfony 3/4, Zend, Laravel)</li>
+				<li>MySQL</li>
+				<li>SQLite</li>
+				<li>MongoDB</li>
+				<li>Realm</li>
+				<li>E-commerce (Magento, Drupal/Pressflow + Übercart)</li>
+				<li>CMS (Drupal 6/7, WordPress, Joomla)</li>
+				<li>Mobilité (Cordova Android/iOS)</li>
+			</ul>
+		</div>
+		<div class="item">
+			<div class="name">
+				Mobile &amp; Langages
+			</div>
+			<ul class="keywords">
+				<li>Android (Java/Kotlin)</li>
+				<li>C/C++</li>
+				<li>Python</li>
+				<li>Bash</li>
+				<li>Perl</li>
+				<li>Delphi</li>
+			</ul>
+		</div>
+		<div class="item">
+			<div class="name">
+				Outils &amp; DevOps
+			</div>
+			<ul class="keywords">
+				<li>Build (Grunt, Gulp, Webpack, npm)</li>
+				<li>Versionnage (Git/Gitflow, SVN)</li>
+				<li>CI/CD (Bitrise, GitLab CI, Jenkins, GitHub Actions)</li>
+				<li>Agile/Scrum (JIRA/Confluence, Redmine)</li>
+				<li>Serveurs web Windows &amp; Linux (LAMP, Nginx, IIS, Varnish)</li>
+				<li>Virtualisation &amp; conteneurisation (Docker, Vagrant)</li>
+			</ul>
+		</div>
+	</section>
+
+	<section id="languages">
+		<h2>Languages</h2>
+		<div class="item">
+			<div class="language">
+				Français
+			</div>
+			<div class="level">
+				<em>Langue maternelle</em>
+			</div>
+		</div>
+		<div class="item">
+			<div class="language">
+				Anglais
+			</div>
+			<div class="level">
+				<em>Courant (parlé et écrit)</em>
+			</div>
+		</div>
+		<div class="item">
+			<div class="language">
+				Japonais
+			</div>
+			<div class="level">
+				<em>Niveau JLPT3 (sans diplôme)</em>
+			</div>
+		</div>
+		<div class="item">
+			<div class="language">
+				Chinois
+			</div>
+			<div class="level">
+				<em>Débutant</em>
+			</div>
+		</div>
+	</section>
+
+	<section id="interests">
+		<h2>Interests</h2>
+		<div class="item">
+			<div class="name">
+				Tech &amp; DIY
+			</div>
+			<ul class="keywords">
+				<li>Développement web &amp; mobile</li>
+				<li>Électronique</li>
+				<li>Impression 3D</li>
+				<li>Bricolage</li>
+			</ul>
+		</div>
+		<div class="item">
+			<div class="name">
+				Loisirs
+			</div>
+			<ul class="keywords">
+				<li>Flippers (collection &amp; restauration)</li>
+				<li>Cinéma</li>
+				<li>Musique</li>
+				<li>Jeux vidéo</li>
+				<li>Bowling</li>
+				<li>Mahjong</li>
+				<li>Softball</li>
+				<li>Beat Saber</li>
+			</ul>
+		</div>
+	</section>
+	
+	
+	</div>
+	</body>
+</html>

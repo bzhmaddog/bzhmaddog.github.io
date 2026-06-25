@@ -1,0 +1,216 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+  "meta": {
+    "language": "fr",
+    "canonical": "https://github.com/jsonresume/resume-schema/blob/master/schema.json",
+    "version": "v1.0.0"
+  },
+  "basics": {
+    "name": "Cédric Martin",
+    "label": "Développeur Fullstack",
+    "email": "cedmart1@gmail.com",
+    "phone": "(+33) 06 04 40 46 68",
+    "url": "https://bzhmaddog.github.io",
+    "summary": "Développeur fullstack senior avec plus de 18 ans d'expérience sur le web, le mobile (Android) et l'embarqué. Polyvalent du front au back, de l'e-commerce aux assistants vocaux, avec une appétence pour la rétro-ingénierie, la sécurité et l'automatisation des builds.",
+    "location": {
+      "address": "10 Place du bourg",
+      "postalCode": "22560",
+      "city": "Pleumeur-Bodou",
+      "countryCode": "FR",
+      "region": "Bretagne"
+    },
+    "profiles": [
+      {
+        "network": "GitHub",
+        "username": "bzhmaddog",
+        "url": "https://github.com/bzhmaddog"
+      },
+      {
+        "network": "LinkedIn",
+        "username": "cedmart1",
+        "url": "https://www.linkedin.com/in/cedmart1"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "Groupe Open",
+      "position": "Concepteur développeur senior",
+      "location": "Lannion, France",
+      "startDate": "2017-01-01",
+      "summary": "Missions variées en régie et au forfait : mobile Android, sécurité NFV, IoT/assistants vocaux et plateformes web.",
+      "highlights": [
+        "Avr. 2021 - présent : Développeur Android sur l'application Decathlon Connect (Java, Kotlin, RxJava, Bluetooth LE) : intégration de nouveaux produits, migration du code legacy vers des standards récents, mise en place de l'automatisation des builds (Bitrise / GitHub Actions).",
+        "Mai 2020 - Mars 2021 : Référent sécurité pour la validation d'un TAS (Telephony Application Server) NFV sous Redhat OpenStack : application Symfony d'historisation et d'analyse des audits de sécurité, migration des outils de fuzzing en environnement virtualisé, validation du hardening (39 machines), conformité des CDR, robustesse (fuzzing), veille CVE Linux.",
+        "Nov. 2019 - Avr. 2020 : POC d'intégration d'une balance connectée dans Decathlon Connect : rétro-ingénierie du protocole BLE depuis une app legacy (My Geonaute) et rédaction des spécifications.",
+        "Sep. 2018 - Oct. 2019 : Projet de recherche HomeIn chez Orange Labs : intégration Python/C++ de solutions Orange (synthèse vocale / ASR / reconnaissance de locuteur), IHM web de configuration, assistant vocal 'Speakit' sur Raspberry Pi 3 (Snips), banc de test d'évaluation de solutions WakeWord.",
+        "Juin 2018 - Aout 2018 : Application Android (Java) Urgonight pour Urgotech : widgets réutilisables, intégration des écrans depuis les mockups, animations Web/SVG en WebView.",
+        "Déc. 2017 - Mai 2018 : Marketplace B2B d'échange de matières non organiques pour le groupe SUEZ : socle applicatif multilingue (Symfony 3.4 / PHP 7), environnement de dev (Vagrant), développement front.",
+        "Aout 2017 - Nov. 2017 : Application hybride desktop/mobile de gestion de commandes pour Arcelor Mittal Construction : interfaces adaptatives (desktop, Android, iOS), génération des builds mobiles.",
+        "Janv. 2017 - Juil. 2017 : Marketplace B2B d'échange de matières organiques pour SUEZ R&V : socle applicatif (Symfony 3.2 / PHP 5), onboarding des développeurs juniors, développement front et back office."
+      ]
+    },
+    {
+      "name": "Ultra Mobile",
+      "position": "Développeur Web Senior (Freelance)",
+      "startDate": "2016-10-01",
+      "endDate": "2017-01-31",
+      "url": "https://www.ultramobile.com",
+      "highlights": [
+        "Opérations de maintenance sur les sites existants (Drupal 7 / Acquia Lightning).",
+        "Implémentation de nouvelles fonctionnalités et pages statiques.",
+        "R&D pour les prochains sites de la société (Ultra Mobile, Mint Sim, Univision Mobile)."
+      ]
+    },
+    {
+      "name": "Defy Media",
+      "position": "Développeur Web Senior (Front end)",
+      "location": "Shanghai, Chine",
+      "startDate": "2013-08-01",
+      "endDate": "2016-09-30",
+      "highlights": [
+        "2015-2016 : Équipe LAMP : maintenance, refonte complète de thegloss.com sur WordPress Multisite, portage d'un outil interne de conception de pages WordPress vers WPMU, site vitrine smoshcraft.net, POC de plateforme multi-site Laravel consommant une API existante.",
+        "2013-2015 : Équipe .NET : interfaces utilisateur responsive pour sites publics et CMS internes, composants web réutilisables avec React.js (Break, ScreenJunkies)."
+      ]
+    },
+    {
+      "name": "Designwelt Ltd (Avandeo)",
+      "position": "Développeur Web Senior",
+      "location": "Shanghai, Chine",
+      "startDate": "2012-05-01",
+      "endDate": "2013-08-31",
+      "highlights": [
+        "Développement de fonctionnalités pour une boutique de meubles design (Drupal / Pressflow + Übercart).",
+        "Front end : nouvelles fonctionnalités et optimisation des interfaces ; back end : outils pour les équipes produit et le management.",
+        "Création d'un configurateur de canapé permettant aux clients de choisir détails et options."
+      ]
+    },
+    {
+      "name": "TMO Group",
+      "position": "Développeur Web Senior",
+      "location": "Shanghai, Chine",
+      "startDate": "2011-09-01",
+      "endDate": "2012-05-31",
+      "highlights": [
+        "Plateforme e-commerce d'achat groupé/discount et magazine de découverte des commerces de Shanghai.",
+        "Plateforme WordPress prête à l'emploi pour le marché chinois (localisation, moyens de paiement), modules et widgets front et back.",
+        "Intégration complète de Magento avec WordPress, gestion des abonnés, génération et envoi de newsletters.",
+        "Plateforme de génération/activation de coupons via QR code et web app smartphone pour les marchands."
+      ]
+    },
+    {
+      "name": "Naïs Informatique & Telecom",
+      "position": "Développeur Web",
+      "location": "Lannion, France",
+      "startDate": "2006-12-01",
+      "endDate": "2011-07-31",
+      "highlights": [
+        "2011 : R&D JavaScript côté serveur (webble.it, Extract Widget) : API REST Node.js, navigateur headless en JavaScript (jsdom/cssom), module NPM node-cookies, scripts Bash et daemons.",
+        "2010 : blimpme.com : interface de gestion des utilisateurs (back office CMS) et interface de paiement.",
+        "2010 : Via'Agri : application conteneur QtWebkit (C++/Qt), migration Gmap v2 vers v3, plan de chais.",
+        "2008-2009 : Pratis Live V1 : application conteneur Trident (IE) en Pascal/Delphi, API JavaScript d'accès aux données Vidal, widgets posologie/calendrier/wysiwyg.",
+        "2006-2007 : Création et maintenance de sites internet, support aux utilisateurs et clients."
+      ]
+    },
+    {
+      "name": "Centrapel S.A.",
+      "position": "Support technique FREE (Hotline)",
+      "location": "Paris, France",
+      "startDate": "2006-11-01",
+      "endDate": "2006-12-31",
+      "highlights": []
+    },
+    {
+      "name": "SBA Consulting",
+      "position": "Webmaster / Développeur PHP & SysAdmin",
+      "location": "Tokyo, Japon",
+      "startDate": "2005-10-01",
+      "endDate": "2006-04-30",
+      "highlights": [
+        "Refonte totale de tradefaireguide.com (migration UTF-8, développement d'un CMS)."
+      ]
+    },
+    {
+      "name": "Lycée Kerraoul",
+      "position": "SysAdmin & référent TIC",
+      "location": "Paimpol, France",
+      "startDate": "1999-09-01",
+      "endDate": "2004-06-30",
+      "highlights": [
+        "Gestion des utilisateurs, administration du parc informatique, initiation aux TIC pour étudiants et enseignants, animation du club informatique."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Institut Universitaire de Technologie de Lannion",
+      "area": "Réseaux et Télécommunications - spécialité Gestion des systèmes et réseaux",
+      "studyType": "Licence Professionnelle (mention assez bien)",
+      "startDate": "2004-09-01",
+      "endDate": "2005-06-30"
+    },
+    {
+      "institution": "Greta de Lannion",
+      "area": "Administration de réseaux Microsoft Windows NT/2000",
+      "studyType": "Formation professionnelle",
+      "startDate": "2000-09-01",
+      "endDate": "2001-06-30"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Développement Web",
+      "keywords": [
+        "HTML5",
+        "CSS3 (SASS)",
+        "JavaScript (React, Angular, Backbone.js, jQuery, Underscore)",
+        "PHP (Symfony 3/4, Zend, Laravel)",
+        "MySQL",
+        "SQLite",
+        "MongoDB",
+        "Realm",
+        "E-commerce (Magento, Drupal/Pressflow + Übercart)",
+        "CMS (Drupal 6/7, WordPress, Joomla)",
+        "Mobilité (Cordova Android/iOS)"
+      ]
+    },
+    {
+      "name": "Mobile & Langages",
+      "keywords": [
+        "Android (Java/Kotlin)",
+        "C/C++",
+        "Python",
+        "Bash",
+        "Perl",
+        "Delphi"
+      ]
+    },
+    {
+      "name": "Outils & DevOps",
+      "keywords": [
+        "Build (Grunt, Gulp, Webpack, npm)",
+        "Versionnage (Git/Gitflow, SVN)",
+        "CI/CD (Bitrise, GitLab CI, Jenkins, GitHub Actions)",
+        "Agile/Scrum (JIRA/Confluence, Redmine)",
+        "Serveurs web Windows & Linux (LAMP, Nginx, IIS, Varnish)",
+        "Virtualisation & conteneurisation (Docker, Vagrant)"
+      ]
+    }
+  ],
+  "languages": [
+    { "language": "Français", "fluency": "Langue maternelle" },
+    { "language": "Anglais", "fluency": "Courant (parlé et écrit)" },
+    { "language": "Japonais", "fluency": "Niveau JLPT3 (sans diplôme)" },
+    { "language": "Chinois", "fluency": "Débutant" }
+  ],
+  "interests": [
+    {
+      "name": "Tech & DIY",
+      "keywords": ["Développement web & mobile", "Électronique", "Impression 3D", "Bricolage"]
+    },
+    {
+      "name": "Loisirs",
+      "keywords": ["Flippers (collection & restauration)", "Cinéma", "Musique", "Jeux vidéo", "Bowling", "Mahjong", "Softball", "Beat Saber"]
+    }
+  ]
+}
