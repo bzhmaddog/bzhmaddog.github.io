@@ -1,0 +1,26 @@
+{
+  "name": "Resume",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "serve": "serve .",
+    "validate": "resume validate --resume resume/resume.en.json",
+    "build": "resume export resume/index.html --resume resume/resume.en.json --theme ./resume/theme",
+    "pdf": "node resume/export-pdf.js",
+    "watch": "chokidar 'resume/theme/**' 'resume/resume.en.json' -c 'npm run build'",
+    "dev": "concurrently --names 'serve,watch' -c 'blue,green' \"npm run serve\" \"npm run watch\"",
+    "audit": "resume audit resume/resume.en.json --theme ./resume/theme",
+    "prepare": "husky"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chokidar-cli": "^3.0.0",
+    "concurrently": "^10.0.3",
+    "husky": "^9.1.7",
+    "resume-cli": "^3.7.1",
+    "serve": "^14.2.6"
+  }
+}

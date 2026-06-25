@@ -1,0 +1,226 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+  "meta": {
+    "language": "en",
+    "canonical": "https://github.com/jsonresume/resume-schema/blob/master/schema.json",
+    "version": "v1.0.0"
+  },
+  "basics": {
+    "name": "Cédric Martin",
+    "label": "Fullstack Web Developer",
+    "email": "cedmart1@gmail.com",
+    "phone": "(+33) 06 04 40 46 68",
+    "url": "https://bzhmaddog.github.io",
+    "summary": "Senior fullstack developer with 27+ years of experience across web, Android mobile, system administration and embedded systems. Equally at home on front end and back end — from e-commerce platforms and mapping applications to AI assistants and voice interfaces. Known for autonomy, proactivity, and the ability to anticipate technical and functional challenges. Quickly adapts to evolving technologies and project needs, making him a reliable asset in any team he joins.",
+    "profiles": [
+      {
+        "network": "GitHub",
+        "username": "bzhmaddog",
+        "url": "https://github.com/bzhmaddog"
+      },
+      {
+        "network": "LinkedIn",
+        "username": "cedmart1",
+        "url": "https://www.linkedin.com/in/cedmart1"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "Groupe Open",
+      "position": "Senior Software Engineer",
+      "location": "Lannion, France",
+      "startDate": "2017-01-01",
+      "summary": "Various missions: Web applications, Android native and hybrid, NFV security, IoT/voice assistants.",
+      "highlights": [
+        "Apr. 2026 - now: Senior Fullstack Developer for BRGM - Maintenance and enhancement of the <a href='https://envinorma.developpement-durable.gouv.fr/' target='_blank' rel='noopener'>Envinorma</a> web platform",
+        "Mar. 2026 - May. 2026: Senior Front-end Developer for DIRE () - Refactoring/Improvement of the 'Synoptique' feature of the Sagacite web platform",
+        "Feb. 2026 - Feb. 2026: Senior Fullstack Developer for BRGM - Maintenance and enhancement of the <a href='https://envinorma.developpement-durable.gouv.fr/' target='_blank' rel='noopener'>Envinorma</a> web platform",
+        "Jan. 2026 - Jan. 2026: Backup Senior Front-End Developer for BRGM - Redesign of Infoterre web platform",
+        "Sep. 2025 - Dec. 2025: Senior Fullstack Developer for Orange Labs - Realised a POC for an AI assistant for Orange employees.",
+        "Jan. 2025 - Aug. 2025: Senior Fullstack Developer for BRGM (French ministry of ecology transformation) - Maintenance and enhancement of the <a href='https://envinorma.developpement-durable.gouv.fr/' target='_blank' rel='noopener'>Envinorma</a> web platform",
+        "Apr. 2024 - Dec. 2024: Senior Front-End Developer for SCHAPI (French ministry of ecology transformation) - Redesign of Schapi Superviseur app",
+        "Apr. 2021 - Mar. 2024: Android developer on the Decathlon Connect app (Java, Kotlin, RxJava, Bluetooth LE) - integration of new products, migration of legacy code to modern standards, build automation setup (Bitrise / GitHub Actions).",
+        "May 2020 - Mar. 2021: Security lead for the validation of an NFV TAS (Telephony Application Server) on Redhat OpenStack - built a Symfony app for security audit tracking and analysis, migrated fuzzing tools to a virtualised environment, validated hardening of 39 machines, CDR compliance, robustness testing (fuzzing), Linux CVE monitoring.",
+        "Nov. 2019 - Apr. 2020: POC for integrating a connected scale into the Decathlon Connect app - reverse-engineered the BLE communication protocol from a legacy app (My Geonaute) and wrote the specification.",
+        "Sep. 2018 - Oct. 2019: HomeIn research project at Orange Labs - Python/C++ integration of Orange solutions (TTS / ASR / speaker recognition), web configuration UI, 'Speakit' voice assistant on Raspberry Pi 3 (Snips), WakeWord evaluation test bench (Sensory / Fluent / SoundHound / Snips / Nuance).",
+        "Jun. 2018 - Aug. 2018: Urgonight Android app (Java) for Urgotech - reusable widgets, screen integration from mockups, Web/SVG animations in a WebView.",
+        "Dec. 2017 - May 2018: B2B marketplace for non-organic waste exchange for SUEZ Group - multilingual application stack (Symfony 3.4 / PHP 7), development environment (Vagrant), front-end development.",
+        "Aug. 2017 - Nov. 2017: Hybrid desktop/mobile order management app for Arcelor Mittal Construction - adaptive interfaces (desktop, Android, iOS), mobile build generation.",
+        "Jan. 2017 - Jul. 2017: B2B marketplace for organic waste exchange for SUEZ R&V - application stack (Symfony 3.2 / PHP 5), junior developer onboarding, front and back office development."
+      ]
+    },
+    {
+      "name": "Ultra Mobile",
+      "position": "Senior Web Developer (Freelance)",
+      "startDate": "2016-10-01",
+      "endDate": "2017-01-31",
+      "url": "https://www.ultramobile.com",
+      "highlights": [
+        "Maintenance on existing sites (Drupal 7 / Acquia Lightning).",
+        "Implementation of new features and static pages.",
+        "R&D for upcoming company sites (Ultra Mobile, Mint Sim, Univision Mobile)."
+      ]
+    },
+    {
+      "name": "Defy Media",
+      "position": "Senior Front-End Developer",
+      "location": "Shanghai, China",
+      "startDate": "2013-08-01",
+      "endDate": "2016-09-30",
+      "highlights": [
+        "2015-2016: LAMP team - maintenance, full redesign of thegloss.com on WordPress Multisite, porting an in-house WordPress page builder to WPMU, smoshcraft.net showcase site, multi-site Laravel platform POC consuming an existing API.",
+        "2013-2015: .NET team - responsive user interfaces for public sites and internal CMS tools, reusable web components built with React.js (Break, ScreenJunkies)."
+      ]
+    },
+    {
+      "name": "Designwelt Ltd (Avandeo)",
+      "position": "Senior Web Developer",
+      "location": "Shanghai, China",
+      "startDate": "2012-05-01",
+      "endDate": "2013-08-31",
+      "highlights": [
+        "Feature development for a design furniture e-shop (Drupal / Pressflow + Ubercart).",
+        "Front end: new features and UI optimisation; back end: tooling for product and management teams.",
+        "Built a sofa configurator letting customers choose their own details and options."
+      ]
+    },
+    {
+      "name": "TMO Group",
+      "position": "Senior Web Developer",
+      "location": "Shanghai, China",
+      "startDate": "2011-09-01",
+      "endDate": "2012-05-31",
+      "highlights": [
+        "Group-buying/discount e-commerce platform and Shanghai merchant discovery magazine.",
+        "China-ready WordPress platform (localisation, payment methods), front and back-end modules and widgets.",
+        "Full Magento/WordPress integration, subscriber management, automated newsletter generation and delivery.",
+        "QR code coupon generation/activation platform and merchant-facing smartphone web app."
+      ]
+    },
+    {
+      "name": "Nais Informatique & Telecom",
+      "position": "Web Developer",
+      "location": "Lannion, France",
+      "startDate": "2006-12-01",
+      "endDate": "2011-07-31",
+      "highlights": [
+        "2011: Server-side JavaScript R&D (webble.it, Extract Widget) - REST API in Node.js, headless browser in JavaScript (jsdom/cssom), node-cookies NPM module, Bash scripts and daemons.",
+        "2010: blimpme.com - user management back office CMS and payment interface.",
+        "2010: Via'Agri - QtWebkit container app (C++/Qt), Google Maps API v2 to v3 migration, cellar plan interface.",
+        "2008-2009: Pratis Live V1 - Trident (IE) container app in Pascal/Delphi, JavaScript API for Vidal drug catalogue data, dosage/calendar/WYSIWYG widgets.",
+        "2006-2007: Creation and maintenance of various websites, user and client support."
+      ]
+    },
+    {
+      "name": "Centrapel S.A.",
+      "position": "Technical Support (FREE ISP Hotline)",
+      "location": "Paris, France",
+      "startDate": "2006-11-01",
+      "endDate": "2006-12-31",
+      "highlights": []
+    },
+    {
+      "name": "SBA Consulting",
+      "position": "Webmaster / PHP Developer & SysAdmin",
+      "location": "Tokyo, Japan",
+      "startDate": "2005-10-01",
+      "endDate": "2006-04-30",
+      "highlights": [
+        "Full redesign of tradefaireguide.com (UTF-8 migration, custom CMS development)."
+      ]
+    },
+    {
+      "name": "Lycee Kerraoul",
+      "position": "SysAdmin & ICT Coordinator",
+      "location": "Paimpol, France",
+      "startDate": "1999-09-01",
+      "endDate": "2004-06-30",
+      "highlights": [
+        "User management, IT infrastructure administration, ICT training for students and teachers, computer club."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Institut Universitaire de Technologie de Lannion",
+      "area": "Networking & Telecommunications - Systems and Network Management",
+      "studyType": "Professional Bachelor's Degree (with distinction)",
+      "startDate": "2004-09-01",
+      "endDate": "2005-06-30"
+    },
+    {
+      "institution": "Greta de Lannion",
+      "area": "Microsoft Windows NT/2000 Network Administration",
+      "studyType": "Professional Training",
+      "startDate": "2000-09-01",
+      "endDate": "2001-06-30"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Web Development",
+      "keywords": [
+        "HTML5",
+        "CSS3 (SASS)",
+        "TypeScript (vanilla, Angular (16+), Vite",
+        "JavaScript (React, Angular-js), Backbone.js, jQuery, Underscore)",
+        "PHP (Symfony 3/4, Zend, Laravel)",
+        "Ruby on Rails (7)",
+        "MySQL",
+        "PostgreSQL",
+        "SQLite",
+        "MongoDB",
+        "Realm",
+        "Mapping (OpenLayers, WMS/WFS/WMTS)",
+        "Charts (Highcharts)",
+        "UI Frameworks (Bootstrap, Material UI, PrimeNG)",
+        "E-commerce (Magento, Drupal/Pressflow + Ubercart)",
+        "CMS (Drupal 6/7, WordPress, Joomla)",
+        "Mobile Web (Cordova Android/iOS)"
+      ]
+    },
+    {
+      "name": "Mobile & Languages",
+      "keywords": [
+        "Android (Java/Kotlin)",
+        "Flutter (Dart)",
+        "Electron",
+        "C/C++",
+        "Python",
+        "Ruby",
+        "Bash",
+        "Perl",
+        "Delphi"
+      ]
+    },
+    {
+      "name": "Tooling & DevOps",
+      "keywords": [
+        "Build tools (Grunt, Gulp, Webpack, npm)",
+        "Version control (Git/Gitflow, SVN)",
+        "CI/CD (Bitrise, GitLab CI, Jenkins, GitHub Actions)",
+        "Testing (Cypress, Vitest, Capibara)",
+        "Agile/Scrum (JIRA/Confluence, Redmine)",
+        "Web servers - Windows & Linux (LAMP, Nginx, IIS, MapServer)",
+        "Virtualisation & containerisation (Docker, Podman, Vagrant)"
+      ]
+    }
+  ],
+  "languages": [
+    { "language": "French", "fluency": "Native" },
+    { "language": "English", "fluency": "Fluent (spoken and written)" },
+    { "language": "Japanese", "fluency": "JLPT3 level (no certificate)" },
+    { "language": "Chinese", "fluency": "Beginner" }
+  ],
+  "interests": [
+    {
+      "name": "Tech & DIY",
+      "keywords": ["Web & mobile development", "Electronics", "3D printing", "DIY"]
+    },
+    {
+      "name": "Hobbies",
+      "keywords": ["Pinball machines (collecting & restoring)", "Cinema", "Music", "Video games", "Bowling", "Mahjong", "Softball", "Beat Saber"]
+    }
+  ]
+}
