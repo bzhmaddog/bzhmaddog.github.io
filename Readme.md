@@ -5,9 +5,21 @@ Personal GitHub Pages site — [bzhmaddog.github.io](https://bzhmaddog.github.io
 ## Structure
 
 ```
-index.html        # homepage (Bootstrap 5, links to sub-projects)
-resume/           # JSON Resume — see resume/Readme.md
-img/              # root-level assets
+index.html              # homepage (Bootstrap 5, project cards)
+package.json            # root npm manifest — all scripts and devDependencies
+.husky/
+└── pre-commit          # auto-rebuilds HTML + PDF before every commit
+resume/
+├── resume.en.json      # source of truth (JSON Resume schema)
+├── index.html          # generated — do not edit manually
+├── resume.pdf          # generated — do not edit manually
+├── export-pdf.js       # puppeteer script for single-page PDF export
+├── Readme.md           # resume-specific docs
+└── theme/              # vendored spartan theme (Handlebars + CSS)
+    ├── index.js        # renderer + custom helpers
+    ├── resume.hbs      # Handlebars template
+    ├── style.css       # stylesheet (edit here to customise)
+    └── package.json    # theme metadata
 ```
 
 > **H5DMD** (`/H5DMD/`) lives in a separate repository and is deployed independently.
