@@ -28,8 +28,9 @@
   "overrides": {
     "axios": "^1.8.0",
     "braces": "^3.0.3",
+    "shell-quote": "^1.9.0",
     "dset": "^3.1.4",
-    "js-yaml": "^5.1.0",
+    "js-yaml": "^5.2.0",
     "markdown-it": "^14.2.0",
     "micromatch": "^4.0.8",
     "pug": "^3.0.4",
