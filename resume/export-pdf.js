@@ -12,8 +12,16 @@ const MM_PER_PX   = 25.4 / 96;
 const MARGIN_H_MM = 10;
 const MARGIN_V_MM = 15;
 
-(async () => {
+async function main() {
   const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+  try {
+    await exportPdf(browser);
+  } finally {
+    await browser.close();
+  }
+}
+
+async function exportPdf(browser) {
   const page = await browser.newPage();
 
   // Use A4 width so layout matches the styled output
@@ -32,6 +40,10 @@ const MARGIN_V_MM = 15;
     printBackground: true,
   });
 
-  await browser.close();
   console.log(`Done! Single-page PDF → ${PDF_FILE}  (page height: ${pageHeightMm}mm)`);
-})();
+}
+
+main().catch((err) => {
+  console.error(err);
+  process.exitCode = 1;
+});
