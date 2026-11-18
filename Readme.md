@@ -1,5 +1,13 @@
 # bzhmaddog.github.io
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=bzhmaddog_bzhmaddog.github.io&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=bzhmaddog_bzhmaddog.github.io)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=bzhmaddog_bzhmaddog.github.io&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=bzhmaddog_bzhmaddog.github.io)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=bzhmaddog_bzhmaddog.github.io&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=bzhmaddog_bzhmaddog.github.io)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=bzhmaddog_bzhmaddog.github.io&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=bzhmaddog_bzhmaddog.github.io)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=bzhmaddog_bzhmaddog.github.io&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=bzhmaddog_bzhmaddog.github.io)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=bzhmaddog_bzhmaddog.github.io&metric=bugs)](https://sonarcloud.io/summary/new_code?id=bzhmaddog_bzhmaddog.github.io)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=bzhmaddog_bzhmaddog.github.io&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=bzhmaddog_bzhmaddog.github.io)
+
 Personal GitHub Pages site — [bzhmaddog.github.io](https://bzhmaddog.github.io)
 
 ## Structure
